@@ -1,0 +1,27 @@
+# ⛔ 機密一律不准進儲存庫（王 2026-09-24 鐵則）
+*.key
+*.pem
+*.pfx
+secrets*
+_secrets/
+creds*
+envkeys*
+.env
+.env.*
+*.token
+*credential*
+meta-config*
+
+# 本機雜物
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 大檔不進版控
+*.mp4
+*.png
+*.jpg
+*.wav
