@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-TTL花雕雞麵-多鏡頭",
+  "shot_prefix": "tt",
+  "note": "2026-09-28 第 30 棒：TTL 台酒花雕雞麵（袋裝 3 包／袋），人物 B6（戴眼鏡、上班族）。商品參考圖（image 2）＝ttl_pack.png。由 legacy/_gen_new0928e.py 轉來。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "bag",
+    "look_qwen": "instant noodle multipack bag from image 2, exactly its look: a tall box-shaped soft plastic bag with a peaked top, dark red and orange with a light beige lower half, large dark red Chinese title letters and a picture of a bowl of noodle soup with chicken pieces",
+    "look_video": "dark red and orange instant noodle multipack bag",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its lower half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": ["加班到半夜好餓", "外面的店都關了"],
+      "scene_qwen": "She stands in a quiet open office late at night, empty desks and dim ceiling lights behind her; no screen text is readable.",
+      "scene_video": "A quiet open office late at night with empty desks and dim ceiling lights behind her; no screen text is readable",
+      "anchors": "empty desks and the ceiling lights",
+      "outfit": "a plain white shirt under a grey cardigan"
+    },
+    {
+      "line": ["家裡都會放幾包", "台酒的花雕雞麵"],
+      "scene_qwen": "She stands in a small home kitchen at night, white cabinets and a stove with a pot behind her.",
+      "scene_video": "A small home kitchen at night with white cabinets and a stove with a pot behind her",
+      "anchors": "white cabinets and the stove",
+      "outfit": "a plain light grey hoodie"
+    },
+    {
+      "line": ["湯頭有花雕酒", "還有雞肉塊料理包"],
+      "scene_qwen": "She sits at a small dining table at night, a steaming bowl of noodle soup on the table in front of her and a warm pendant lamp behind her.",
+      "scene_video": "A small dining table at night with a steaming bowl of noodle soup on the table and a warm pendant lamp behind her",
+      "anchors": "pendant lamp and the table",
+      "outfit": "a plain light grey hoodie"
+    },
+    {
+      "line": ["細麵煮起來香Q", "晚上吃很滿足"],
+      "scene_qwen": "She sits on a sofa in a cosy living room at night, a floor lamp and a blanket behind her.",
+      "scene_video": "A cosy living room at night; she sits on a sofa with a floor lamp and a blanket behind her",
+      "anchors": "floor lamp and the blanket",
+      "outfit": "a plain soft beige loungewear top"
+    },
+    {
+      "line": ["常常加班肚子餓的", "點下面就買得到"],
+      "scene_qwen": "She sits at a desk in her bedroom at night, a laptop closed on the desk and a bookshelf behind her.",
+      "scene_video": "A bedroom desk at night with a closed laptop and a bookshelf behind her",
+      "anchors": "laptop and the bookshelf",
+      "outfit": "a plain navy knit sweater"
+    }
+  ]
+}

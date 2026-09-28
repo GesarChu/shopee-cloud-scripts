@@ -1,0 +1,4 @@
+# golden/ 跟產出是「逐位元組」驗收（UTF-8、\n 換行）：
+# 不准 git 在 Windows 上 checkout 時把 \n 換成 \r\n，不然本機跑 test_golden.py 會全紅。
+golden/** -text
+out/** -text

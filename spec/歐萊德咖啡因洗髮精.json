@@ -1,0 +1,53 @@
+{
+  "package": "腳本備妥-歐萊德咖啡因洗髮精-多鏡頭",
+  "shot_prefix": "oc",
+  "note": "2026-09-28 第 30 棒：歐萊德 咖啡因洗髮精 400mL，人物 B7（高馬尾）。商品參考圖（image 2）＝or_bottle.png。由 legacy/_gen_new0928f.py 轉來。",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "shampoo bottle from image 2, exactly its look: a tall slim dark chocolate-brown bottle with rounded shoulders and a light beige wooden-looking cap, the small white words Caffeine Shampoo on the upper front and a small white logo near the bottom",
+    "look_video": "tall slim dark brown shampoo bottle with the light beige cap",
+    "size": "about as tall as her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": ["綁了一整天馬尾", "髮根看起來塌塌的"],
+      "scene_qwen": "She stands in a bright office in the late afternoon, desks, a window and plants behind her; no screen text is readable.",
+      "scene_video": "A bright office in the late afternoon with desks, a window and plants behind her; no screen text is readable",
+      "anchors": "desks and the window",
+      "outfit": "a plain white blouse"
+    },
+    {
+      "line": ["浴室裡放的是這瓶", "歐萊德咖啡因洗髮精"],
+      "scene_qwen": "She stands in a clean modern bathroom in the evening, a glass shower screen and grey tiles behind her.",
+      "scene_video": "A clean modern bathroom in the evening with a glass shower screen and grey tiles behind her",
+      "anchors": "shower screen and the grey tiles",
+      "outfit": "a plain light grey bathrobe"
+    },
+    {
+      "line": ["有天然咖啡因萃取", "一般頭髮都能用"],
+      "scene_qwen": "She sits at a white vanity table in her bedroom in the morning, a round mirror and a small vase of flowers behind her.",
+      "scene_video": "A bedroom vanity in the morning; she sits with a round mirror and a small vase of flowers behind her",
+      "anchors": "round mirror and the flowers",
+      "outfit": "a plain soft blue knit top"
+    },
+    {
+      "line": ["洗完髮絲看起來", "豐盈又有精神"],
+      "scene_qwen": "She stands in a bright yoga studio in the morning, a wooden floor, big windows and green plants behind her, wearing a sports top.",
+      "scene_video": "A bright yoga studio in the morning with a wooden floor, big windows and green plants behind her",
+      "anchors": "big windows and the plants",
+      "outfit": "a plain black sports top under a light grey zip jacket, no logo"
+    },
+    {
+      "line": ["頭髮容易扁塌的", "下面點進去就買得到"],
+      "scene_qwen": "She sits on a cream sofa in a cosy living room in the evening, a floor lamp and a bookshelf behind her.",
+      "scene_video": "A cosy living room in the evening; she sits on a cream sofa with a floor lamp and a bookshelf behind her",
+      "anchors": "floor lamp and the bookshelf",
+      "outfit": "a plain cream knit sweater"
+    }
+  ]
+}
