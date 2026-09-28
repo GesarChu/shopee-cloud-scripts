@@ -1,0 +1,68 @@
+{
+  "package": "腳本備妥-可口可樂易開罐24入-v2火鍋",
+  "shot_prefix": "kov",
+  "note": "2026-09-28 第 31 棒：可口可樂 250ml 第二支（朋友來吃火鍋），人物 B6。商品參考圖 image 2＝coke_can.jpg（拿單罐，手最穩）。v1＝冰箱空空／做事累／炸雞追劇。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "can",
+    "look_qwen": "soda can from image 2, exactly its look: a short chubby red can with the white Coca-Cola script logo and a white wave running around it",
+    "look_video": "short red Coca-Cola can",
+    "size": "about as tall as her palm"
+  },
+  "shots": [
+    {
+      "line": [
+        "朋友來家裡吃火鍋",
+        "飲料都不夠喝"
+      ],
+      "scene_qwen": "She stands in a home dining room in the evening, a table set for a hot pot dinner with bowls and a pot behind her.",
+      "scene_video": "A home dining room in the evening with a table set for a hot pot dinner with bowls and a pot behind her",
+      "anchors": "dining table and the pot",
+      "outfit": "a plain mustard yellow sweater"
+    },
+    {
+      "line": [
+        "我家都會放一箱",
+        "可口可樂"
+      ],
+      "scene_qwen": "She sits on a kitchen stool in the evening, a closed refrigerator and white cabinets behind her.",
+      "scene_video": "A kitchen in the evening; she sits on a stool with a refrigerator and white cabinets behind her",
+      "anchors": "refrigerator and the white cabinets",
+      "outfit": "a plain white T-shirt tucked into dark jeans"
+    },
+    {
+      "line": [
+        "小小的剛剛好",
+        "一個人喝得完"
+      ],
+      "scene_qwen": "She stands on a small home balcony at dusk, potted plants and warm string lights behind her.",
+      "scene_video": "A small home balcony at dusk with potted plants and warm string lights behind her",
+      "anchors": "potted plants and the string lights",
+      "outfit": "a plain red and white striped T-shirt"
+    },
+    {
+      "line": [
+        "火鍋配冰冰的可樂",
+        "好暢快"
+      ],
+      "scene_qwen": "She stands in a warm living room in the evening, friends' coats on a sofa and a hot pot dinner on a low table behind her.",
+      "scene_video": "A warm living room in the evening with coats on a sofa and a hot pot dinner on a low table behind her",
+      "anchors": "sofa and the low table",
+      "outfit": "a plain black knit top"
+    },
+    {
+      "line": [
+        "家裡常請客的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a tidy living room at night, a floor lamp and a framed plain painting behind her.",
+      "scene_video": "A tidy living room at night; she sits on a sofa with a floor lamp and a framed plain painting behind her",
+      "anchors": "floor lamp and the painting",
+      "outfit": "a plain grey hoodie"
+    }
+  ]
+}

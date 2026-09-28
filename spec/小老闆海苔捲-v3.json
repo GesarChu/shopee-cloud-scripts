@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-小老闆海苔捲-v3野餐",
+  "shot_prefix": "nb3",
+  "note": "2026-09-28 第 31 棒：小老闆海苔捲第三支（週末野餐），人物 B6，image 2＝nori_green.jpg。賣場：泰國、原味／辣味／魷魚／BBQ、每支單獨包裝。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "stick",
+    "look_qwen": "seaweed snack stick from image 2, exactly its look: one long thin plastic-wrapped stick in bright green with the red and yellow BIG ROLL logo and a cartoon boy's face near the top",
+    "look_video": "long thin green seaweed snack stick pack",
+    "size": "a little longer than her hand",
+    "grip": "her fingers holding its lower half and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "週末去野餐",
+        "走一走嘴就饞了"
+      ],
+      "scene_qwen": "She stands on a grassy park lawn on a sunny weekend afternoon, tall trees and a picnic blanket with a basket behind her.",
+      "scene_video": "A grassy park lawn on a sunny weekend afternoon with tall trees and a picnic blanket with a basket behind her",
+      "anchors": "trees and the picnic blanket",
+      "outfit": "a plain white T-shirt tucked into light jeans"
+    },
+    {
+      "line": [
+        "我包包都帶這包",
+        "泰國的海苔捲"
+      ],
+      "scene_qwen": "She sits on a checked picnic blanket in a park in the afternoon, a wicker basket beside her and green trees behind her.",
+      "scene_video": "A park in the afternoon; she sits on a checked picnic blanket with a wicker basket beside her and green trees behind her",
+      "anchors": "wicker basket and the trees",
+      "outfit": "a plain pale yellow cardigan over a white top"
+    },
+    {
+      "line": [
+        "每支都單獨包裝",
+        "一人一支剛好"
+      ],
+      "scene_qwen": "She stands by a small lake in a park in the afternoon, the calm water and a wooden railing behind her.",
+      "scene_video": "A small lake in a park in the afternoon with calm water and a wooden railing behind her",
+      "anchors": "lake and the wooden railing",
+      "outfit": "a plain light blue denim shirt"
+    },
+    {
+      "line": [
+        "有原味還有辣味",
+        "換著吃"
+      ],
+      "scene_qwen": "She stands under a large shady tree in a park in the late afternoon, green grass and a path behind her.",
+      "scene_video": "Under a large shady tree in a park in the late afternoon with green grass and a path behind her",
+      "anchors": "tree trunk and the path",
+      "outfit": "a plain olive green T-shirt"
+    },
+    {
+      "line": [
+        "出門常嘴饞的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a park bench in the golden late afternoon light, flower beds and trees behind her.",
+      "scene_video": "A park in the golden late afternoon light; she sits on a bench with flower beds and trees behind her",
+      "anchors": "flower beds and the trees",
+      "outfit": "a plain beige light knit sweater"
+    }
+  ]
+}

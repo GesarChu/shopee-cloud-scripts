@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-不倒翁金拉麵-v2追劇",
+  "shot_prefix": "otv",
+  "note": "2026-09-28 第 31 棒：不倒翁金拉麵第二支（追劇到半夜），人物 B5。商品參考圖 image 2＝ottogi_prod.png。v1＝半夜外送／原味辣味／下雨天。賣場幾乎只有規格 ⇒ 講使用的那一刻。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bag",
+    "look_qwen": "instant noodle multipack bag from image 2, exactly its look: a soft plastic bag in royal blue with a red and yellow burst, big white Korean letters in the middle, a picture of a bowl of noodles with an egg at the bottom and a small orange badge at the top right",
+    "look_video": "royal blue instant noodle multipack bag",
+    "size": "about as wide as her forearm from wrist to elbow",
+    "grip": "her fingers holding its bottom edge from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "追韓劇追到半夜",
+        "突然好想吃泡麵"
+      ],
+      "scene_qwen": "She stands in a dim living room late at night, the soft glow of a television on the side wall and a sofa with cushions behind her; no screen text is readable.",
+      "scene_video": "A dim living room late at night with the soft glow of a television on the side wall and a sofa with cushions behind her; no screen text is readable",
+      "anchors": "sofa and the cushions",
+      "outfit": "a plain grey sweatshirt with matching grey jogger pants"
+    },
+    {
+      "line": [
+        "我家櫃子都放這袋",
+        "韓國的金拉麵"
+      ],
+      "scene_qwen": "She sits at a small kitchen table at night, wooden cabinets and a kettle on the counter behind her.",
+      "scene_video": "A small kitchen at night; she sits at the table with wooden cabinets and a kettle on the counter behind her",
+      "anchors": "wooden cabinets and the kettle",
+      "outfit": "a plain navy hoodie"
+    },
+    {
+      "line": [
+        "一袋有好幾包",
+        "放家裡很方便"
+      ],
+      "scene_qwen": "She stands beside a tidy pantry shelf at home in the daytime, glass jars and boxes on the shelves behind her; no labels are readable.",
+      "scene_video": "A tidy home pantry in the daytime with glass jars and boxes on the shelves behind her; no labels are readable",
+      "anchors": "pantry shelves and the glass jars",
+      "outfit": "a plain striped long-sleeve T-shirt"
+    },
+    {
+      "line": [
+        "週末睡到中午",
+        "煮一碗剛剛好"
+      ],
+      "scene_qwen": "She stands in a sunny bedroom at midday, a bed with rumpled white sheets and sheer curtains behind her.",
+      "scene_video": "A sunny bedroom at midday with a bed of rumpled white sheets and sheer curtains behind her",
+      "anchors": "bed and the sheer curtains",
+      "outfit": "a matching soft blue pyjama top and pyjama trousers"
+    },
+    {
+      "line": [
+        "愛吃韓國泡麵的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a cosy living room in the evening, a floor lamp and a bookshelf behind her.",
+      "scene_video": "A cosy living room in the evening; she sits on a sofa with a floor lamp and a bookshelf behind her",
+      "anchors": "floor lamp and the bookshelf",
+      "outfit": "a plain burgundy knit sweater"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-TTL花雕雞麵-v2下雨天",
+  "shot_prefix": "ttv",
+  "note": "2026-09-28 第 31 棒：TTL 台酒花雕雞麵第二支（下雨天想吃熱的），人物 B7。商品參考圖 image 2＝ttl_pack.png。v1＝加班半夜（B6）。",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "bag",
+    "look_qwen": "instant noodle multipack bag from image 2, exactly its look: a tall box-shaped soft plastic bag with a peaked top, dark red and orange with a light beige lower half, large dark red Chinese title letters and a picture of a bowl of noodle soup with chicken pieces",
+    "look_video": "dark red and orange instant noodle multipack bag",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its lower half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": ["下雨天好冷", "想吃點熱熱的"],
+      "scene_qwen": "She stands by a large window at dusk on a rainy day, raindrops on the glass and blurred city lights outside behind her.",
+      "scene_video": "By a large window at dusk on a rainy day with raindrops on the glass and city lights outside behind her",
+      "anchors": "window frame and the raindrops",
+      "outfit": "a plain chunky cream knit sweater"
+    },
+    {
+      "line": ["我都會買這袋", "台酒花雕雞麵"],
+      "scene_qwen": "She sits at a study desk in a small dorm room in the evening, a desk lamp and a corkboard with blank notes behind her; no text is readable.",
+      "scene_video": "A small dorm room in the evening; she sits at a study desk with a desk lamp and a corkboard of blank notes behind her; no text is readable",
+      "anchors": "desk lamp and the corkboard",
+      "outfit": "a plain grey zip-up hoodie over a white T-shirt"
+    },
+    {
+      "line": ["湯頭是藥膳口味", "有花雕酒的香"],
+      "scene_qwen": "She stands in a warm home kitchen in the evening, a stove with a pot and hanging utensils on the wall behind her.",
+      "scene_video": "A warm home kitchen in the evening with a stove, a pot and hanging utensils on the wall behind her",
+      "anchors": "stove and the hanging utensils",
+      "outfit": "a plain olive green long-sleeve top"
+    },
+    {
+      "line": ["雞肉塊配細麵", "一口接一口"],
+      "scene_qwen": "She stands at a kitchen counter at night, a bowl of noodle soup with chicken pieces on the counter behind her and a warm wall light above it.",
+      "scene_video": "A kitchen counter at night with a bowl of noodle soup with chicken pieces behind her and a warm wall light above it",
+      "anchors": "wall light and the bowl",
+      "outfit": "a plain black knit cardigan over a white top"
+    },
+    {
+      "line": ["天冷想吃熱湯麵的", "點下面就買得到"],
+      "scene_qwen": "She sits at a wooden dining table at night, a warm pendant lamp and a window with closed curtains behind her.",
+      "scene_video": "A wooden dining table at night; she sits with a warm pendant lamp and a window with closed curtains behind her",
+      "anchors": "pendant lamp and the curtains",
+      "outfit": "a plain dusty pink sweater"
+    }
+  ]
+}

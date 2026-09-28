@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-立頓奶茶量販包-v2辦公室",
+  "shot_prefix": "ltv",
+  "note": "2026-09-28 第 31 棒：立頓奶茶量販包第二支（辦公室下午想喝手搖），人物 B7。商品參考圖 image 2＝lipton_prod.png。v1＝下雨天／紐西蘭奶源／原味。",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "bag",
+    "look_qwen": "milk tea powder bag from image 2, exactly its look: a bright yellow stand-up bag with the red Lipton logo at the top left, large dark brown Chinese title letters and a picture of a glass of milk tea at the bottom",
+    "look_video": "bright yellow milk tea powder bag",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its lower half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": ["下午好想喝手搖", "可是懶得下樓"],
+      "scene_qwen": "She stands by the window of a quiet office in the afternoon, rows of empty desks and a city view outside behind her; no screen text is readable.",
+      "scene_video": "A quiet office by the window in the afternoon with rows of desks and a city view outside behind her; no screen text is readable",
+      "anchors": "window and the rows of desks",
+      "outfit": "a plain white blouse"
+    },
+    {
+      "line": ["我抽屜都放這包", "立頓奶茶"],
+      "scene_qwen": "She sits at her office desk in the afternoon, a closed laptop and a small cactus on the desk and a grey partition behind her.",
+      "scene_video": "Her office desk in the afternoon; she sits with a closed laptop and a small cactus on the desk and a grey partition behind her",
+      "anchors": "grey partition and the cactus",
+      "outfit": "a plain light grey knit vest over a white shirt"
+    },
+    {
+      "line": ["有芋頭還有烏龍口味", "每天換著喝"],
+      "scene_qwen": "She stands in a small office pantry in the daytime, a water dispenser and a row of plain white mugs on a shelf behind her.",
+      "scene_video": "A small office pantry in the daytime with a water dispenser and a row of plain white mugs on a shelf behind her",
+      "anchors": "water dispenser and the mugs",
+      "outfit": "a plain navy cardigan over a white top"
+    },
+    {
+      "line": ["熱水沖一下就能喝", "下午茶時間到"],
+      "scene_qwen": "She stands in an office lounge corner in the afternoon, a sofa and a tall green plant behind her.",
+      "scene_video": "An office lounge corner in the afternoon with a sofa and a tall green plant behind her",
+      "anchors": "sofa and the tall plant",
+      "outfit": "a plain camel blazer over a cream top"
+    },
+    {
+      "line": ["上班想喝奶茶的", "下面點進去就買得到"],
+      "scene_qwen": "She sits in a meeting room in the late afternoon, a long table and a blank whiteboard behind her.",
+      "scene_video": "A meeting room in the late afternoon; she sits with a long table and a blank whiteboard behind her",
+      "anchors": "whiteboard and the long table",
+      "outfit": "a plain soft blue shirt"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-Hoppi純水濕紙巾-v2炸雞",
+  "shot_prefix": "hpv",
+  "note": "2026-09-28 第 31 棒：Hoppi 純水濕紙巾第二支（吃炸雞手油油），人物 B6。商品參考圖 image 2＝hoppi_prod.png。v1＝出門吃東西／家裡車上／飲料打翻。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "pack",
+    "look_qwen": "wet wipes pack from image 2, exactly its look: a soft rectangular light blue plastic pack printed with small white doodles, a white plastic flip lid on the front with the blue word hoppi on it, the lid closed",
+    "look_video": "light blue wet wipes pack with the white lid closed",
+    "size": "about twice as wide as her hand",
+    "grip": "her fingers holding its bottom edge from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": ["吃完炸雞手油油的", "衛生紙擦不掉"],
+      "scene_qwen": "She stands in a cosy home dining area in the evening, an open takeout box of fried chicken on the table behind her and a pendant lamp above it.",
+      "scene_video": "A cosy home dining area in the evening with an open takeout box of fried chicken on the table behind her and a pendant lamp above it",
+      "anchors": "pendant lamp and the takeout box",
+      "outfit": "a plain dark green crew-neck sweatshirt"
+    },
+    {
+      "line": ["我辦公桌都放這包", "純水的濕紙巾"],
+      "scene_qwen": "She sits at an office desk in the daytime, a closed laptop and a pen holder on the desk and a window with blinds behind her.",
+      "scene_video": "An office desk in the daytime; she sits with a closed laptop and a pen holder on the desk and a window with blinds behind her",
+      "anchors": "window blinds and the pen holder",
+      "outfit": "a plain light grey blazer over a black top"
+    },
+    {
+      "line": ["沒有香料也沒有酒精", "擦手擦嘴都可以"],
+      "scene_qwen": "She stands in a bright home kitchen in the daytime, white cabinets and a fruit bowl on the counter behind her.",
+      "scene_video": "A bright home kitchen in the daytime with white cabinets and a fruit bowl on the counter behind her",
+      "anchors": "white cabinets and the fruit bowl",
+      "outfit": "a plain white knit top"
+    },
+    {
+      "line": ["布厚厚的不起毛", "一張就擦好了"],
+      "scene_qwen": "She stands on a tree-lined park path in the afternoon, green trees and a wooden bench behind her.",
+      "scene_video": "A tree-lined park path in the afternoon with green trees and a wooden bench behind her",
+      "anchors": "trees and the wooden bench",
+      "outfit": "a plain denim jacket over a white T-shirt"
+    },
+    {
+      "line": ["常常外食的", "點下面就買得到"],
+      "scene_qwen": "She sits at a small cafe table by a window in the afternoon, a cup of coffee on the table and potted plants behind her; no signs are readable.",
+      "scene_video": "A small cafe table by a window in the afternoon; she sits with a cup of coffee on the table and potted plants behind her; no signs are readable",
+      "anchors": "window and the potted plants",
+      "outfit": "a plain camel knit sweater"
+    }
+  ]
+}

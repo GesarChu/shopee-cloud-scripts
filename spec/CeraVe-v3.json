@@ -1,0 +1,68 @@
+{
+  "package": "腳本備妥-CeraVe精華水-v3睡前",
+  "shot_prefix": "cv3",
+  "note": "2026-09-28 第 31 棒：CeraVe 精華水第三支（晚上洗完臉），人物 B5，image 2＝cerave_bottle.png。⛔ 修護／修復等功效、排名；口白不唸 CeraVe（英文）。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "tall clear plastic bottle of hydrating lotion from image 2, exactly its look: a slim cylindrical bottle with a dark blue screw cap, a white and blue label with the word \"CeraVe\" spelled exactly C-e-r-a-V-e in large blue letters and the words \"Hydrating Lotion\" in blue below it, the label facing the camera",
+    "look_video": "slim clear lotion bottle with the dark blue cap and white and blue label",
+    "size": "a little longer than her hand"
+  },
+  "shots": [
+    {
+      "line": [
+        "晚上洗完臉",
+        "臉摸起來緊緊的"
+      ],
+      "scene_qwen": "She stands in a clean bathroom at night beside the sink, a round mirror and a small plant behind her.",
+      "scene_video": "A clean bathroom at night beside the sink with a round mirror and a small plant behind her",
+      "anchors": "round mirror and the plant",
+      "outfit": "a plain soft white loungewear top"
+    },
+    {
+      "line": [
+        "我梳妝台放這瓶",
+        "保濕的精華水"
+      ],
+      "scene_qwen": "She sits at a dressing table in her bedroom at night, a mirror with warm lights and a small vase of flowers behind her.",
+      "scene_video": "A bedroom dressing table at night; she sits with a mirror with warm lights and a vase of flowers behind her",
+      "anchors": "mirror lights and the flowers",
+      "outfit": "a matching light blue pyjama top and pyjama trousers"
+    },
+    {
+      "line": [
+        "有玻尿酸",
+        "沒有加香精跟酒精"
+      ],
+      "scene_qwen": "She stands by the window of her bedroom at night, sheer curtains and warm fairy lights behind her.",
+      "scene_video": "A bedroom by the window at night with sheer curtains and warm fairy lights behind her",
+      "anchors": "curtains and the fairy lights",
+      "outfit": "a plain cream knit cardigan over a white top"
+    },
+    {
+      "line": [
+        "拍上去很快就吸收",
+        "臉水水嫩嫩的"
+      ],
+      "scene_qwen": "She stands in a cosy living room in the evening, a bookshelf and a floor lamp behind her.",
+      "scene_video": "A cosy living room in the evening with a bookshelf and a floor lamp behind her",
+      "anchors": "bookshelf and the floor lamp",
+      "outfit": "a plain dusty rose sweater"
+    },
+    {
+      "line": [
+        "臉常常緊緊的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on the edge of her bed at night, a bedside lamp and soft white bedding behind her.",
+      "scene_video": "A bedroom at night; she sits on the edge of her bed with a bedside lamp and soft white bedding behind her",
+      "anchors": "bedside lamp and the bedding",
+      "outfit": "a matching soft grey pyjama top and pyjama trousers"
+    }
+  ]
+}

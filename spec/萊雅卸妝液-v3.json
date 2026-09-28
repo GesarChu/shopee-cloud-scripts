@@ -1,0 +1,68 @@
+{
+  "package": "腳本備妥-巴黎萊雅眼唇卸妝液-v3旅行",
+  "shot_prefix": "lr3",
+  "note": "2026-09-28 第 31 棒：巴黎萊雅眼唇卸妝液第三支（出遊回飯店），人物 B5，image 2＝loreal_bottle.png。⛔ 每次、連結。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "make-up remover bottle from image 2, exactly its look: a small clear plastic bottle with a white screw cap, the liquid inside in two layers (light blue on top, clear below), and a light blue label with the white L'OREAL logo and the word GENTLE",
+    "look_video": "small clear two-layer make-up remover bottle with the light blue label",
+    "size": "about as tall as her palm is long"
+  },
+  "shots": [
+    {
+      "line": [
+        "出去玩一天",
+        "睫毛膏怎麼擦都擦不掉"
+      ],
+      "scene_qwen": "She stands in a hotel room in the evening, a neatly made bed and a large window with city lights behind her.",
+      "scene_video": "A hotel room in the evening with a neatly made bed and a large window with city lights behind her",
+      "anchors": "bed and the window",
+      "outfit": "a plain black knit top"
+    },
+    {
+      "line": [
+        "我梳妝台放這瓶",
+        "眼唇卸妝液"
+      ],
+      "scene_qwen": "She sits at a dressing table in her bedroom in the evening, a round mirror with warm bulbs and a small vase behind her.",
+      "scene_video": "A bedroom dressing table in the evening; she sits with a round mirror with warm bulbs and a small vase behind her",
+      "anchors": "round mirror and the vase",
+      "outfit": "a matching white satin pyjama top and pyjama trousers"
+    },
+    {
+      "line": [
+        "防水的眼妝",
+        "也卸得掉"
+      ],
+      "scene_qwen": "She stands in a hotel bathroom at night, a marble counter and a large mirror with soft lights behind her.",
+      "scene_video": "A hotel bathroom at night with a marble counter and a large mirror with soft lights behind her",
+      "anchors": "marble counter and the mirror",
+      "outfit": "a plain soft pink robe"
+    },
+    {
+      "line": [
+        "卸完清清爽爽的",
+        "不會油油的"
+      ],
+      "scene_qwen": "She stands by a window in her bedroom at night, sheer curtains and a potted plant behind her.",
+      "scene_video": "A bedroom by the window at night with sheer curtains and a potted plant behind her",
+      "anchors": "sheer curtains and the plant",
+      "outfit": "a plain light grey loungewear top"
+    },
+    {
+      "line": [
+        "常畫眼妝的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a tidy living room at night, a floor lamp and a bookshelf behind her.",
+      "scene_video": "A tidy living room at night; she sits on a sofa with a floor lamp and a bookshelf behind her",
+      "anchors": "floor lamp and the bookshelf",
+      "outfit": "a plain beige cardigan"
+    }
+  ]
+}

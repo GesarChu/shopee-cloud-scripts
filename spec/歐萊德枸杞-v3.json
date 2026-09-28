@@ -1,0 +1,68 @@
+{
+  "package": "腳本備妥-歐萊德枸杞洗髮精-v3安全帽",
+  "shot_prefix": "og3",
+  "note": "2026-09-28 第 31 棒：歐萊德枸杞洗髮精第三支（安全帽壓扁頭髮），人物 B5，image 2＝goji_400.jpg。賣場：適合細軟、扁塌髮質；有機認證枸杞萃取。⛔ 強韌髮根、控油、持續時間；「髮」台灣唸三聲＝唸字比對誤報。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "shampoo bottle from image 2, exactly its look: a slim, tall, matte white bottle shaped like a wine bottle with a light natural wood-coloured round cap on top, small thin grey printed words on the front and a short thin pink line under them, and a small green-and-grey logo near the bottom",
+    "look_video": "slim tall matte white shampoo bottle with the wood-coloured cap",
+    "size": "about as tall as her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "騎車戴安全帽",
+        "頭髮都被壓扁"
+      ],
+      "scene_qwen": "She stands beside a parked scooter on a quiet city street in the morning, a plain white helmet resting on the scooter seat and shop fronts with no readable signs behind her. She has just taken the helmet off: the hair on the top of her head is pressed flat and limp against her scalp, with no volume at the crown and a slight flattened ring where the helmet sat.",
+      "scene_video": "A quiet city street in the morning beside a parked scooter with a white helmet on the seat and shop fronts behind her; no signs are readable; her hair is pressed flat on top from the helmet",
+      "anchors": "scooter and the shop fronts",
+      "outfit": "a plain light grey hoodie with straight black trousers"
+    },
+    {
+      "line": [
+        "洗頭我都用這瓶",
+        "枸杞的洗髮精"
+      ],
+      "scene_qwen": "She sits on the edge of a white bathtub in a bright bathroom, white tiles and a towel rail behind her.",
+      "scene_video": "A bright bathroom; she sits on the edge of a white bathtub with white tiles and a towel rail behind her",
+      "anchors": "white tiles and the towel rail",
+      "outfit": "a plain soft pink loungewear top with matching long pink loungewear trousers"
+    },
+    {
+      "line": [
+        "裡面是有機認證的",
+        "枸杞萃取"
+      ],
+      "scene_qwen": "She stands in a clean bathroom by the sink, a round mirror and a small plant behind her.",
+      "scene_video": "A clean bathroom by the sink with a round mirror and a small plant behind her",
+      "anchors": "round mirror and the plant",
+      "outfit": "a plain white bathrobe"
+    },
+    {
+      "line": [
+        "頭髮吹好之後",
+        "頭頂蓬蓬的"
+      ],
+      "scene_qwen": "She stands in her bedroom in the morning, a full-length mirror and a dresser with a hair dryer on it behind her.",
+      "scene_video": "Her bedroom in the morning with a full-length mirror and a dresser with a hair dryer on it behind her",
+      "anchors": "mirror and the dresser",
+      "outfit": "a plain cream blouse tucked into light blue jeans"
+    },
+    {
+      "line": [
+        "常戴安全帽的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a bright living room, a white helmet on the side table and a window behind her.",
+      "scene_video": "A bright living room; she sits on a sofa with a white helmet on the side table and a window behind her",
+      "anchors": "helmet and the window",
+      "outfit": "a plain navy knit sweater"
+    }
+  ]
+}

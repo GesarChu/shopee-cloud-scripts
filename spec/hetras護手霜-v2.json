@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-hetras香氛護手霜-v2洗碗",
+  "shot_prefix": "htv",
+  "note": "2026-09-28 第 31 棒：hetras 香氛護手霜第二支（洗碗後手澀），人物 B1。商品參考圖 image 2＝hetras_prod.png。v1＝冷氣房／包包／無香款。",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "tube",
+    "look_qwen": "hand cream tube from image 2, exactly its look: a slim soft squeeze tube in a pale cream colour with a flat crimped end at the top and a small cream screw cap at the bottom, thin light grey printed words running along it",
+    "look_video": "slim pale cream hand cream tube with the cap at the bottom",
+    "size": "about as long as her hand",
+    "grip": "the cap at the bottom, her fingers wrapped around the lower half of the tube and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": ["洗完碗手澀澀的", "摸起來卡卡的"],
+      "scene_qwen": "She stands in a home kitchen in the evening beside the sink, a dish rack with clean plates and white tiles behind her.",
+      "scene_video": "A home kitchen in the evening beside the sink with a dish rack of clean plates and white tiles behind her",
+      "anchors": "dish rack and the white tiles",
+      "outfit": "a plain grey long-sleeve top"
+    },
+    {
+      "line": ["我桌上放這條", "韓國的護手霜"],
+      "scene_qwen": "She sits at a tidy office desk in the daytime, a monitor turned away and a small potted plant behind her; no screen text is readable.",
+      "scene_video": "A tidy office desk in the daytime with a monitor turned away and a small potted plant behind her; no screen text is readable",
+      "anchors": "monitor and the potted plant",
+      "outfit": "a plain navy blazer over a white blouse"
+    },
+    {
+      "line": ["有乳木果油", "還有摩洛哥堅果油"],
+      "scene_qwen": "She stands by the window of a quiet cafe in the afternoon, warm light, wooden shelves and hanging lamps behind her; no signs are readable.",
+      "scene_video": "A quiet cafe by the window in the afternoon with warm light, wooden shelves and hanging lamps behind her; no signs are readable",
+      "anchors": "wooden shelves and the hanging lamps",
+      "outfit": "a plain cream turtleneck sweater"
+    },
+    {
+      "line": ["擦完手上留著香味", "像噴了香水"],
+      "scene_qwen": "She stands in a cosy bedroom at night, warm string lights on the wall and a bed with a knit blanket behind her.",
+      "scene_video": "A cosy bedroom at night with warm string lights on the wall and a bed with a knit blanket behind her",
+      "anchors": "string lights and the bed",
+      "outfit": "a plain soft pink loungewear top"
+    },
+    {
+      "line": ["秋冬常常洗手的", "下面點進去就買得到"],
+      "scene_qwen": "She sits on a sofa in a warm living room at night, a knit blanket and a floor lamp behind her.",
+      "scene_video": "A warm living room at night; she sits on a sofa with a knit blanket and a floor lamp behind her",
+      "anchors": "floor lamp and the knit blanket",
+      "outfit": "a plain oatmeal knit cardigan over a white top"
+    }
+  ]
+}

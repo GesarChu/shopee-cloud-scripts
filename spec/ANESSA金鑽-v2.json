@@ -1,0 +1,68 @@
+{
+  "package": "腳本備妥-ANESSA金鑽防曬-v2海邊",
+  "shot_prefix": "anv",
+  "note": "2026-09-28 第 31 棒：ANESSA 第二支（海邊玩水），人物 B1，image 2＝anessa_prod.png。口白避開「防曬／曬」（H3 唸歪）。",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "sunscreen bottle from image 2, exactly its look: a small gold metallic bottle with rounded shoulders and a slanted cap whose top is light blue, the word ANESSA and a blue sun emblem printed on the front, small blue words below",
+    "look_video": "small gold sunscreen bottle with the light blue slanted cap",
+    "size": "a little shorter than her hand is long"
+  },
+  "shots": [
+    {
+      "line": [
+        "去海邊玩水",
+        "擦的東西一下就沒了"
+      ],
+      "scene_qwen": "She stands on a seaside boardwalk at noon in summer, bright blue sea, sand and a few palm trees behind her.",
+      "scene_video": "A seaside boardwalk at noon in summer with the blue sea, sand and palm trees behind her",
+      "anchors": "the sea and the palm trees",
+      "outfit": "a plain white linen shirt over a light blue top"
+    },
+    {
+      "line": [
+        "我包包都放這瓶",
+        "日本的金鑽系列"
+      ],
+      "scene_qwen": "She sits on a wooden bench at a beach cafe terrace in the afternoon, a striped umbrella and the sea behind her; no signs are readable.",
+      "scene_video": "A beach cafe terrace in the afternoon; she sits on a wooden bench with a striped umbrella and the sea behind her; no signs are readable",
+      "anchors": "striped umbrella and the sea",
+      "outfit": "a plain light green T-shirt"
+    },
+    {
+      "line": [
+        "流汗碰到水",
+        "也不容易掉"
+      ],
+      "scene_qwen": "She stands beside an outdoor swimming pool on a sunny day, blue water and white lounge chairs behind her.",
+      "scene_video": "Beside an outdoor swimming pool on a sunny day with blue water and white lounge chairs behind her",
+      "anchors": "pool and the lounge chairs",
+      "outfit": "a plain navy sleeveless top"
+    },
+    {
+      "line": [
+        "晚上用洗面乳",
+        "就能洗掉了"
+      ],
+      "scene_qwen": "She stands in a clean bathroom at night beside the sink, a round mirror and white towels behind her.",
+      "scene_video": "A clean bathroom at night beside the sink with a round mirror and white towels behind her",
+      "anchors": "round mirror and the towels",
+      "outfit": "a plain soft grey loungewear top"
+    },
+    {
+      "line": [
+        "常常去海邊玩的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a bright living room, a beach bag and a straw hat on the sofa beside her and a window behind her.",
+      "scene_video": "A bright living room; she sits on a sofa with a beach bag and a straw hat beside her and a window behind her",
+      "anchors": "window and the beach bag",
+      "outfit": "a plain white cotton dress"
+    }
+  ]
+}

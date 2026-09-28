@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-TRYALL無添加乳清-v3運動完",
+  "shot_prefix": "ty3",
+  "note": "2026-09-28 第 31 棒：TRYALL 無添加乳清第三支（運動完不想喝太甜），人物 B1，image 2＝tryall_pouch.jpg。⛔ 增肌減脂等功效、蛋白粉（大陸用語）、數字。",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "pouch",
+    "look_qwen": "protein powder pouch from image 2, exactly its look: a white stand-up resealable pouch with a small green V-shaped logo and the grey word TRYALL near the top, the words INSTANT WHEY PROTEIN CONCENTRATE in grey capital letters in the middle, a thin grey line and small grey text under them",
+    "look_video": "white stand-up protein powder pouch with grey printing",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its lower half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "運動完想喝點東西",
+        "飲料都太甜"
+      ],
+      "scene_qwen": "She stands in a bright living room in the morning, a rolled-up yoga mat and a water bottle on the floor behind her and a window with sheer curtains.",
+      "scene_video": "A bright living room in the morning with a rolled-up yoga mat on the floor behind her and a window with sheer curtains",
+      "anchors": "yoga mat and the window",
+      "outfit": "a plain lavender sports top with matching leggings"
+    },
+    {
+      "line": [
+        "我家都放這包",
+        "無添加的乳清"
+      ],
+      "scene_qwen": "She sits on a stool at a kitchen counter in the morning, white cabinets and a bowl of bananas behind her.",
+      "scene_video": "A kitchen counter in the morning; she sits on a stool with white cabinets and a bowl of bananas behind her",
+      "anchors": "white cabinets and the bananas",
+      "outfit": "a plain white T-shirt tucked into grey joggers"
+    },
+    {
+      "line": [
+        "加水或加牛奶",
+        "想喝什麼自己決定"
+      ],
+      "scene_qwen": "She stands in a bright kitchen in the morning, a refrigerator and a plain shaker bottle on the counter behind her.",
+      "scene_video": "A bright kitchen in the morning with a refrigerator and a plain shaker bottle on the counter behind her",
+      "anchors": "refrigerator and the shaker bottle",
+      "outfit": "a plain light grey zip-up hoodie over a white top"
+    },
+    {
+      "line": [
+        "搖一搖就能喝",
+        "出門前也來得及"
+      ],
+      "scene_qwen": "She stands on a sunny balcony in the morning, green potted plants and a city view behind her.",
+      "scene_video": "A sunny balcony in the morning with green potted plants and a city view behind her",
+      "anchors": "potted plants and the city view",
+      "outfit": "a plain denim shirt"
+    },
+    {
+      "line": [
+        "喝不慣甜味的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a tidy living room in the evening, a floor lamp and a small side table behind her.",
+      "scene_video": "A tidy living room in the evening; she sits on a sofa with a floor lamp and a small side table behind her",
+      "anchors": "floor lamp and the side table",
+      "outfit": "a plain sage green knit sweater"
+    }
+  ]
+}

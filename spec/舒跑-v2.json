@@ -1,0 +1,68 @@
+{
+  "package": "腳本備妥-舒跑運動飲料24入-v2搬家",
+  "shot_prefix": "spv",
+  "note": "2026-09-28 第 31 棒：舒跑第二支（搬家／打球），人物 B6，image 2＝supau_prod.png。⛔ 口白講「舒跑」（H3 唸酥泡）、⛔「整」。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "carton",
+    "look_qwen": "drink carton from image 2, exactly its look: a small rectangular paper drink carton, sky blue with a big green curved stripe, large white Chinese brand letters and a small white running-woman figure on the front",
+    "look_video": "small sky blue and green drink carton",
+    "size": "about as tall as her palm"
+  },
+  "shots": [
+    {
+      "line": [
+        "搬家搬了一下午",
+        "汗流個不停"
+      ],
+      "scene_qwen": "She stands in an apartment full of taped cardboard moving boxes on a hot afternoon, sunlight through the window behind her.",
+      "scene_video": "An apartment full of taped cardboard moving boxes on a hot afternoon with sunlight through the window behind her",
+      "anchors": "moving boxes and the window",
+      "outfit": "a plain grey T-shirt tucked into jeans"
+    },
+    {
+      "line": [
+        "我冰箱都放一箱",
+        "運動飲料"
+      ],
+      "scene_qwen": "She sits on a stool in a small kitchen in the afternoon, a white refrigerator and a window behind her.",
+      "scene_video": "A small kitchen in the afternoon; she sits on a stool with a white refrigerator and a window behind her",
+      "anchors": "refrigerator and the window",
+      "outfit": "a plain white T-shirt tucked into denim shorts"
+    },
+    {
+      "line": [
+        "流掉的水分跟電解質",
+        "可以補回來"
+      ],
+      "scene_qwen": "She stands in a bright gym in the daytime, exercise machines and a mirror wall behind her; no signs are readable.",
+      "scene_video": "A bright gym in the daytime with exercise machines and a mirror wall behind her; no signs are readable",
+      "anchors": "exercise machines and the mirror wall",
+      "outfit": "a plain black sports top with a light grey zip-up jacket"
+    },
+    {
+      "line": [
+        "打完球喝一口",
+        "冰冰涼涼的"
+      ],
+      "scene_qwen": "She stands on an outdoor basketball court in the early evening, the hoop and a chain-link fence behind her.",
+      "scene_video": "An outdoor basketball court in the early evening with the hoop and a chain-link fence behind her",
+      "anchors": "basketball hoop and the fence",
+      "outfit": "a plain loose white basketball jersey without any numbers or letters"
+    },
+    {
+      "line": [
+        "夏天常流汗的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a park bench in the evening, green trees and a lamp post behind her.",
+      "scene_video": "A park in the evening; she sits on a bench with green trees and a lamp post behind her",
+      "anchors": "trees and the lamp post",
+      "outfit": "a plain light blue hoodie"
+    }
+  ]
+}

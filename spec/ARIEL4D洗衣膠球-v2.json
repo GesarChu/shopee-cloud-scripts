@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-ARIEL-4D洗衣膠球-v2運動衣",
+  "shot_prefix": "a4v",
+  "note": "2026-09-28 第 31 棒：ARIEL 4D 洗衣膠球第二支（運動衣汗味），人物 B5。商品參考圖 image 2＝ariel4d_prod.png。v1＝倒太多／外膜／一顆就夠。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "pouch",
+    "look_qwen": "laundry pod refill pouch from image 2, exactly its look: a stand-up plastic pouch in white and deep blue, a big yellow number and Japanese writing at the top, a round white badge with a blue star-shaped logo in the middle, and blue-and-green gel pods pictured at the bottom right",
+    "look_video": "white and deep blue laundry pod refill pouch",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its bottom half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": ["運動完的上衣", "汗味好難洗掉"],
+      "scene_qwen": "She stands on a small apartment laundry balcony in the evening, a white front-loading washing machine and a drying rack with sports clothes behind her.",
+      "scene_video": "A small apartment laundry balcony in the evening with a white washing machine and a drying rack of sports clothes behind her",
+      "anchors": "washing machine and the drying rack",
+      "outfit": "a plain black sports tank top under an open light grey zip-up jacket"
+    },
+    {
+      "line": ["我都用這一包", "日本的洗衣膠球"],
+      "scene_qwen": "She sits on a low wooden stool in a bright laundry room, a white front-loading washing machine and a shelf of folded towels behind her.",
+      "scene_video": "A bright laundry room; she sits on a low stool with a white washing machine and a shelf of folded towels behind her",
+      "anchors": "washing machine and the towel shelf",
+      "outfit": "a plain white T-shirt tucked into light blue jeans"
+    },
+    {
+      "line": ["起泡比較少", "沖完不會殘留"],
+      "scene_qwen": "She stands in a clean utility corner of a kitchen in the daytime, white cabinets and a laundry basket on the counter behind her.",
+      "scene_video": "A clean kitchen utility corner in the daytime with white cabinets and a laundry basket on the counter behind her",
+      "anchors": "white cabinets and the laundry basket",
+      "outfit": "a plain light blue cotton shirt"
+    },
+    {
+      "line": ["晾好的衣服", "聞起來香香的"],
+      "scene_qwen": "She stands on a sunny balcony in the morning, freshly washed white shirts and towels hanging on a rack behind her and green plants at the side.",
+      "scene_video": "A sunny balcony in the morning with washed white shirts and towels hanging on a rack behind her and green plants at the side",
+      "anchors": "hanging shirts and the plants",
+      "outfit": "a plain soft yellow cardigan over a white top"
+    },
+    {
+      "line": ["常常運動的人", "點下面就買得到"],
+      "scene_qwen": "She sits on a sofa in a bright living room, a neat pile of folded laundry on the sofa beside her and a floor lamp behind her.",
+      "scene_video": "A bright living room; she sits on a sofa with folded laundry beside her and a floor lamp behind her",
+      "anchors": "floor lamp and the folded laundry",
+      "outfit": "a plain beige knit sweater"
+    }
+  ]
+}
