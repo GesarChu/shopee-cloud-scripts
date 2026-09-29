@@ -28,8 +28,8 @@
     },
     {
       "line": [
-        "洗完澡我都擦",
-        "適樂膚長效潤澤霜"
+        "洗完澡我都會擦",
+        "這條長效潤澤霜"
       ],
       "scene_qwen": "She sits on a small stool in a bright bathroom in the evening, light beige tiles and a towel rack behind her.",
       "scene_video": "A bright bathroom in the evening; she sits on a small stool with light beige tiles and a towel rack behind her",
@@ -38,7 +38,7 @@
     },
     {
       "line": [
-        "一大條的霜狀質地",
+        "一大條擠出來是霜狀",
         "身體臉上都擦得到"
       ],
       "scene_qwen": "She stands by her bedroom dresser in the evening, a round mirror frame and a small plant behind her.",
