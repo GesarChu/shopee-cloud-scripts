@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-舒跑運動飲料24入-v3騎車",
+  "shot_prefix": "spw",
+  "cta": "point",
+  "note": "2026-09-29 04:3x 第 31 棒：舒跑第三支（騎腳踏車），人物 B7。v1＝大掃除／爬山；v2＝搬家／打球／健身。image 2＝supau_prod.png",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "carton",
+    "look_qwen": "drink carton from image 2, exactly its look: a small rectangular paper drink carton, sky blue with a big green curved stripe, large white Chinese brand letters and a small white running-woman figure on the front",
+    "look_video": "small sky blue and green drink carton",
+    "size": "about as tall as her palm"
+  },
+  "shots": [
+    {
+      "line": [
+        "騎腳踏車繞一圈",
+        "全身都是汗"
+      ],
+      "scene_qwen": "She stands beside a bicycle on a riverside bike path in the afternoon, the river and trees behind her.",
+      "scene_video": "A riverside bike path in the afternoon beside a bicycle with the river and trees behind her",
+      "anchors": "bicycle and the river",
+      "outfit": "a plain black sports T-shirt with black running shorts over black leggings"
+    },
+    {
+      "line": [
+        "我包包都會放一包",
+        "運動飲料"
+      ],
+      "scene_qwen": "She sits on a bench beside a bike path in the afternoon, a parked bicycle and trees behind her.",
+      "scene_video": "A bike path in the afternoon; she sits on a bench with a parked bicycle and trees behind her",
+      "anchors": "parked bicycle and the trees",
+      "outfit": "a plain white sports jacket"
+    },
+    {
+      "line": [
+        "沒有加果糖",
+        "喝起來很清爽"
+      ],
+      "scene_qwen": "She stands at a park rest area in the afternoon, a water fountain and bushes behind her, no water spraying.",
+      "scene_video": "A park rest area in the afternoon with a water fountain and bushes behind her, no water spraying",
+      "anchors": "water fountain and the bushes",
+      "outfit": "a plain sky blue T-shirt"
+    },
+    {
+      "line": [
+        "騎完喝一口",
+        "輕鬆解渴"
+      ],
+      "scene_qwen": "She stands on a bridge over a river at sunset, the railing and the sky behind her.",
+      "scene_video": "A bridge over a river at sunset with the railing and the sky behind her",
+      "anchors": "railing and the sky",
+      "outfit": "a plain mint green T-shirt"
+    },
+    {
+      "line": [
+        "喜歡騎車運動的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a low wall near a bike rental stand in the early evening, bicycles in a row behind her.",
+      "scene_video": "A bike rental stand in the early evening; she sits on a low wall with bicycles in a row behind her",
+      "anchors": "row of bicycles",
+      "outfit": "a plain grey zip-up hoodie"
+    }
+  ]
+}

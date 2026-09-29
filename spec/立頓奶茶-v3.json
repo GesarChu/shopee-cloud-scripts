@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-立頓奶茶量販包-v3熬夜讀書",
+  "shot_prefix": "ltw",
+  "cta": "point",
+  "note": "2026-09-29 04:3x 第 31 棒：立頓第三支（熬夜讀書），人物 B1。v1＝下雨天冷；v2＝辦公室下午茶。image 2＝lipton_prod.png",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bag",
+    "look_qwen": "milk tea powder bag from image 2, exactly its look: a bright yellow stand-up bag with the red Lipton logo at the top left, large dark brown Chinese title letters and a picture of a glass of milk tea at the bottom",
+    "look_video": "bright yellow milk tea powder bag",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its lower half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "期中考要熬夜",
+        "好想喝點熱的"
+      ],
+      "scene_qwen": "She stands in a small study room at night, a desk lamp and bookshelves behind her.",
+      "scene_video": "A small study room at night with a desk lamp and bookshelves behind her",
+      "anchors": "desk lamp and the bookshelves",
+      "outfit": "a plain grey hoodie with black jogger pants"
+    },
+    {
+      "line": [
+        "書桌上放這包",
+        "立頓奶茶"
+      ],
+      "scene_qwen": "She sits at a desk in a study room at night, stacked textbooks and a lamp behind her.",
+      "scene_video": "A study room at night; she sits at a desk with stacked textbooks and a lamp behind her",
+      "anchors": "stacked textbooks and the lamp",
+      "outfit": "a plain white T-shirt"
+    },
+    {
+      "line": [
+        "日式抹茶跟英式皇家",
+        "我都輪流喝"
+      ],
+      "scene_qwen": "She stands in a small home kitchen at night, a kettle and white cabinets behind her.",
+      "scene_video": "A small home kitchen at night with a kettle and white cabinets behind her",
+      "anchors": "kettle and the white cabinets",
+      "outfit": "a plain navy blue sweater"
+    },
+    {
+      "line": [
+        "熱水沖一沖",
+        "邊讀書邊喝"
+      ],
+      "scene_qwen": "She stands by a window in a study room late at night, city lights outside behind her.",
+      "scene_video": "A study room late at night by a window with city lights outside behind her",
+      "anchors": "window and the city lights",
+      "outfit": "a plain oatmeal knit cardigan"
+    },
+    {
+      "line": [
+        "常常熬夜讀書的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a bed in a cosy bedroom at night, a bedside lamp and a cork board behind her.",
+      "scene_video": "A cosy bedroom at night; she sits on a bed with a bedside lamp and a cork board behind her",
+      "anchors": "bedside lamp and the cork board",
+      "outfit": "a plain lavender pajama top"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "package": "腳本備妥-CeraVe長效潤澤霜-v1換季",
+  "shot_prefix": "cva",
+  "structure": "4",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：CeraVe 適樂膚長效潤澤修護霜 177ml（旗艦店 70001183/20462244895，分潤加碼 2.5%＝短影音 $12.87）。人物 B1，image 2＝cerave_tube.jpg。賣場描述只有組合內容；口白只用品名「長效潤澤」＋包裝印的 FRAGRANCE FREE、face and body。⛔ 修護、乾、冷。API 4 鏡。",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "tube",
+    "look_qwen": "moisturising cream tube from image 2, exactly its look: a white soft squeeze tube standing upright on its white cap, with a blue diagonal stripe at the top corner, a large blue logo and small blue printed words on the front",
+    "look_video": "white cream tube with a blue stripe standing on its white cap",
+    "size": "a little shorter than her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "秋天一到換季",
+        "臉頰摸起來緊緊的"
+      ],
+      "scene_qwen": "She stands on a quiet tree-lined street on a breezy autumn afternoon, fallen leaves and a low wall behind her, no people behind her.",
+      "scene_video": "A quiet tree-lined street on a breezy autumn afternoon with fallen leaves and a low wall behind her",
+      "anchors": "trees and the low wall",
+      "outfit": "a light brown trench coat over a white top"
+    },
+    {
+      "line": [
+        "每晚睡前都擦這條",
+        "適樂膚長效潤澤霜"
+      ],
+      "scene_qwen": "She sits on the edge of her bed at night, a headboard and a bedside lamp behind her.",
+      "scene_video": "A bedroom at night; she sits on the edge of the bed with a headboard and a bedside lamp behind her",
+      "anchors": "headboard and the lamp",
+      "outfit": "a soft grey pyjama top"
+    },
+    {
+      "line": [
+        "配方沒有添加香料",
+        "臉上身上都可以用"
+      ],
+      "scene_qwen": "She stands in a bright bathroom in the evening, white tiles and a shelf with folded towels behind her.",
+      "scene_video": "A bright bathroom in the evening with white tiles and a shelf with folded towels behind her",
+      "anchors": "white tiles and the towel shelf",
+      "outfit": "a white cotton robe"
+    },
+    {
+      "line": [
+        "換季容易不舒服的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She stands in a cosy living room in the evening, a bookshelf and a warm floor lamp behind her.",
+      "scene_video": "A cosy living room in the evening with a bookshelf and a warm floor lamp behind her",
+      "anchors": "bookshelf and the floor lamp",
+      "outfit": "a cream knit sweater"
+    }
+  ]
+}

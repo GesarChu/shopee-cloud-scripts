@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-好來清新漱口水-v2見客戶",
+  "shot_prefix": "dlb",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：好來清新漱口水第二支（見客戶）。人物 B1，image 2＝darlie_blue.jpg。v1＝約會前。畫布 5 鏡。",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "mouthwash bottle from image 2, exactly its look: a large clear light-blue plastic bottle with a faceted diamond-pattern body, a white cap on top, a green-and-white label with a small man-in-a-top-hat logo and blue printed words on the front",
+    "look_video": "large light-blue mouthwash bottle with a white cap",
+    "size": "a little shorter than her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "等等要見客戶",
+        "午餐的味道還在嘴裡"
+      ],
+      "scene_qwen": "She stands in an office corridor at lunchtime, a row of office doors and a potted plant behind her, no people behind her.",
+      "scene_video": "An office corridor at lunchtime with a row of office doors and a potted plant behind her",
+      "anchors": "office doors and the plant",
+      "outfit": "a white shirt with a black pencil skirt"
+    },
+    {
+      "line": [
+        "公司抽屜放一瓶",
+        "好來清新漱口水"
+      ],
+      "scene_qwen": "She sits at her office desk after lunch, a monitor and a tidy bookshelf behind her.",
+      "scene_video": "An office after lunch; she sits at her desk with a monitor and a tidy bookshelf behind her",
+      "anchors": "monitor and the bookshelf",
+      "outfit": "a light blue blouse"
+    },
+    {
+      "line": [
+        "標榜深層潔淨",
+        "還能清新口氣"
+      ],
+      "scene_qwen": "She stands in a clean office restroom, light grey tiles and a hand dryer on the wall behind her.",
+      "scene_video": "A clean office restroom with light grey tiles and a hand dryer on the wall behind her",
+      "anchors": "grey tiles and the hand dryer",
+      "outfit": "a beige knit top"
+    },
+    {
+      "line": [
+        "漱一漱就好",
+        "跟客戶靠近講話也安心"
+      ],
+      "scene_qwen": "She stands in a bright office lift lobby in the afternoon, lift doors and a large window behind her.",
+      "scene_video": "A bright office lift lobby in the afternoon with lift doors and a large window behind her",
+      "anchors": "lift doors and the window",
+      "outfit": "a charcoal blazer over a white top"
+    },
+    {
+      "line": [
+        "常常要開會的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits at a table in a bright hotel lobby lounge in the afternoon, armchairs and tall windows behind her.",
+      "scene_video": "A bright hotel lobby lounge in the afternoon; she sits at a table with armchairs and tall windows behind her",
+      "anchors": "armchairs and the windows",
+      "outfit": "a soft pink blouse"
+    }
+  ]
+}

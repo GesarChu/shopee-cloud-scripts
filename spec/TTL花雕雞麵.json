@@ -1,6 +1,7 @@
 {
   "package": "腳本備妥-TTL花雕雞麵-多鏡頭",
   "shot_prefix": "tt",
+  "cta": "point",
   "note": "2026-09-28 第 30 棒：TTL 台酒花雕雞麵（袋裝 3 包／袋），人物 B6（戴眼鏡、上班族）。商品參考圖（image 2）＝ttl_pack.png。由 legacy/_gen_new0928e.py 轉來。",
   "person": {
     "id": "B6",

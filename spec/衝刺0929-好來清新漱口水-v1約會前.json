@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-好來清新漱口水-v1約會前",
+  "shot_prefix": "dla",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：好來清新漱口水 500ml（旗艦店 201407617/3946309895，分潤加碼 15%＝短影音 $30.69）。人物 B6，image 2＝darlie_blue.jpg。賣場原文：含天然薄荷精華、溫和不易刺激、深層潔淨、清新口氣。畫布 5 鏡。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "mouthwash bottle from image 2, exactly its look: a large clear light-blue plastic bottle with a faceted diamond-pattern body, a white cap on top, a green-and-white label with a small man-in-a-top-hat logo and blue printed words on the front",
+    "look_video": "large light-blue mouthwash bottle with a white cap",
+    "size": "a little shorter than her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "晚上要約會",
+        "中午偏偏吃了蒜頭"
+      ],
+      "scene_qwen": "She stands outside a small noodle shop at noon, wooden tables and paper lanterns behind her, no people behind her.",
+      "scene_video": "A small noodle shop at noon with wooden tables and paper lanterns behind her",
+      "anchors": "wooden tables and the lanterns",
+      "outfit": "a light grey knit top with dark jeans"
+    },
+    {
+      "line": [
+        "出門前先拿出",
+        "好來清新漱口水"
+      ],
+      "scene_qwen": "She sits on a stool at her bathroom sink in the evening, a round mirror frame and white tiles behind her.",
+      "scene_video": "A home bathroom in the evening; she sits on a stool at the sink with white tiles and a round mirror frame behind her",
+      "anchors": "white tiles and the mirror frame",
+      "outfit": "a cream silk blouse"
+    },
+    {
+      "line": [
+        "含天然薄荷精華",
+        "溫和不容易刺激"
+      ],
+      "scene_qwen": "She stands by the window of her bedroom in the evening, sheer curtains and a small dresser behind her.",
+      "scene_video": "A bedroom in the evening with sheer curtains and a small dresser behind her",
+      "anchors": "curtains and the dresser",
+      "outfit": "a pale lilac blouse"
+    },
+    {
+      "line": [
+        "漱完口氣很清新",
+        "靠近講話也不擔心"
+      ],
+      "scene_qwen": "She stands in the entryway of her apartment in the evening, a wooden shoe cabinet and a coat hook behind her.",
+      "scene_video": "An apartment entryway in the evening with a wooden shoe cabinet and a coat hook behind her",
+      "anchors": "shoe cabinet and the coat hook",
+      "outfit": "a navy wrap dress"
+    },
+    {
+      "line": [
+        "約會前記得備一瓶",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits at a small table in a cosy restaurant at night, warm pendant lights and a brick wall behind her.",
+      "scene_video": "A cosy restaurant at night; she sits at a small table with warm pendant lights and a brick wall behind her",
+      "anchors": "pendant lights and the brick wall",
+      "outfit": "a soft burgundy blouse"
+    }
+  ]
+}

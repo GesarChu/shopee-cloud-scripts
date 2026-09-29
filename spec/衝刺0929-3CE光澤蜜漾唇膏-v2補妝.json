@@ -1,0 +1,61 @@
+{
+  "package": "腳本備妥-3CE光澤蜜漾唇膏-v2補妝",
+  "shot_prefix": "scb",
+  "structure": "4",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：3CE 第二支（午餐後補妝）。人物 B7，image 2＝ce_lipstick.jpg。v1＝下班。API 4 鏡。",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "lipstick",
+    "look_qwen": "lipstick from image 2, exactly its look: a slim square-edged tube in soft dusty rose pink with its cap off, the angled rosy-nude lipstick showing at the top, a small black triangle logo printed on the side",
+    "look_video": "slim dusty-rose lipstick with the angled rosy-nude tip showing",
+    "size": "about as long as her index finger",
+    "grip": "held upright between her thumb and index finger near its base, the other fingers softly curled"
+  },
+  "shots": [
+    {
+      "line": [
+        "吃完午餐補妝",
+        "才發現口紅都掉光了"
+      ],
+      "scene_qwen": "She stands outside a small cafe after lunch, outdoor tables and potted plants behind her, no people behind her.",
+      "scene_video": "A small cafe after lunch with outdoor tables and potted plants behind her",
+      "anchors": "outdoor tables and the plants",
+      "outfit": "a white T-shirt tucked into light blue jeans"
+    },
+    {
+      "line": [
+        "補妝就用光澤蜜漾唇膏",
+        "顏色清透勻亮"
+      ],
+      "scene_qwen": "She sits at a cafe table by the window after lunch, a brick wall behind her.",
+      "scene_video": "A cafe after lunch; she sits at a table by the window with a brick wall behind her",
+      "anchors": "window and the brick wall",
+      "outfit": "a soft beige cardigan over a white top"
+    },
+    {
+      "line": [
+        "觸唇就融化很服貼",
+        "嘴唇看起來柔潤"
+      ],
+      "scene_qwen": "She stands in a bright office lobby in the afternoon, a reception counter with no signs and tall plants behind her.",
+      "scene_video": "A bright office lobby in the afternoon with a reception counter and tall plants behind her",
+      "anchors": "reception counter and the plants",
+      "outfit": "a light grey blazer over a pink top"
+    },
+    {
+      "line": [
+        "包包想放一支的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She stands on a sunny city pavement in the afternoon, trees and a row of low buildings behind her, no readable signs.",
+      "scene_video": "A sunny city pavement in the afternoon with trees and a row of low buildings behind her, no readable signs",
+      "anchors": "trees and the buildings",
+      "outfit": "a sky-blue shirt dress"
+    }
+  ]
+}

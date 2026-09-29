@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-老干媽辣椒醬-v1宵夜",
+  "shot_prefix": "lga",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：老干媽香辣脆油辣椒 210g（蝦皮直營 50662979/24979457061，短影音約 1%＝流量品測試）。人物 B7，image 2＝lgm_jar.jpg。賣場原文：內含整顆花生香脆爽口、一吃上癮、開瓶就聞得到驚人香氣、洋蔥香／花椒麻／辣椒辣。畫布 5 鏡。",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "jar",
+    "look_qwen": "chili sauce jar from image 2, exactly its look: a short round clear glass jar filled with dark red chili oil and chili flakes, a red lid, a red label around the middle with a small portrait of a woman and yellow printed words",
+    "look_video": "short round glass jar of red chili sauce with a red lid",
+    "size": "about as tall as her palm, from the wrist to the base of the fingers",
+    "grip": "four fingers wrapped around the jar and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "半夜肚子好餓",
+        "冰箱只剩白飯"
+      ],
+      "scene_qwen": "She stands in a dim home kitchen late at night, white cabinets and a fridge behind her, only a warm under-cabinet light on.",
+      "scene_video": "A dim home kitchen late at night with white cabinets and a fridge behind her, a warm under-cabinet light on",
+      "anchors": "cabinets and the fridge",
+      "outfit": "a grey hoodie with dark grey sweatpants"
+    },
+    {
+      "line": [
+        "幸好家裡還有",
+        "老干媽香辣脆油辣椒"
+      ],
+      "scene_qwen": "She sits at a small wooden dining table late at night, a pendant lamp and a white wall with a clock behind her.",
+      "scene_video": "A small dining room late at night; she sits at a wooden table with a pendant lamp and a white wall with a clock behind her",
+      "anchors": "pendant lamp and the clock",
+      "outfit": "a soft blue pyjama top"
+    },
+    {
+      "line": [
+        "裡面有整顆花生",
+        "吃起來香香脆脆"
+      ],
+      "scene_qwen": "She stands in her living room late at night, a sofa and a floor lamp behind her.",
+      "scene_video": "A living room late at night with a sofa and a warm floor lamp behind her",
+      "anchors": "sofa and the floor lamp",
+      "outfit": "a cream long-sleeve T-shirt"
+    },
+    {
+      "line": [
+        "配白飯超下飯",
+        "香辣到一吃就上癮"
+      ],
+      "scene_qwen": "She stands by her kitchen counter late at night, a rice cooker and a tiled wall behind her.",
+      "scene_video": "A home kitchen counter late at night with a rice cooker and a tiled wall behind her",
+      "anchors": "rice cooker and the tiled wall",
+      "outfit": "a pale green cardigan over a white top"
+    },
+    {
+      "line": [
+        "半夜嘴饞的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on her sofa late at night, bookshelves and a dim lamp behind her.",
+      "scene_video": "A living room late at night; she sits on the sofa with bookshelves and a dim lamp behind her",
+      "anchors": "bookshelves and the lamp",
+      "outfit": "a navy knit sweater"
+    }
+  ]
+}

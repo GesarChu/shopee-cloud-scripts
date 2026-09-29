@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""genlib — 蝦皮分潤短影音「一支片 5 鏡」的提示詞產生器（工單 #1，取代 legacy/ 那串互相載入的 _gen_*.py）。
+"""genlib — 蝦皮分潤短影音「一支片 5 鏡（或 3 鏡）」的提示詞產生器（工單 #1，取代 legacy/ 那串互相載入的 _gen_*.py）。
 
 每鏡寫三個檔（shot_id＝規格檔的 shot_prefix＋鏡號，例：tt1）：
   _qwen指令/q_<shot_id>.txt   給 Qwen-Image 的首幀指令（image 1＝人物照、image 2＝商品照）
@@ -82,10 +82,10 @@ VIDEO = ("integrated_multimodal_description:\n"
          "stays exactly as it is in the first frame for the whole clip. The same young woman as the first frame: {person}, {outfit} that stays "
          "exactly as it is for the whole clip; {hair} {hands}{camera} {expression}\n"
          "\n"
-         "[0.0s-4.0s] Start: exactly the first frame. Action: keeping her hands perfectly still the young woman with a light, bright voice and a "
+         "[0.0s-{t_talk}s] Start: exactly the first frame. Action: keeping her hands perfectly still the young woman with a light, bright voice and a "
          "natural Taiwanese Mandarin accent (S1) says in Mandarin Chinese, as one continuous sentence in a single breath with no pause in the "
          "middle, once only: {line}. End: {end}\n"
-         "[4.0s-5.1s] Start: as before. Action: {tail} End: unchanged, the final frame.\n"
+         "[{t_talk}s-{t_end}s] Start: as before. Action: {tail} End: unchanged, the final frame.\n"
          "\n"
          "{sound}")
 
@@ -147,6 +147,34 @@ SHOT_PLAN = (
     {"framing": "F4", "expression": "bright",  "hand": "right", "point": False, "smile_at_end": True},    # 4 用起來的感受
     {"framing": "F5", "expression": "warm",    "hand": "left",  "point": True,  "smile_at_end": True},    # 5 叫人買
 )
+# 3 鏡結構（2026-09-29 王：「如果劇情順暢應該 3 鏡就可以，因為才 15 秒」「交給 Nora 去測試吧」）
+#   1 痛點（空手）→ 2 揭曉商品＋特點（第二半句蓋在段板上）→ 3 用起來的感受＋叫人買
+#   機位輪換：半側身往左 → 正面近景 → 遠一點半側身往右（CLAUDE #60／#97：同一支片景別要換）
+#   每鏡一句約 19–22 字＝講 5 秒 ⇒ H3 要生 156 格（6.5 秒），rh-batch.py 加 --length 156
+SHOT_PLAN_3 = (
+    {"framing": "F1", "expression": "uneasy",  "hand": None,    "point": False, "smile_at_end": False},   # 1 痛點
+    {"framing": "F3", "expression": "pleased", "hand": "right", "point": False, "smile_at_end": True},    # 2 揭曉＋特點
+    {"framing": "F4", "expression": "warm",    "hand": "left",  "point": True,  "smile_at_end": True},    # 3 感受＋叫人買
+)
+# 4 鏡結構（2026-09-29 12:2x 實測後改用：3 鏡要生 6.5 秒、一支 67 幣，講完會多講、每鏡要 21 字才湊得到 15 秒；
+#   4 鏡用原本 5.1 秒＝一支 49 幣，4×49 比 3×67 還便宜）
+#   1 痛點 → 2 揭曉＋特點（第二半句蓋在段板上）→ 3 用起來的感受 → 4 叫人買；機位 F1／F2／F3／F4 全不同
+SHOT_PLAN_4 = (
+    {"framing": "F1", "expression": "uneasy",  "hand": None,    "point": False, "smile_at_end": False},   # 1 痛點
+    {"framing": "F2", "expression": "pleased", "hand": "right", "point": False, "smile_at_end": True},    # 2 揭曉＋特點
+    {"framing": "F3", "expression": "bright",  "hand": "left",  "point": False, "smile_at_end": True},    # 3 感受
+    {"framing": "F4", "expression": "warm",    "hand": "right", "point": True,  "smile_at_end": True},    # 4 叫人買
+)
+SHOT_PLANS = {"5": SHOT_PLAN, "4": SHOT_PLAN_4, "3": SHOT_PLAN_3}
+# 每種結構：講話段結束秒數、片尾秒數、H3 格數、口白字數（每鏡上限, 全片下限）；None＝不檢查（5 鏡沿用舊規格）
+#   全片下限 60 字：實測約每秒 4 字、聲音從頭講到尾，62 字的片剛好 15.04 秒（TTL v3）
+TIMING = {"5": {"t_talk": "4.0", "t_end": "5.1", "length": 124, "chars": None},
+          "4": {"t_talk": "4.2", "t_end": "5.1", "length": 124, "chars": (17, 60)},
+          "3": {"t_talk": "5.6", "t_end": "6.5", "length": 156, "chars": (22, 60)}}
+# 叫人買那鏡要不要另一隻手指下面：王 9/29「是不是一定要指下面」「整體自然順暢就好」⇒ 新規格預設 "hold"（拿著商品微笑講），
+# 舊規格檔都補了 "cta": "point"（重跑產出跟以前一樣）
+CTA_CHOICES = ("hold", "point")
+STRUCTURE_CHOICES = tuple(SHOT_PLANS)
 OTHER_HAND = {"left": "right", "right": "left"}
 
 
@@ -159,7 +187,8 @@ class SpecError(ValueError):
 
 # 欄位名 → (必填?, 型別)；欄位說明見 spec/README.md
 _TOP_KEYS = {"package": (True, str), "shot_prefix": (True, str), "person": (True, dict), "product": (True, dict),
-             "shots": (True, list), "shot1_hair_qwen": (False, str), "note": (False, str)}
+             "shots": (True, list), "shot1_hair_qwen": (False, str), "note": (False, str),
+             "structure": (False, str), "cta": (False, str)}
 _PERSON_KEYS = {"qwen": (True, str), "video": (True, str), "id": (False, str), "note": (False, str)}
 _PRODUCT_KEYS = {"word": (True, str), "look_qwen": (True, str), "look_video": (True, str), "size": (True, str),
                  "grip": (False, str), "note": (False, str)}
@@ -194,8 +223,14 @@ def validate_spec(spec):
         raise SpecError("package 只能是資料夾名稱，不能帶路徑：%r" % spec["package"])
     if not spec["shot_prefix"].isalnum():
         raise SpecError("shot_prefix 只能用英數字（會變成檔名）：%r" % spec["shot_prefix"])
-    if len(spec["shots"]) != len(SHOT_PLAN):
-        raise SpecError("shots 要剛好 %d 鏡（現在 %d 鏡）" % (len(SHOT_PLAN), len(spec["shots"])))
+    if spec.get("structure", "5") not in STRUCTURE_CHOICES:
+        raise SpecError("structure 只能是 %s（現在 %r）" % ("／".join('"%s"' % k for k in STRUCTURE_CHOICES), spec["structure"]))
+    if spec.get("cta", "hold") not in CTA_CHOICES:
+        raise SpecError("cta 只能是 \"hold\"（拿著商品講）或 \"point\"（另一隻手指下面）（現在 %r）" % spec["cta"])
+    plan = shot_plan(spec)
+    if len(spec["shots"]) != len(plan):
+        raise SpecError("shots 要剛好 %d 鏡（現在 %d 鏡）" % (len(plan), len(spec["shots"])))
+    chars = timing(spec)["chars"]
     for i, shot in enumerate(spec["shots"], 1):
         where = "shots[%d]（第 %d 鏡）" % (i - 1, i)
         _check_keys(shot, _SHOT_KEYS, where)
@@ -208,6 +243,16 @@ def validate_spec(spec):
         for w in BANNED_LINE_WORDS:
             if w in line[0] + line[1]:
                 raise SpecError("%s 口白有會唸歪的字「%s」（CLAUDE #98）" % (where, w))
+        if chars and _han(line) > chars[0]:
+            raise SpecError("%s 口白 %d 字；%s 鏡結構每鏡最多 %d 字（多了 %s 秒講不完）"
+                            % (where, _han(line), spec["structure"], chars[0], timing(spec)["t_talk"]))
+    if chars and sum(_han(x["line"]) for x in spec["shots"]) < chars[1]:
+        raise SpecError("全片口白 %d 字；%s 鏡結構至少要 %d 字（約每秒 4 字，少了湊不到 15 秒）"
+                        % (sum(_han(x["line"]) for x in spec["shots"]), spec["structure"], chars[1]))
+
+
+def _han(line):
+    return sum(1 for c in "".join(line) if "一" <= c <= "鿿")
 
 
 def load_spec(path):
@@ -224,13 +269,22 @@ def load_spec(path):
 # ════════════════════════════════════════════════════════════════════════════
 # 4. 組字串（純函式）
 # ════════════════════════════════════════════════════════════════════════════
+def shot_plan(spec):
+    return SHOT_PLANS[spec.get("structure", "5")]
+
+
+def timing(spec):
+    return TIMING[spec.get("structure", "5")]
+
+
 def shot_ids(spec):
-    return ["%s%d" % (spec["shot_prefix"], i) for i in range(1, len(SHOT_PLAN) + 1)]
+    return ["%s%d" % (spec["shot_prefix"], i) for i in range(1, len(shot_plan(spec)) + 1)]
 
 
 def render_shot(spec, index):
     """第 index 鏡（0 起算）→ {"qwen": 首幀指令, "video": 影片提示詞, "voiceover": 口白腳本}。"""
-    plan = SHOT_PLAN[index]
+    plan = shot_plan(spec)[index]
+    tm = timing(spec)
     shot = spec["shots"][index]
     person, product = spec["person"], spec["product"]
     framing_q, framing_h = FRAMING[plan["framing"]]
@@ -242,7 +296,7 @@ def render_shot(spec, index):
         hands_q = QWEN_HOLD.format(look=product["look_qwen"], side=side, grip=product.get("grip", DEFAULT_GRIP), size=product["size"])
         hands_h = VIDEO_HOLD.format(look=product["look_video"])
         keep = VIDEO_KEEP_WITH_PROP.format(prop=product["word"])
-        if plan["point"]:
+        if plan["point"] and spec.get("cta", "hold") == "point":
             hands_q += QWEN_POINT.format(side=OTHER_HAND[side])
             hands_h += VIDEO_POINT
     hair_q = spec["shot1_hair_qwen"] if index == 0 and "shot1_hair_qwen" in spec else QWEN_HAIR
@@ -255,12 +309,12 @@ def render_shot(spec, index):
     video = VIDEO.format(scene=shot["scene_video"], person=person["video"], outfit=shot["outfit"], hair=VIDEO_HAIR, hands=hands_h,
                          camera=camera, expression=expr_h, line=VIDEO_LINE.format(first=first, second=second),
                          end=VIDEO_END_SMILE if smile else VIDEO_END_CALM, tail=VIDEO_TAIL_SMILE if smile else VIDEO_TAIL_CALM,
-                         sound=VIDEO_SOUND)
+                         sound=VIDEO_SOUND, t_talk=tm["t_talk"], t_end=tm["t_end"])
     return {"qwen": qwen, "video": video, "voiceover": VOICEOVER.format(first=first, second=second)}
 
 
 def render_package(spec):
-    """整支片 → {相對路徑: 檔案內容}（15 個檔）。"""
+    """整支片 → {相對路徑: 檔案內容}（每鏡 3 個檔：5 鏡 15 個、3 鏡 9 個）。"""
     files = {}
     for i, sid in enumerate(shot_ids(spec)):
         out = render_shot(spec, i)

@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-Hoppi純水濕紙巾-v3開車",
+  "shot_prefix": "hpw",
+  "cta": "point",
+  "note": "2026-09-29 04:3x 第 31 棒：Hoppi 第三支（車上），人物 B5。v1＝出門吃東西手黏；v2＝炸雞手油辦公室。image 2＝hoppi_prod.png",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "pack",
+    "look_qwen": "wet wipes pack from image 2, exactly its look: a soft rectangular light blue plastic pack printed with small white doodles, a white plastic flip lid on the front with the blue word hoppi on it, the lid closed",
+    "look_video": "light blue wet wipes pack with the white lid closed",
+    "size": "about twice as wide as her hand",
+    "grip": "her fingers holding its bottom edge from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "在車上吃早餐",
+        "手沾到醬汁"
+      ],
+      "scene_qwen": "She stands beside a parked car in a quiet street in the morning, a breakfast shop front behind her with no readable signs.",
+      "scene_video": "A quiet street in the morning beside a parked car with a breakfast shop front behind her, no readable signs",
+      "anchors": "parked car and the shop front",
+      "outfit": "a plain light blue shirt with dark jeans"
+    },
+    {
+      "line": [
+        "我車上都放這包",
+        "純水的濕紙巾"
+      ],
+      "scene_qwen": "She sits on a low wall beside a parked car in the morning, a tree-lined street behind her.",
+      "scene_video": "A tree-lined street in the morning; she sits on a low wall beside a parked car",
+      "anchors": "parked car and the trees",
+      "outfit": "a plain white T-shirt"
+    },
+    {
+      "line": [
+        "一張很大張",
+        "擦一次就好"
+      ],
+      "scene_qwen": "She stands in an underground parking garage with soft lighting, parked cars and concrete pillars behind her.",
+      "scene_video": "An underground parking garage with soft lighting, parked cars and concrete pillars behind her",
+      "anchors": "concrete pillars and the parked cars",
+      "outfit": "a plain grey sweatshirt"
+    },
+    {
+      "line": [
+        "布厚厚的不容易破",
+        "擦手擦嘴都可以"
+      ],
+      "scene_qwen": "She stands at a scenic roadside rest stop in the daytime, green hills and a railing behind her.",
+      "scene_video": "A scenic roadside rest stop in the daytime with green hills and a railing behind her",
+      "anchors": "railing and the green hills",
+      "outfit": "a plain coral red T-shirt"
+    },
+    {
+      "line": [
+        "常常開車出門的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a bench at a roadside rest area in the late afternoon, trees and a parked car behind her.",
+      "scene_video": "A roadside rest area in the late afternoon; she sits on a bench with trees and a parked car behind her",
+      "anchors": "bench and the trees",
+      "outfit": "a plain khaki jacket over a white top"
+    }
+  ]
+}

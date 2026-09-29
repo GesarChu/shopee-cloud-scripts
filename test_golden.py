@@ -142,6 +142,49 @@ def test_spec_errors_are_explained():
             raise AssertionError("應該擋下：%s" % expect)
 
 
+def test_structure3_and_cta_hold():
+    """2026-09-29：3 鏡結構（156 格、講到 5.6 秒）與「叫人買不指下面」（新規格預設 hold）。"""
+    base = _load(SPECS[0])
+    # 5 鏡 cta 預設＝hold：第 5 鏡不再有食指朝下
+    hold = dict(base); hold.pop("cta", None)
+    files = genlib.render_package(hold)
+    assert "pointing" not in files["prompt_tt5D.txt"] and "pointing" not in files["_qwen指令/q_tt5.txt"]
+    assert "pointing" in genlib.render_package(base)["prompt_tt5D.txt"]      # golden 規格檔寫了 cta=point
+    # 3 鏡：9 個檔、時間碼 5.6／6.5、每鏡最多 22 字、全片至少 60 字
+    lines = [["辦公室空調吹一整天", "手臂摸起來緊緊的不舒服"], ["抽屜常備這瓶身體乳", "質地清爽不黏又好吸收"],
+             ["擦完手臂水水嫩嫩的很舒服", "想要的點下面就買得到"]]
+    s3 = dict(hold, structure="3", shots=[dict(base["shots"][i], line=lines[k]) for k, i in enumerate((0, 2, 3))])
+    genlib.validate_spec(s3)
+    files = genlib.render_package(s3)
+    assert len(files) == 9 and genlib.shot_ids(s3) == ["tt1", "tt2", "tt3"]
+    for sid in ("tt1", "tt2", "tt3"):
+        assert "[0.0s-5.6s]" in files["prompt_%sD.txt" % sid] and "[5.6s-6.5s]" in files["prompt_%sD.txt" % sid]
+        assert "pointing" not in files["prompt_%sD.txt" % sid]
+    assert genlib.timing(s3)["length"] == 156 and genlib.timing(base)["length"] == 124
+    # 4 鏡：12 個檔、124 格、講到 4.2 秒、機位四鏡都不同、每鏡 15–17 字
+    lines4 = [["辦公室空調吹一整天", "手臂緊緊的不舒服"], ["抽屜常備這瓶身體乳", "清爽不黏膩好吸收"], ["擦完手臂摸起來", "水水嫩嫩的很舒服"],
+              ["常待冷氣房的你", "點下面就買得到"]]
+    s4 = dict(hold, structure="4", shots=[dict(base["shots"][i], line=lines4[k]) for k, i in enumerate((0, 1, 2, 3))])
+    genlib.validate_spec(s4)
+    files = genlib.render_package(s4)
+    assert len(files) == 12 and genlib.timing(s4)["length"] == 124
+    assert all("[0.0s-4.2s]" in files["prompt_tt%dD.txt" % i] for i in range(1, 5))
+    assert len({p["framing"] for p in genlib.shot_plan(s4)}) == 4
+    assert "pointing" not in files["prompt_tt4D.txt"]
+    for mutate, expect in [(lambda x: x["shots"][0].update(line=["太短了", "只有八個字"]), "至少要 60 字"),
+                           (lambda x: x["shots"][0].update(line=["辦公室的空調吹了一整天", "手臂摸起來緊緊的很不舒服"]), "每鏡最多 22 字"),
+                           (lambda x: x.update(structure="6"), "structure 只能是"),
+                           (lambda x: x.update(cta="wave"), "cta 只能是"),
+                           (lambda x: x["shots"].append(dict(x["shots"][0])), "3 鏡")]:
+        bad = dict(s3, shots=[dict(x) for x in s3["shots"]]); mutate(bad)
+        try:
+            genlib.validate_spec(bad)
+        except genlib.SpecError as e:
+            assert expect in str(e), "錯誤訊息沒講到「%s」：%s" % (expect, e)
+        else:
+            raise AssertionError("應該擋下：%s" % expect)
+
+
 def test_braces_in_spec_text_are_safe():
     spec = _load(SPECS[0])
     spec["product"] = dict(spec["product"], look_video="bag with {side} {0} printed on it")

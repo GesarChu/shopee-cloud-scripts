@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-ARIEL-4D洗衣膠球-v3租屋",
+  "shot_prefix": "a4w",
+  "cta": "point",
+  "note": "2026-09-29 05:4x 第 31 棒：ARIEL 第三支（租屋族投幣洗衣），人物 B6。v1＝倒洗衣精太多；v2＝運動衣汗味。image 2＝ariel4d_prod.png",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "pouch",
+    "look_qwen": "laundry pod refill pouch from image 2, exactly its look: a stand-up plastic pouch in white and deep blue, a big yellow number and Japanese writing at the top, a round white badge with a blue star-shaped logo in the middle, and blue-and-green gel pods pictured at the bottom right",
+    "look_video": "white and deep blue laundry pod refill pouch",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its bottom half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "租屋處沒有洗衣機",
+        "衣服都要拿去洗衣店"
+      ],
+      "scene_qwen": "She stands inside a self-service laundromat in the evening, rows of washing machines behind her, no signs are readable.",
+      "scene_video": "A self-service laundromat in the evening with rows of washing machines behind her, no readable signs",
+      "anchors": "rows of washing machines",
+      "outfit": "a plain grey hoodie with black jeans"
+    },
+    {
+      "line": [
+        "我都帶這一包",
+        "日本的洗衣膠球"
+      ],
+      "scene_qwen": "She sits on a bench inside a laundromat in the evening, washing machines behind her.",
+      "scene_video": "A laundromat in the evening; she sits on a bench with washing machines behind her",
+      "anchors": "bench and the washing machines",
+      "outfit": "a plain white T-shirt"
+    },
+    {
+      "line": [
+        "不用剪開包裝",
+        "丟一顆就可以洗"
+      ],
+      "scene_qwen": "She stands beside a front-loading washing machine in a laundromat, its round door closed behind her.",
+      "scene_video": "A laundromat beside a front-loading washing machine with its round door closed behind her",
+      "anchors": "washing machine door",
+      "outfit": "a plain lilac sweatshirt"
+    },
+    {
+      "line": [
+        "洗好的衣服",
+        "聞起來香香的"
+      ],
+      "scene_qwen": "She stands in a small rented studio apartment in the daytime, a clothes drying rack with clean shirts behind her.",
+      "scene_video": "A small rented studio in the daytime with a clothes drying rack and clean shirts behind her",
+      "anchors": "drying rack and the shirts",
+      "outfit": "a plain soft pink T-shirt"
+    },
+    {
+      "line": [
+        "租屋族常常洗衣服的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a bed in a cosy studio apartment in the evening, a bedside lamp behind her.",
+      "scene_video": "A cosy studio apartment in the evening; she sits on a bed with a bedside lamp behind her",
+      "anchors": "bedside lamp",
+      "outfit": "a plain beige knit cardigan"
+    }
+  ]
+}

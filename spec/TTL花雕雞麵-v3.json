@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-TTL花雕雞麵-v3加班",
+  "shot_prefix": "ttw",
+  "cta": "point",
+  "note": "2026-09-29 05:4x 第 31 棒：TTL 第三支（公司加班），人物 B1。v1＝加班回家宵夜；v2＝下雨天。image 2＝ttl_prod（沿用 v2 的商品圖）",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bag",
+    "look_qwen": "instant noodle multipack bag from image 2, exactly its look: a tall box-shaped soft plastic bag with a peaked top, dark red and orange with a light beige lower half, large dark red Chinese title letters and a picture of a bowl of noodle soup with chicken pieces",
+    "look_video": "dark red and orange instant noodle multipack bag",
+    "size": "about as tall as her forearm from wrist to elbow",
+    "grip": "her fingers holding its lower half from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "同事都下班了",
+        "我還在加班"
+      ],
+      "scene_qwen": "She stands in a nearly empty office at night, rows of desks with lights off behind her.",
+      "scene_video": "A nearly empty office at night with rows of desks and lights off behind her",
+      "anchors": "rows of desks",
+      "outfit": "a plain white shirt with black trousers"
+    },
+    {
+      "line": [
+        "抽屜裡都放這袋",
+        "台酒花雕雞麵"
+      ],
+      "scene_qwen": "She sits at her office desk at night, a desk lamp and a monitor behind her.",
+      "scene_video": "An office at night; she sits at her desk with a desk lamp and a monitor behind her",
+      "anchors": "desk lamp and the monitor",
+      "outfit": "a plain navy cardigan over a white top"
+    },
+    {
+      "line": [
+        "有雞肉塊料理包",
+        "還有花雕酒的香"
+      ],
+      "scene_qwen": "She stands in a small office pantry at night, a microwave and a kettle behind her, no steam.",
+      "scene_video": "A small office pantry at night with a microwave and a kettle behind her, no steam",
+      "anchors": "microwave and the kettle",
+      "outfit": "a plain light grey sweater"
+    },
+    {
+      "line": [
+        "加班吃一碗",
+        "身體都暖起來了"
+      ],
+      "scene_qwen": "She stands by an office window at night, city lights outside behind her.",
+      "scene_video": "An office by a window at night with city lights outside behind her",
+      "anchors": "window and the city lights",
+      "outfit": "a plain burgundy knit top"
+    },
+    {
+      "line": [
+        "常常加班的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in an office lounge at night, a floor lamp and a plant behind her.",
+      "scene_video": "An office lounge at night; she sits on a sofa with a floor lamp and a plant behind her",
+      "anchors": "floor lamp and the plant",
+      "outfit": "a plain beige turtleneck"
+    }
+  ]
+}

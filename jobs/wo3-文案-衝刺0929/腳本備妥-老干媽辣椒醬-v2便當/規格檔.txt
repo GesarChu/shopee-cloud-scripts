@@ -1,0 +1,9 @@
+spec/衝刺0929-老干媽辣椒醬-v2便當.json
+（5 鏡；人物 B5）
+鏡1：公司便當吃膩了，吃起來都沒味道｜場景：A small office pantry at lunchtime with a microwave and a water dispenser behind her
+鏡2：我都自己帶這瓶，老干媽辣椒醬｜場景：An office at lunchtime; she sits at her desk with a monitor and a window with blinds behind her
+鏡3：開瓶就聞到香氣，洋蔥香加花椒麻｜場景：A bright office by a large window at lunchtime with city buildings far outside and a potted plant
+鏡4：便當加一小匙，香辣的味道好過癮｜場景：An office rooftop garden at lunchtime with planters and a railing behind her
+鏡5：午餐吃膩的，下面點進去就買得到｜場景：A small city park at lunchtime; she sits on a bench with trees and a paved path behind her
+
+同商品另一支（本批一起寫、⛔ 同粉專同格式同開頭）：腳本備妥-老干媽辣椒醬-v1宵夜

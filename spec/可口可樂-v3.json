@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-可口可樂易開罐24入-v3烤肉",
+  "shot_prefix": "kow",
+  "cta": "point",
+  "note": "2026-09-29 04:3x 第 31 棒：可口可樂第三支（河濱烤肉），人物 B7。v1＝冰箱空空／追劇；v2＝火鍋請客。image 2＝coke_can.jpg",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "can",
+    "look_qwen": "soda can from image 2, exactly its look: a short chubby red can with the white Coca-Cola script logo and a white wave running around it",
+    "look_video": "short red Coca-Cola can",
+    "size": "about as tall as her palm"
+  },
+  "shots": [
+    {
+      "line": [
+        "週末烤肉烤到滿身汗",
+        "渴到不行"
+      ],
+      "scene_qwen": "She stands at a riverside park barbecue area in the afternoon, a charcoal grill and folding chairs behind her, no smoke.",
+      "scene_video": "A riverside park barbecue area in the afternoon with a charcoal grill and folding chairs behind her, no smoke",
+      "anchors": "grill and the folding chairs",
+      "outfit": "a plain white linen shirt tucked into light blue jeans"
+    },
+    {
+      "line": [
+        "還好我帶了",
+        "一箱可口可樂"
+      ],
+      "scene_qwen": "She sits on a camping chair at a riverside barbecue area in the afternoon, a folding table with paper plates behind her.",
+      "scene_video": "A riverside barbecue area in the afternoon; she sits on a camping chair with a folding table and paper plates behind her",
+      "anchors": "folding table and the paper plates",
+      "outfit": "a plain olive green T-shirt"
+    },
+    {
+      "line": [
+        "肉烤好了",
+        "配一口冰可樂"
+      ],
+      "scene_qwen": "She stands beside a wooden picnic table in a park in the afternoon, trees and a grassy lawn behind her.",
+      "scene_video": "A park in the afternoon with a wooden picnic table, trees and a grassy lawn behind her",
+      "anchors": "picnic table and the trees",
+      "outfit": "a plain navy blue polo shirt"
+    },
+    {
+      "line": [
+        "氣泡在嘴裡",
+        "好暢快"
+      ],
+      "scene_qwen": "She stands on a riverside path at golden hour, the river and a bridge in the distance behind her.",
+      "scene_video": "A riverside path at golden hour with the river and a bridge in the distance behind her",
+      "anchors": "river and the bridge",
+      "outfit": "a plain light pink T-shirt"
+    },
+    {
+      "line": [
+        "常常揪烤肉的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a camping chair at dusk in a park, warm string lights hanging between trees behind her.",
+      "scene_video": "A park at dusk; she sits on a camping chair with warm string lights hanging between trees behind her",
+      "anchors": "string lights and the trees",
+      "outfit": "a plain beige cardigan over a white top"
+    }
+  ]
+}

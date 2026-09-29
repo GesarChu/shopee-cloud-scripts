@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-可口可樂易開罐24入-v4看球賽",
+  "shot_prefix": "ckw",
+  "cta": "point",
+  "note": "2026-09-29 08:0x 第 31 棒：可口可樂第四支（在家看球賽），人物 B1，image 2＝coke_can.jpg。v1＝冰箱空空；v2＝火鍋；v3＝烤肉。⛔ 數字（250ml、24 入唸不出來）、⛔ 乾（乾杯）、⛔ 一整箱／冰箱空空（v1 用過）、⛔ 價格與當日到。",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "can",
+    "look_qwen": "soda can from image 2, exactly its look: a short chubby red can with the white Coca-Cola script logo and a white wave running around it",
+    "look_video": "short red Coca-Cola can",
+    "size": "about as tall as her palm"
+  },
+  "shots": [
+    {
+      "line": [
+        "週末在家看球賽",
+        "喊到喉嚨好渴"
+      ],
+      "scene_qwen": "She stands in a cosy living room in the evening, a sofa and a large dark television screen that shows nothing behind her, no people behind her.",
+      "scene_video": "A cosy living room in the evening with a sofa and a dark television screen behind her",
+      "anchors": "sofa and the dark television",
+      "outfit": "a plain white T-shirt with blue jeans"
+    },
+    {
+      "line": [
+        "比賽開始前",
+        "先把可口可樂冰好"
+      ],
+      "scene_qwen": "She sits on a floor cushion in a living room in the evening, a low coffee table with a bowl of popcorn and a sofa behind her.",
+      "scene_video": "A living room in the evening; she sits on a floor cushion with a low coffee table, a bowl of popcorn and a sofa behind her",
+      "anchors": "coffee table and the popcorn",
+      "outfit": "a plain navy hoodie"
+    },
+    {
+      "line": [
+        "朋友一起來看",
+        "一人發一個剛剛好"
+      ],
+      "scene_qwen": "She stands in a small home kitchen in the evening, a refrigerator and a window with the night outside behind her.",
+      "scene_video": "A small home kitchen in the evening with a refrigerator and a dark window behind her",
+      "anchors": "refrigerator and the window",
+      "outfit": "a plain light grey sweatshirt"
+    },
+    {
+      "line": [
+        "進球那一刻",
+        "冰可樂喝下去好暢快"
+      ],
+      "scene_qwen": "She stands in a living room at night lit by warm lamps, a bookshelf and a sofa with cushions behind her.",
+      "scene_video": "A living room at night lit by warm lamps with a bookshelf and a sofa behind her",
+      "anchors": "bookshelf and the sofa",
+      "outfit": "a plain red T-shirt"
+    },
+    {
+      "line": [
+        "愛看球賽的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a living room at night, a floor lamp and a small side table behind her.",
+      "scene_video": "A living room at night; she sits on a sofa with a floor lamp and a small side table behind her",
+      "anchors": "floor lamp and the side table",
+      "outfit": "a plain black zip-up jacket over a white top"
+    }
+  ]
+}

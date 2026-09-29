@@ -1,6 +1,7 @@
 {
   "package": "腳本備妥-歐萊德咖啡因洗髮精-多鏡頭",
   "shot_prefix": "oc",
+  "cta": "point",
   "note": "2026-09-28 第 30 棒：歐萊德 咖啡因洗髮精 400mL，人物 B7（高馬尾）。商品參考圖（image 2）＝or_bottle.png。由 legacy/_gen_new0928f.py 轉來。",
   "person": {
     "id": "B7",

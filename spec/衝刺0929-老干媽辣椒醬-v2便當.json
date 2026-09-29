@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-老干媽辣椒醬-v2便當",
+  "shot_prefix": "lgb",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：老干媽第二支（公司便當）。人物 B5，image 2＝lgm_jar.jpg。v1＝宵夜。畫布 5 鏡。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "jar",
+    "look_qwen": "chili sauce jar from image 2, exactly its look: a short round clear glass jar filled with dark red chili oil and chili flakes, a red lid, a red label around the middle with a small portrait of a woman and yellow printed words",
+    "look_video": "short round glass jar of red chili sauce with a red lid",
+    "size": "about as tall as her palm, from the wrist to the base of the fingers",
+    "grip": "four fingers wrapped around the jar and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "公司便當吃膩了",
+        "吃起來都沒味道"
+      ],
+      "scene_qwen": "She stands in a small office pantry at lunchtime, a microwave and a water dispenser behind her, no people behind her.",
+      "scene_video": "A small office pantry at lunchtime with a microwave and a water dispenser behind her",
+      "anchors": "microwave and the water dispenser",
+      "outfit": "a white blouse with grey trousers"
+    },
+    {
+      "line": [
+        "我都自己帶這瓶",
+        "老干媽辣椒醬"
+      ],
+      "scene_qwen": "She sits at her office desk at lunchtime, a monitor and a window with blinds behind her.",
+      "scene_video": "An office at lunchtime; she sits at her desk with a monitor and a window with blinds behind her",
+      "anchors": "monitor and the blinds",
+      "outfit": "a light pink knit top"
+    },
+    {
+      "line": [
+        "開瓶就聞到香氣",
+        "洋蔥香加花椒麻"
+      ],
+      "scene_qwen": "She stands by a large office window at lunchtime, city buildings far outside and a potted plant beside her.",
+      "scene_video": "A bright office by a large window at lunchtime with city buildings far outside and a potted plant",
+      "anchors": "window and the plant",
+      "outfit": "a beige blouse"
+    },
+    {
+      "line": [
+        "便當加一小匙",
+        "香辣的味道好過癮"
+      ],
+      "scene_qwen": "She stands on an office rooftop garden at lunchtime, planters and a railing behind her.",
+      "scene_video": "An office rooftop garden at lunchtime with planters and a railing behind her",
+      "anchors": "planters and the railing",
+      "outfit": "a navy shirt dress"
+    },
+    {
+      "line": [
+        "午餐吃膩的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a park bench at lunchtime, trees and a paved path behind her.",
+      "scene_video": "A small city park at lunchtime; she sits on a bench with trees and a paved path behind her",
+      "anchors": "trees and the path",
+      "outfit": "a soft yellow cardigan over a white top"
+    }
+  ]
+}

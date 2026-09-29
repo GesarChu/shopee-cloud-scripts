@@ -1,0 +1,60 @@
+{
+  "package": "腳本備妥-CeraVe長效潤澤霜-v2洗完澡",
+  "shot_prefix": "cvb",
+  "structure": "4",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：CeraVe 第二支（洗完澡）。人物 B5，image 2＝cerave_tube.jpg。v1＝換季。API 4 鏡。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "tube",
+    "look_qwen": "moisturising cream tube from image 2, exactly its look: a white soft squeeze tube standing upright on its white cap, with a blue diagonal stripe at the top corner, a large blue logo and small blue printed words on the front",
+    "look_video": "white cream tube with a blue stripe standing on its white cap",
+    "size": "a little shorter than her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "洗完澡過一陣子",
+        "身體摸起來粗粗的"
+      ],
+      "scene_qwen": "She stands in her bedroom in the evening, a wardrobe and a window with curtains behind her.",
+      "scene_video": "A bedroom in the evening with a wardrobe and a window with curtains behind her",
+      "anchors": "wardrobe and the curtains",
+      "outfit": "a loose white T-shirt tucked into soft grey lounge pants"
+    },
+    {
+      "line": [
+        "洗完澡我都擦",
+        "適樂膚長效潤澤霜"
+      ],
+      "scene_qwen": "She sits on a small stool in a bright bathroom in the evening, light beige tiles and a towel rack behind her.",
+      "scene_video": "A bright bathroom in the evening; she sits on a small stool with light beige tiles and a towel rack behind her",
+      "anchors": "beige tiles and the towel rack",
+      "outfit": "a pale pink robe"
+    },
+    {
+      "line": [
+        "一大條的霜狀質地",
+        "身體臉上都擦得到"
+      ],
+      "scene_qwen": "She stands by her bedroom dresser in the evening, a round mirror frame and a small plant behind her.",
+      "scene_video": "A bedroom in the evening with a dresser, a round mirror frame and a small plant behind her",
+      "anchors": "dresser and the plant",
+      "outfit": "a light blue lounge top"
+    },
+    {
+      "line": [
+        "皮膚容易粗粗的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She stands in a cosy hallway in the evening, framed pictures with no text and a warm wall light behind her.",
+      "scene_video": "A cosy hallway in the evening with framed pictures and a warm wall light behind her",
+      "anchors": "pictures and the wall light",
+      "outfit": "a soft green cardigan over a white top"
+    }
+  ]
+}

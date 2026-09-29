@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-不倒翁金拉麵-v3露營",
+  "shot_prefix": "otw",
+  "cta": "point",
+  "note": "2026-09-29 05:4x 第 31 棒：不倒翁第三支（露營），人物 B6。v1＝下雨天；v2＝追劇。image 2＝ottogi_prod.png",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "bag",
+    "look_qwen": "instant noodle multipack bag from image 2, exactly its look: a soft plastic bag in royal blue with a red and yellow burst, big white Korean letters in the middle, a picture of a bowl of noodles with an egg at the bottom and a small orange badge at the top right",
+    "look_video": "royal blue instant noodle multipack bag",
+    "size": "about as wide as her forearm from wrist to elbow",
+    "grip": "her fingers holding its bottom edge from the side and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "露營的晚上好冷",
+        "肚子又餓了"
+      ],
+      "scene_qwen": "She stands at a campsite in the evening, a tent and trees behind her, no fire and no smoke.",
+      "scene_video": "A campsite in the evening with a tent and trees behind her, no fire and no smoke",
+      "anchors": "tent and the trees",
+      "outfit": "a plain dark green fleece jacket with black trousers"
+    },
+    {
+      "line": [
+        "我都會帶這袋",
+        "韓國的金拉麵"
+      ],
+      "scene_qwen": "She sits on a camping chair at a campsite in the evening, a folding table and a lantern behind her.",
+      "scene_video": "A campsite in the evening; she sits on a camping chair with a folding table and a lantern behind her",
+      "anchors": "folding table and the lantern",
+      "outfit": "a plain beige fleece pullover"
+    },
+    {
+      "line": [
+        "一袋有好幾包",
+        "大家一人一包剛好"
+      ],
+      "scene_qwen": "She stands beside a tent in the evening, warm string lights hanging on the tent behind her.",
+      "scene_video": "A campsite in the evening beside a tent with warm string lights hanging on it behind her",
+      "anchors": "tent and the string lights",
+      "outfit": "a plain navy puffer vest over a grey top"
+    },
+    {
+      "line": [
+        "產地是韓國的",
+        "原味跟辣味都有"
+      ],
+      "scene_qwen": "She stands at a lakeside campsite at dusk, the lake and hills behind her.",
+      "scene_video": "A lakeside campsite at dusk with the lake and hills behind her",
+      "anchors": "lake and the hills",
+      "outfit": "a plain mustard yellow knit sweater"
+    },
+    {
+      "line": [
+        "喜歡露營的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She sits on a camping chair at night, a glowing lantern and a tent behind her.",
+      "scene_video": "A campsite at night; she sits on a camping chair with a glowing lantern and a tent behind her",
+      "anchors": "lantern and the tent",
+      "outfit": "a plain red flannel shirt over a white top"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-hetras香氛護手霜-v3冷氣房",
+  "shot_prefix": "htw",
+  "cta": "point",
+  "note": "2026-09-29 05:4x 第 31 棒：hetras 第三支（通勤／冷氣房），人物 B7。v1＝冷氣房；v2＝洗碗。image 2＝hetras_prod.png",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "tube",
+    "look_qwen": "hand cream tube from image 2, exactly its look: a slim soft squeeze tube in a pale cream colour with a flat crimped end at the top and a small cream screw cap at the bottom, thin light grey printed words running along it",
+    "look_video": "slim pale cream hand cream tube with the cap at the bottom",
+    "size": "about as long as her hand",
+    "grip": "the cap at the bottom, her fingers wrapped around the lower half of the tube and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": [
+        "每天搭捷運通勤",
+        "手背常常緊緊的"
+      ],
+      "scene_qwen": "She stands on a subway platform in the morning, the tiled wall and a bench behind her, no signs are readable.",
+      "scene_video": "A subway platform in the morning with a tiled wall and a bench behind her, no readable signs",
+      "anchors": "tiled wall and the bench",
+      "outfit": "a plain camel trench coat over a white top"
+    },
+    {
+      "line": [
+        "包包裡放這條",
+        "韓國的護手霜"
+      ],
+      "scene_qwen": "She sits on a bench in a quiet office lobby in the morning, a potted plant and glass doors behind her.",
+      "scene_video": "A quiet office lobby in the morning; she sits on a bench with a potted plant and glass doors behind her",
+      "anchors": "potted plant and the glass doors",
+      "outfit": "a plain light grey blazer over a black top"
+    },
+    {
+      "line": [
+        "霜狀質地",
+        "擦起來不黏膩"
+      ],
+      "scene_qwen": "She stands at her office desk in the daytime, a monitor and a desk lamp behind her.",
+      "scene_video": "An office in the daytime with a monitor and a desk lamp behind her",
+      "anchors": "monitor and the desk lamp",
+      "outfit": "a plain white knit top"
+    },
+    {
+      "line": [
+        "香味有好多款",
+        "我喜歡花園這款"
+      ],
+      "scene_qwen": "She stands by a large office window in the afternoon, the city skyline behind her.",
+      "scene_video": "An office by a large window in the afternoon with the city skyline behind her",
+      "anchors": "window and the city skyline",
+      "outfit": "a plain dusty blue sweater"
+    },
+    {
+      "line": [
+        "常常搭捷運的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in a cosy café in the evening, warm lamps and shelves behind her.",
+      "scene_video": "A cosy café in the evening; she sits on a sofa with warm lamps and shelves behind her",
+      "anchors": "warm lamps and the shelves",
+      "outfit": "a plain olive knit cardigan over a cream top"
+    }
+  ]
+}

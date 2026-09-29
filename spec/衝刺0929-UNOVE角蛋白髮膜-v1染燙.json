@@ -1,0 +1,61 @@
+{
+  "package": "腳本備妥-UNOVE角蛋白髮膜-v1染燙",
+  "shot_prefix": "una",
+  "structure": "4",
+  "cta": "hold",
+  "shot1_hair_qwen": "Her hair is a little frizzy and puffy at the ends with a few flyaway strands, as if it was recently permed and dyed.",
+  "note": "2026-09-29 第 31 棒衝刺：UNOVE 柔諾伊角蛋白柔順修護髮膜 207ml（蝦皮直營 50662979/57303872394，分潤加碼 3%＝短影音 $15.37）。人物 B6，image 2＝unove_mask.jpg。賣場原文：柔綻花香帶有柑橘清香與柔和甜美的花香、非凡柔順感、調理燙染熱傷害粗糙髮絲（功效字不進口白）。⛔ 修護、髮質、髮尾。API 4 鏡。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "tube",
+    "look_qwen": "hair mask tube from image 2, exactly its look: a tall soft squeeze tube in dark navy blue standing upright on a pale pink cap, with large white letters and small white printed words on the front",
+    "look_video": "tall dark navy hair mask tube standing on a pale pink cap",
+    "size": "a little shorter than her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "染燙過的頭髮",
+        "摸起來粗粗的好毛躁"
+      ],
+      "scene_qwen": "She stands in a bright hair salon in the afternoon, empty salon chairs and large mirrors far behind her, no people behind her.",
+      "scene_video": "A bright hair salon in the afternoon with empty salon chairs and large mirrors far behind her",
+      "anchors": "salon chairs and the mirrors",
+      "outfit": "a white shirt tucked into light blue jeans"
+    },
+    {
+      "line": [
+        "洗完頭我都用這條",
+        "柔諾伊角蛋白髮膜"
+      ],
+      "scene_qwen": "She sits on a stool in a bright home bathroom in the evening, white tiles and a towel rack behind her.",
+      "scene_video": "A bright home bathroom in the evening; she sits on a stool with white tiles and a towel rack behind her",
+      "anchors": "white tiles and the towel rack",
+      "outfit": "a soft pink bathrobe"
+    },
+    {
+      "line": [
+        "帶著柑橘清香的花香",
+        "頭髮摸起來好順"
+      ],
+      "scene_qwen": "She stands by her bedroom vanity in the evening, a small mirror frame and a lamp behind her.",
+      "scene_video": "A bedroom in the evening with a small vanity, a mirror frame and a lamp behind her",
+      "anchors": "vanity and the lamp",
+      "outfit": "a light grey lounge top"
+    },
+    {
+      "line": [
+        "剛染燙完的你",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She stands on a sunny balcony in the morning, potted plants and a railing behind her.",
+      "scene_video": "A sunny balcony in the morning with potted plants and a railing behind her",
+      "anchors": "plants and the railing",
+      "outfit": "a pale yellow blouse"
+    }
+  ]
+}

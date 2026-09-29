@@ -1,0 +1,70 @@
+{
+  "package": "腳本備妥-3CE光澤蜜漾唇膏-v1下班",
+  "shot_prefix": "sca",
+  "cta": "hold",
+  "note": "2026-09-29 第 31 棒衝刺：3CE 光澤蜜漾唇膏（旗艦店 264024691/20086744560，分潤加碼 5%＝短影音 $27.12；賣場自寫高允貞同款，口白不念人名）。人物 B5，image 2＝ce_lipstick.jpg。賣場原文：晶透水光、顯色嘟嘟唇、清透勻亮、柔潤、觸唇即融超服貼。畫布 5 鏡。⛔ 口白念 3CE（數字會被吞）。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "lipstick",
+    "look_qwen": "lipstick from image 2, exactly its look: a slim square-edged tube in soft dusty rose pink with its cap off, the angled rosy-nude lipstick showing at the top, a small black triangle logo printed on the side",
+    "look_video": "slim dusty-rose lipstick with the angled rosy-nude tip showing",
+    "size": "about as long as her index finger",
+    "grip": "held upright between her thumb and index finger near its base, the other fingers softly curled"
+  },
+  "shots": [
+    {
+      "line": [
+        "下班照鏡子",
+        "嘴唇看起來好沒精神"
+      ],
+      "scene_qwen": "She stands in an office corridor by a window at dusk, a row of desks far behind her, no people behind her.",
+      "scene_video": "An office corridor by a window at dusk with a row of desks far behind her",
+      "anchors": "window and the desks",
+      "outfit": "a white blouse with a navy skirt"
+    },
+    {
+      "line": [
+        "包包裡都帶這支",
+        "光澤蜜漾唇膏"
+      ],
+      "scene_qwen": "She sits at her office desk at dusk, a monitor and a small desk lamp behind her.",
+      "scene_video": "An office at dusk; she sits at her desk with a monitor and a small desk lamp behind her",
+      "anchors": "monitor and the desk lamp",
+      "outfit": "a soft grey knit top"
+    },
+    {
+      "line": [
+        "晶透水光的質地",
+        "擦上去很服貼"
+      ],
+      "scene_qwen": "She stands in a bright lift lobby at dusk, lift doors and a marble wall behind her.",
+      "scene_video": "A bright lift lobby at dusk with lift doors and a marble wall behind her",
+      "anchors": "lift doors and the marble wall",
+      "outfit": "a pale pink blouse"
+    },
+    {
+      "line": [
+        "一抹就水水亮亮",
+        "看起來好有精神"
+      ],
+      "scene_qwen": "She stands on a city street at dusk, shop windows with warm lights behind her, no readable signs.",
+      "scene_video": "A city street at dusk with shop windows and warm lights behind her, no readable signs",
+      "anchors": "shop windows and the lights",
+      "outfit": "a camel trench coat over a white top"
+    },
+    {
+      "line": [
+        "下班要約會的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits at a small table in a restaurant at night, candles and a wooden wall behind her.",
+      "scene_video": "A restaurant at night; she sits at a small table with candles and a wooden wall behind her",
+      "anchors": "candles and the wooden wall",
+      "outfit": "a black satin blouse"
+    }
+  ]
+}

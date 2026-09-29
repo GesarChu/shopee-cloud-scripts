@@ -1,0 +1,49 @@
+{
+  "package": "_3鏡測試-NIVEA",
+  "shot_prefix": "nvt",
+  "note": "2026-09-29 12:4x 第 31 棒：3 鏡結構＋不指下面第一次實測（王：交給 Nora 去測試吧）。場景沿用 NIVEA v4 第 1／3／4 鏡。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "body lotion bottle from image 2, exactly its look: a tall dark navy-blue plastic bottle with a navy pump on top, a round white-and-blue NIVEA logo near the top, small white printed words and a white milk-drop picture on the front",
+    "look_video": "tall dark navy-blue body lotion bottle with the pump on top",
+    "size": "about as tall as her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "辦公室空調吹一整天",
+        "手臂摸起來緊緊的不舒服"
+      ],
+      "scene_qwen": "She stands in a bright open-plan office in the afternoon, rows of desks and large windows behind her, no people behind her.",
+      "scene_video": "A bright open-plan office in the afternoon with rows of desks and large windows behind her",
+      "anchors": "desks and the windows",
+      "outfit": "a plain white blouse with light grey trousers"
+    },
+    {
+      "line": [
+        "抽屜常備這瓶身體乳",
+        "質地清爽不黏又好吸收"
+      ],
+      "scene_qwen": "She stands in a small office pantry in the afternoon, a coffee machine and a window with blinds behind her.",
+      "scene_video": "A small office pantry in the afternoon with a coffee machine and a window with blinds behind her",
+      "anchors": "coffee machine and the blinds",
+      "outfit": "a plain beige knit top"
+    },
+    {
+      "line": [
+        "擦完手臂水水嫩嫩的很舒服",
+        "想要的點下面就買得到"
+      ],
+      "scene_qwen": "She stands in a meeting room in the late afternoon, a glass wall and a whiteboard with nothing written on it behind her.",
+      "scene_video": "A meeting room in the late afternoon with a glass wall and a blank whiteboard behind her",
+      "anchors": "glass wall and the blank whiteboard",
+      "outfit": "a plain pale pink blouse"
+    }
+  ],
+  "structure": "3"
+}

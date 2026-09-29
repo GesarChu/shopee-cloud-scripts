@@ -1,0 +1,55 @@
+{
+  "package": "腳本備妥-KTV藍牙麥克風-v3爸媽",
+  "shot_prefix": "kdw",
+  "cta": "point",
+  "note": "2026-09-29 07:1x 第 31 棒：KTV K歌音箱第三支（買給退休爸媽），人物 B7。v1＝週末在家唱；v2＝朋友聚會。image 2＝ktv_white.jpg（手上拿的是白色無線麥克風，音箱整組放段板）",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "microphone",
+    "look_qwen": "white wireless microphone from image 2, exactly its look: a white cylindrical handle with small grey round buttons and a light grey mesh ball head on top",
+    "look_video": "white wireless microphone with the light grey mesh ball head",
+    "size": "about as long as her hand and forearm to the middle of the forearm, the mesh ball head about the size of a small orange, the head staying below her chin",
+    "grip": "four fingers wrapped around the handle and the thumb on the near side facing the camera"
+  },
+  "shots": [
+    {
+      "line": ["爸媽退休在家", "每天都有點無聊"],
+      "scene_qwen": "She stands in her parents' living room in the afternoon, an old wooden cabinet and a fabric sofa behind her, no people behind her.",
+      "scene_video": "Her parents' living room in the afternoon with an old wooden cabinet and a fabric sofa behind her",
+      "anchors": "wooden cabinet and the sofa",
+      "outfit": "a plain navy knit cardigan over a white top"
+    },
+    {
+      "line": ["我買了這組給他們", "藍牙K歌麥克風"],
+      "scene_qwen": "She sits on a fabric sofa in a living room in the evening, a floor lamp and a potted plant behind her.",
+      "scene_video": "A living room in the evening; she sits on a fabric sofa with a floor lamp and a potted plant behind her",
+      "anchors": "floor lamp and the plant",
+      "outfit": "a plain soft beige sweater"
+    },
+    {
+      "line": ["不用另外接喇叭", "開機連上手機就能唱"],
+      "scene_qwen": "She stands in a dining room in the evening, a round dining table with a tablecloth and a wall clock behind her.",
+      "scene_video": "A dining room in the evening with a round dining table and a wall clock behind her",
+      "anchors": "dining table and the wall clock",
+      "outfit": "a plain light grey hoodie"
+    },
+    {
+      "line": ["有兩支麥克風", "兩個人可以一起合唱"],
+      "scene_qwen": "She stands on a home balcony in the evening, potted plants and a railing behind her, the sky soft orange.",
+      "scene_video": "A home balcony in the evening with potted plants and a railing behind her",
+      "anchors": "potted plants and the railing",
+      "outfit": "a plain burgundy knit top"
+    },
+    {
+      "line": ["想讓爸媽開心的", "點下面就買得到"],
+      "scene_qwen": "She sits on a wooden bench in a cosy family room at night, a bookshelf and a warm table lamp behind her.",
+      "scene_video": "A cosy family room at night; she sits on a wooden bench with a bookshelf and a warm table lamp behind her",
+      "anchors": "bookshelf and the table lamp",
+      "outfit": "a plain olive green knit cardigan over a cream top"
+    }
+  ]
+}

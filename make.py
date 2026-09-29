@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""make.py — 讀商品規格檔，寫出一支片 5 鏡的首幀指令／影片提示詞／口白腳本（共 15 個檔）。
+"""make.py — 讀商品規格檔，寫出一支片 5 鏡（或 3 鏡）的首幀指令／影片提示詞／口白腳本（每鏡 3 個檔）。
 
 用法：
   python make.py spec/<商品>.json --out out/<包名>
@@ -44,6 +44,8 @@ def main(argv=None):
     for sid, shot in zip(genlib.shot_ids(spec), spec["shots"]):
         print(spec["package"], sid, "｜".join(shot["line"]))
     print("✅ 寫出 %d 個檔 → %s" % (len(written), out_dir))
+    if genlib.timing(spec)["length"] != 124:
+        print("⚠️ %s 鏡結構：H3 要生 %d 格 ⇒ rh-batch.py 一定要加 --length %d" % (spec["structure"], genlib.timing(spec)["length"], genlib.timing(spec)["length"]))
     return 0
 
 

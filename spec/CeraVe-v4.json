@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-CeraVe精華水-v4秋天換季",
+  "shot_prefix": "cvw",
+  "cta": "point",
+  "note": "2026-09-29 07:1x 第 31 棒：CeraVe 精華水第四支（秋天換季），人物 B1，image 2＝cerave_bottle.png。v1＝冷氣房；v2＝上妝前；v3＝睡前。⛔ 修護／修復等功效、排名；口白不唸 CeraVe（英文）。",
+  "person": {
+    "id": "B1",
+    "qwen": "the same short black bob haircut that ends just above her shoulders, with a side part",
+    "video": "a short black bob haircut that ends just above her shoulders, with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "tall clear plastic bottle of hydrating lotion from image 2, exactly its look: a slim cylindrical bottle with a dark blue screw cap, a white and blue label with the word \"CeraVe\" spelled exactly C-e-r-a-V-e in large blue letters and the words \"Hydrating Lotion\" in blue below it, the label facing the camera",
+    "look_video": "slim clear lotion bottle with the dark blue cap and white and blue label",
+    "size": "a little longer than her hand"
+  },
+  "shots": [
+    {
+      "line": ["秋天風一吹", "臉就緊緊的很不舒服"],
+      "scene_qwen": "She stands on a tree-lined city sidewalk on a windy autumn afternoon, yellow and orange leaves on the trees behind her.",
+      "scene_video": "A tree-lined city sidewalk on a windy autumn afternoon with yellow and orange leaves on the trees behind her",
+      "anchors": "trees and the autumn leaves",
+      "outfit": "a plain camel wool coat over a white top"
+    },
+    {
+      "line": ["換季我都擦這瓶", "保濕的精華水"],
+      "scene_qwen": "She sits at a white dressing table in her bedroom in the morning, a round mirror and a small vase of dried flowers behind her.",
+      "scene_video": "A bedroom dressing table in the morning; she sits with a round mirror and a vase of dried flowers behind her",
+      "anchors": "round mirror and the dried flowers",
+      "outfit": "a plain oatmeal knit sweater"
+    },
+    {
+      "line": ["敏感肌也可以用", "早上晚上都能擦"],
+      "scene_qwen": "She stands in a bright bathroom in the morning, white tiles and a towel rail with a folded towel behind her.",
+      "scene_video": "A bright bathroom in the morning with white tiles and a towel rail behind her",
+      "anchors": "white tiles and the towel rail",
+      "outfit": "a plain soft white bathrobe"
+    },
+    {
+      "line": ["拍上去水水的", "臉摸起來嫩嫩的"],
+      "scene_qwen": "She stands by a café window on an autumn afternoon, a wooden counter and hanging lamps behind her.",
+      "scene_video": "A café by the window on an autumn afternoon with a wooden counter and hanging lamps behind her",
+      "anchors": "wooden counter and the hanging lamps",
+      "outfit": "a plain dark green turtleneck sweater"
+    },
+    {
+      "line": ["換季怕臉不舒服的", "點下面就買得到"],
+      "scene_qwen": "She sits on a sofa in her living room in the evening, a knitted throw blanket and a warm floor lamp behind her.",
+      "scene_video": "A living room in the evening; she sits on a sofa with a knitted throw blanket and a warm floor lamp behind her",
+      "anchors": "throw blanket and the floor lamp",
+      "outfit": "a plain dusty blue cardigan over a cream top"
+    }
+  ]
+}

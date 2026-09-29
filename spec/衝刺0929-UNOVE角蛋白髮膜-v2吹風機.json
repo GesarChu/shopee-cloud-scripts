@@ -1,0 +1,61 @@
+{
+  "package": "腳本備妥-UNOVE角蛋白髮膜-v2吹風機",
+  "shot_prefix": "unb",
+  "structure": "4",
+  "cta": "hold",
+  "shot1_hair_qwen": "Her ponytail looks a little frizzy and dull with several flyaway strands.",
+  "note": "2026-09-29 第 31 棒衝刺：UNOVE 第二支（天天吹頭髮）。人物 B7，image 2＝unove_mask.jpg。v1＝染燙。賣場原文：暖木花香—融合溫暖優雅的花香與輕盈的木質調、非凡柔順感。API 4 鏡。",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "tube",
+    "look_qwen": "hair mask tube from image 2, exactly its look: a tall soft squeeze tube in dark navy blue standing upright on a pale pink cap, with large white letters and small white printed words on the front",
+    "look_video": "tall dark navy hair mask tube standing on a pale pink cap",
+    "size": "a little shorter than her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "每天都用吹風機",
+        "髮絲摸起來好粗糙"
+      ],
+      "scene_qwen": "She stands in her bedroom in the morning, a dresser with a hair dryer on it and a window behind her.",
+      "scene_video": "A bedroom in the morning with a dresser, a hair dryer on it and a window behind her",
+      "anchors": "dresser and the window",
+      "outfit": "a white T-shirt tucked into grey trousers"
+    },
+    {
+      "line": [
+        "浴室放了這條",
+        "柔諾伊角蛋白髮膜"
+      ],
+      "scene_qwen": "She sits on the edge of a bathtub in a bright bathroom in the evening, light blue tiles and a shelf with towels behind her.",
+      "scene_video": "A bright bathroom in the evening; she sits on the edge of the bathtub with light blue tiles and a towel shelf behind her",
+      "anchors": "blue tiles and the towel shelf",
+      "outfit": "a soft white robe"
+    },
+    {
+      "line": [
+        "暖木花香很好聞",
+        "頭髮摸起來柔柔順順"
+      ],
+      "scene_qwen": "She stands in a cosy living room in the evening, a sofa and a warm lamp behind her.",
+      "scene_video": "A cosy living room in the evening with a sofa and a warm lamp behind her",
+      "anchors": "sofa and the lamp",
+      "outfit": "a lavender knit top"
+    },
+    {
+      "line": [
+        "常用吹風機的",
+        "下面點進去就買得到"
+      ],
+      "scene_qwen": "She stands at a bus stop on a quiet street in the morning, trees and low buildings behind her, no readable signs.",
+      "scene_video": "A quiet street bus stop in the morning with trees and low buildings behind her, no readable signs",
+      "anchors": "trees and the buildings",
+      "outfit": "a navy blazer over a white top"
+    }
+  ]
+}

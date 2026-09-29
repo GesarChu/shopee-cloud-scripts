@@ -1,0 +1,69 @@
+{
+  "package": "腳本備妥-NIVEA密集修護乳液-v4辦公室",
+  "shot_prefix": "nvw",
+  "cta": "point",
+  "note": "2026-09-29 07:2x 第 31 棒：NIVEA 密集修護乳液第四支（辦公室空調），人物 B5，image 2＝nivea_blue.jpg。v1＝天冷洗完澡；v2＝天冷腿；v3＝睡前手肘膝蓋。⛔ 乾、冷、妮維雅（H3 唸歪）、⛔ 修護功效、⛔ 連結。",
+  "person": {
+    "id": "B5",
+    "qwen": "the same long wavy dark brown hair with a side part",
+    "video": "long wavy dark brown hair with a side part, light natural makeup"
+  },
+  "product": {
+    "word": "bottle",
+    "look_qwen": "body lotion bottle from image 2, exactly its look: a tall dark navy-blue plastic bottle with a navy pump on top, a round white-and-blue NIVEA logo near the top, small white printed words and a white milk-drop picture on the front",
+    "look_video": "tall dark navy-blue body lotion bottle with the pump on top",
+    "size": "about as tall as her forearm from wrist to elbow"
+  },
+  "shots": [
+    {
+      "line": [
+        "辦公室空調一直吹",
+        "手臂摸起來緊緊的"
+      ],
+      "scene_qwen": "She stands in a bright open-plan office in the afternoon, rows of desks and large windows behind her, no people behind her.",
+      "scene_video": "A bright open-plan office in the afternoon with rows of desks and large windows behind her",
+      "anchors": "desks and the windows",
+      "outfit": "a plain white blouse with light grey trousers"
+    },
+    {
+      "line": [
+        "抽屜裡都放這瓶",
+        "深藍色的身體乳"
+      ],
+      "scene_qwen": "She sits at her office desk in the afternoon, a monitor and a small potted plant behind her.",
+      "scene_video": "An office in the afternoon; she sits at her desk with a monitor and a small potted plant behind her",
+      "anchors": "monitor and the plant",
+      "outfit": "a plain light blue button-up shirt"
+    },
+    {
+      "line": [
+        "質地清爽不黏膩",
+        "很容易吸收"
+      ],
+      "scene_qwen": "She stands in a small office pantry in the afternoon, a coffee machine and a window with blinds behind her.",
+      "scene_video": "A small office pantry in the afternoon with a coffee machine and a window with blinds behind her",
+      "anchors": "coffee machine and the blinds",
+      "outfit": "a plain beige knit top"
+    },
+    {
+      "line": [
+        "擦完手臂摸起來",
+        "水水嫩嫩的"
+      ],
+      "scene_qwen": "She stands in a meeting room in the late afternoon, a glass wall and a whiteboard with nothing written on it behind her.",
+      "scene_video": "A meeting room in the late afternoon with a glass wall and a blank whiteboard behind her",
+      "anchors": "glass wall and the blank whiteboard",
+      "outfit": "a plain pale pink blouse"
+    },
+    {
+      "line": [
+        "常待辦公室的",
+        "點下面就買得到"
+      ],
+      "scene_qwen": "She sits on a sofa in an office lounge in the evening, a bookshelf and a warm floor lamp behind her.",
+      "scene_video": "An office lounge in the evening; she sits on a sofa with a bookshelf and a warm floor lamp behind her",
+      "anchors": "bookshelf and the floor lamp",
+      "outfit": "a plain navy cardigan over a white top"
+    }
+  ]
+}
