@@ -163,7 +163,7 @@ def test_structure3_and_cta_hold():
     assert genlib.timing(s3)["length"] == 156 and genlib.timing(base)["length"] == 124
     # 4 鏡：12 個檔、124 格、講到 4.2 秒、機位四鏡都不同、每鏡 15–17 字
     lines4 = [["辦公室空調吹一整天", "手臂緊緊的不舒服"], ["抽屜常備這瓶身體乳", "清爽不黏膩好吸收"], ["擦完手臂摸起來", "水水嫩嫩的很舒服"],
-              ["常待冷氣房的你", "點下面就買得到"]]
+              ["常常待冷氣房的你", "點下面就買得到"]]
     s4 = dict(hold, structure="4", shots=[dict(base["shots"][i], line=lines4[k]) for k, i in enumerate((0, 1, 2, 3))])
     genlib.validate_spec(s4)
     files = genlib.render_package(s4)
