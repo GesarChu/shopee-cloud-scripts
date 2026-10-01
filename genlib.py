@@ -42,9 +42,10 @@ QWEN = ("Edit this photo. Keep the young woman from image 1 exactly as she is: {
 QWEN_HOLD = ("She holds the {look}. She holds it upright in her {side} hand in front of her upper chest just below her collarbone, {grip}, "
              "the front facing the camera, the whole thing inside the frame. It is its real size: {size}.")
 DEFAULT_GRIP = "four fingers wrapped around it and the thumb on the near side facing the camera"   # ⛔ 2026-10-01 作廢：扁平商品直立拿會畫成反手（王退 FREEMAN v2：「手不對」）
-# 2026-10-01：拇指／四指要寫「從鏡頭看在哪一側」＋前臂從哪邊伸進來（CLAUDE #70／#90）；右手＝前臂從畫面左下、拇指在左長邊；左手相反
-GRIP = {"right": "her right forearm comes up from the lower left of the picture; seen from the camera, her thumb rests on the left long edge and her four fingertips curl around the right long edge, the heel of her hand is under the bottom edge, a natural right-hand grip with the thumb on the side nearer to the middle of her body",
-        "left": "her left forearm comes up from the lower right of the picture; seen from the camera, her thumb rests on the right long edge and her four fingertips curl around the left long edge, the heel of her hand is under the bottom edge, a natural left-hand grip with the thumb on the side nearer to the middle of her body"}
+# 2026-10-01：拇指／四指要寫「從鏡頭看在哪一側」＋前臂從哪邊伸進來（CLAUDE #70／#90）
+# 🔴 16:5x 更正（王：「還是錯的」）：掌心朝鏡頭拿商品＝拇指在靠身體中線那側、四指在外側 ⇒ 右手拇指在畫面右長邊、四指在左；左手相反（範本＝王 9/18 認可的 FREEMAN v1 S4／S5）
+GRIP = {"right": "her right forearm comes up from the lower left of the picture; seen from the camera, her thumb rests on the right long edge (the edge nearer the middle of her body) and her four fingertips curl around the left long edge (the outer edge), the heel of her hand is under the bottom edge, a natural right-hand grip with the thumb on the side nearer to the middle of her body",
+        "left": "her left forearm comes up from the lower right of the picture; seen from the camera, her thumb rests on the left long edge (the edge nearer the middle of her body) and her four fingertips curl around the right long edge (the outer edge), the heel of her hand is under the bottom edge, a natural left-hand grip with the thumb on the side nearer to the middle of her body"}
 # 叫人買那鏡：沒拿商品的那隻手食指朝下
 QWEN_POINT = (" Her {side} hand is in front of her lower chest with the index finger pointing straight down and the other fingers curled, palm "
               "facing her body; there is nothing under that hand.")
