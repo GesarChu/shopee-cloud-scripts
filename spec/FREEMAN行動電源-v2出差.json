@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-FREEMAN固態行動電源-v2出差",
+  "shot_prefix": "frb",
+  "cta": "point",
+  "note": "2026-10-01 第 31 棒：舊商品回鍋（週一週任務要不同商品）。FREEMAN 全固態行動電源 5000mAh 曜石黑，image 2＝freeman_black.png。人物 B6。賣場事實：台灣製造、全固態、磁吸無線充、Type-C 雙向、可上飛機（標題）、薄（⛔ 不講厚度數字）。上一支 v1 痛點＝像磚頭。包裝字少、只有 FREEMAN 字樣＝燒字／變形風險低。組片前重查分潤與同款家數。",
+  "person": {
+    "id": "B6",
+    "qwen": "the same shoulder-length softly wavy brown hair, the same thin round gold-rimmed glasses",
+    "video": "shoulder-length softly wavy brown hair, thin round gold-rimmed glasses, light natural makeup"
+  },
+  "product": {
+    "word": "power bank",
+    "look_qwen": "power bank from image 2, exactly its look: a thin matte black rectangular power bank with softly rounded corners, a white FREEMAN logo near the lower part and a short row of five tiny dots under it",
+    "look_video": "thin matte black power bank with the small white logo",
+    "size": "about the size of her palm"
+  },
+  "shots": [
+    {
+      "line": ["出差在外面跑了一天", "手機電量一直往下掉"],
+      "scene_qwen": "She stands on a busy city sidewalk in the afternoon, shop fronts and trees behind her, no people close behind her, no readable signs.",
+      "scene_video": "A busy city sidewalk in the afternoon with shop fronts and trees behind her, no readable signs",
+      "anchors": "shop fronts and the trees",
+      "outfit": "a plain navy blazer over a white blouse"
+    },
+    {
+      "line": ["包包裡放的是這顆", "固態的行動電源"],
+      "scene_qwen": "She sits in a quiet cafe near the window in the afternoon, wooden tables and green plants behind her, no people behind her.",
+      "scene_video": "A quiet cafe near the window in the afternoon with wooden tables and green plants behind her",
+      "anchors": "wooden tables and the plants",
+      "outfit": "a plain navy blazer over a white blouse"
+    },
+    {
+      "line": ["是台灣製造的", "用起來比較安心"],
+      "scene_qwen": "She stands in a bright hotel room in the evening, a neatly made bed and a floor lamp behind her.",
+      "scene_video": "A bright hotel room in the evening with a neatly made bed and a floor lamp behind her",
+      "anchors": "the bed and the floor lamp",
+      "outfit": "a plain soft beige knit cardigan"
+    },
+    {
+      "line": ["薄薄一片拿在手上", "出門帶著很輕鬆"],
+      "scene_qwen": "She stands in a high-speed rail station concourse in the morning, big windows and a few benches behind her, no people close behind her, no readable signs.",
+      "scene_video": "A train station concourse in the morning with big windows and benches behind her, no readable signs",
+      "anchors": "big windows and the benches",
+      "outfit": "a plain light grey trench coat"
+    },
+    {
+      "line": ["常常在外面跑的", "下面點進去就買得到"],
+      "scene_qwen": "She sits on a grey sofa in a cosy living room in the evening, a floor lamp and a bookshelf behind her.",
+      "scene_video": "A cosy living room in the evening; she sits on a grey sofa with a floor lamp and a bookshelf behind her",
+      "anchors": "floor lamp and the bookshelf",
+      "outfit": "a plain soft beige knit cardigan"
+    }
+  ]
+}

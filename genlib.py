@@ -41,7 +41,10 @@ QWEN = ("Edit this photo. Keep the young woman from image 1 exactly as she is: {
 # 拿商品（Qwen 要寫哪隻手：圖片模型需要明確指示）
 QWEN_HOLD = ("She holds the {look}. She holds it upright in her {side} hand in front of her upper chest just below her collarbone, {grip}, "
              "the front facing the camera, the whole thing inside the frame. It is its real size: {size}.")
-DEFAULT_GRIP = "four fingers wrapped around it and the thumb on the near side facing the camera"
+DEFAULT_GRIP = "four fingers wrapped around it and the thumb on the near side facing the camera"   # ⛔ 2026-10-01 作廢：扁平商品直立拿會畫成反手（王退 FREEMAN v2：「手不對」）
+# 2026-10-01：拇指／四指要寫「從鏡頭看在哪一側」＋前臂從哪邊伸進來（CLAUDE #70／#90）；右手＝前臂從畫面左下、拇指在左長邊；左手相反
+GRIP = {"right": "her right forearm comes up from the lower left of the picture; seen from the camera, her thumb rests on the left long edge and her four fingertips curl around the right long edge, the heel of her hand is under the bottom edge, a natural right-hand grip with the thumb on the side nearer to the middle of her body",
+        "left": "her left forearm comes up from the lower right of the picture; seen from the camera, her thumb rests on the right long edge and her four fingertips curl around the left long edge, the heel of her hand is under the bottom edge, a natural left-hand grip with the thumb on the side nearer to the middle of her body"}
 # 叫人買那鏡：沒拿商品的那隻手食指朝下
 QWEN_POINT = (" Her {side} hand is in front of her lower chest with the index finger pointing straight down and the other fingers curled, palm "
               "facing her body; there is nothing under that hand.")
@@ -293,7 +296,7 @@ def render_shot(spec, index):
     if side is None:
         hands_q, hands_h, keep = QWEN_NO_HANDS, VIDEO_NO_HANDS, VIDEO_KEEP
     else:
-        hands_q = QWEN_HOLD.format(look=product["look_qwen"], side=side, grip=product.get("grip", DEFAULT_GRIP), size=product["size"])
+        hands_q = QWEN_HOLD.format(look=product["look_qwen"], side=side, grip=product.get("grip", GRIP.get(side, DEFAULT_GRIP)), size=product["size"])
         hands_h = VIDEO_HOLD.format(look=product["look_video"])
         keep = VIDEO_KEEP_WITH_PROP.format(prop=product["word"])
         if plan["point"] and spec.get("cta", "hold") == "point":

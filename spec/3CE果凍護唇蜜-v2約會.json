@@ -1,0 +1,54 @@
+{
+  "package": "腳本備妥-3CE果凍護唇蜜-v2約會",
+  "shot_prefix": "jlb",
+  "cta": "point",
+  "note": "2026-10-01 第 31 棒：舊商品回鍋（週一週任務要不同商品）。3CE 果凍護唇蜜 #01 蜜桃果凍，image 2＝ce_jelly.png（蓋子要蓋上）。人物 B7。賣場事實：果凍質地、蜜糖光澤／水光、輕盈不黏、保濕感、4g。⛔ 功效字、⛔ 口白念英文品牌。上一支 v1 痛點＝黏頭髮。瓶身只有小三角 logo＝燒字風險低。⚠️ 同款只有旗艦店一家（#96），組片前重查分潤。",
+  "person": {
+    "id": "B7",
+    "qwen": "the same long dark brown hair tied up in a high ponytail with a few loose strands framing her face",
+    "video": "long dark brown hair tied up in a high ponytail with a few loose strands framing her face, light natural makeup"
+  },
+  "product": {
+    "word": "lip gloss",
+    "look_qwen": "lip gloss from image 2, exactly its look: a small square glossy bottle filled with a translucent rose-red liquid, a small white triangle logo printed on the front, with its square deep-red cap closed on top",
+    "look_video": "small square rose-red lip gloss bottle with the deep-red cap closed",
+    "size": "about as tall as her index finger"
+  },
+  "shots": [
+    {
+      "line": ["等一下要去約會", "嘴唇看起來沒氣色"],
+      "scene_qwen": "She stands in a bright bedroom in the late afternoon, a wardrobe and a window with sheer curtains behind her.",
+      "scene_video": "A bright bedroom in the late afternoon with a wardrobe and a window with sheer curtains behind her",
+      "anchors": "the wardrobe and the curtains",
+      "outfit": "a plain white knit top"
+    },
+    {
+      "line": ["包包裡帶的是這支", "水水亮亮的唇蜜"],
+      "scene_qwen": "She sits at a white vanity table in the evening, a round mirror and a small vase of flowers behind her.",
+      "scene_video": "A vanity table in the evening; she sits with a round mirror and a small vase of flowers behind her",
+      "anchors": "round mirror and the flowers",
+      "outfit": "a plain white knit top"
+    },
+    {
+      "line": ["擦上去有水光感", "顏色是蜜桃色的"],
+      "scene_qwen": "She stands in a softly lit restaurant restroom corridor in the evening, warm wall lights and a framed mirror behind her, no people behind her.",
+      "scene_video": "A softly lit corridor in the evening with warm wall lights and a framed mirror behind her",
+      "anchors": "wall lights and the framed mirror",
+      "outfit": "a plain dusty pink blouse"
+    },
+    {
+      "line": ["輕輕薄薄一層", "擦起來不會黏嘴"],
+      "scene_qwen": "She stands on a riverside walkway at dusk, string lights and trees behind her, no people close behind her.",
+      "scene_video": "A riverside walkway at dusk with string lights and trees behind her",
+      "anchors": "string lights and the trees",
+      "outfit": "a plain dusty pink blouse"
+    },
+    {
+      "line": ["想要好氣色的", "下面點進去就買得到"],
+      "scene_qwen": "She sits on a cream sofa in a cosy living room at night, a floor lamp and green plants behind her.",
+      "scene_video": "A cosy living room at night; she sits on a cream sofa with a floor lamp and green plants behind her",
+      "anchors": "floor lamp and the plants",
+      "outfit": "a plain soft grey cardigan"
+    }
+  ]
+}
