@@ -279,12 +279,30 @@ def perspective_check(scene, box, alpha):
                                reasons=reasons, model_mask=model)
 
 
+def refine_box(model_mask, box):
+    """手給的 --box 常常量不準（10/6 東尼：側面多 22 px、底多 13 px 沒量到 ⇒ 露出來的模型盒子要 inpaint，糊成一條）。
+    GrabCut 切出的模型盒子外框跟 --box 夠接近（重疊 ≥ 60%、寬高差 ≤ 25%）就改用它來放真品。"""
+    ys, xs = np.where(model_mask > 0)
+    if xs.size == 0:
+        return box, "用 --box（GrabCut 沒切到東西）"
+    g = (int(xs.min()), int(ys.min()), int(xs.max() - xs.min() + 1), int(ys.max() - ys.min() + 1))
+    ix = max(0, min(g[0] + g[2], box[0] + box[2]) - max(g[0], box[0]))
+    iy = max(0, min(g[1] + g[3], box[1] + box[3]) - max(g[1], box[1]))
+    overlap = ix * iy / float(box[2] * box[3])
+    size_ok = 0.8 <= g[2] / float(box[2]) <= 1.25 and 0.8 <= g[3] / float(box[3]) <= 1.25
+    if overlap >= 0.6 and size_ok:
+        return g, "用 GrabCut 切出的模型盒子外框 %s（--box %s）" % (g, tuple(box))
+    return box, "用 --box（GrabCut 外框 %s 差太多）" % (g,)
+
+
 # ── 合成 ──────────────────────────────────────────────────────────────────────
 def composite(scene, rgba, box, shadow_dir="auto", quiet=False):
     report = {}
     ok_persp, persp = perspective_check(scene, box, rgba[:, :, 3].astype(np.float32) / 255.0 if rgba.shape[2] == 4 else None)
     report["perspective"] = persp
-    prod, alpha, pos = place_product(rgba, box, scene.shape)
+    place_box, how = refine_box(persp["model_mask"], box)
+    report["place_box"], report["place_how"] = place_box, how
+    prod, alpha, pos = place_product(rgba, place_box, scene.shape)
     x, y = pos
     ph, pw = alpha.shape
     ref_mask = persp["model_mask"].copy()
@@ -300,7 +318,7 @@ def composite(scene, rgba, box, shadow_dir="auto", quiet=False):
         prod3 = np.clip(prod3.astype(np.float32) + rng.normal(0, add, prod3.shape[:2])[:, :, None], 0, 255).astype(np.uint8)
     report.update(tone=tone, blur_sigma=sigma, sharp_before=e0, sharp_after=e1, sharp_target=et, grain_added=add)
     # 1. 接觸陰影
-    d, strength, why = estimate_shadow(scene, box, shadow_dir)
+    d, strength, why = estimate_shadow(scene, place_box, shadow_dir)
     report.update(shadow_dir=d, shadow_strength=strength, shadow_why=why)
     shade = shadow_layer(alpha, pos, scene.shape, d, strength)
     out = scene.astype(np.float32) * (1 - shade[:, :, None])
@@ -322,6 +340,7 @@ def composite(scene, rgba, box, shadow_dir="auto", quiet=False):
         print("  2. 色調：L %.0f→%.0f（場景盒 %.0f）a %.0f→%.0f（%.0f）b %.0f→%.0f（%.0f）｜銳利度 %.0f→%.0f（目標 %.0f，模糊 σ=%.1f）｜補顆粒 %.1f"
               % (t["L"][0], t["L"][2], t["L"][1], t["a"][0], t["a"][2], t["a"][1], t["b"][0], t["b"][2], t["b"][1], e0, e1, et, sigma, add)
               if t else "  2. 色調：參考區塊是空的，略過")
+        print("  0. 放置：%s；模型盒子露出要補的 %d px" % (report["place_how"], report["model_leftover_px"]))
         print("  1. 陰影：%s；強度 %.2f" % (why, strength))
         print("  3. 透視：%s（IoU %.2f、鏡像 IoU %.2f、頂邊 模型 %.0f°／真品 %.0f°、缺角 模型 %+.2f／真品 %+.2f）"
               % ("可以貼" if ok_persp else "🔴 不能貼：" + "；".join(persp["reasons"]), persp["iou"], persp["iou_mirror"],
@@ -329,20 +348,37 @@ def composite(scene, rgba, box, shadow_dir="auto", quiet=False):
     return out, ok_persp, report
 
 
-def compare_image(fake, new, box, verdict_ok, reasons):
-    """並排：左＝現行貼法、右＝新合成；上排商品區 1:1（上下多 150px），下排整格 40%。"""
+def compare_image(fake, new, box, verdict_ok, reasons, rgba=None):
+    """並排：改前（現行貼法）｜改後（composite-real）｜真品去背照。
+    上排＝商品區 1:1（上下多 150px），下排＝整格 40%；真品照縮到跟上排同高、灰底。"""
     x, y, w, h = gatelib.expand_box(box, new.shape, up=0.3, down=0.3, left=0.3, right=0.3)
     y0, y1 = max(0, y - 150), min(new.shape[0], y + h + 150)
     crops = [im[y0:y1, x:x + w] for im in (fake, new)]
+    titles = ["before: current paste", "after: composite-real"]
+    if rgba is not None:
+        ys, xs = np.where(rgba[:, :, 3] > 8)
+        r = rgba[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+        s_ = (crops[0].shape[0] * 0.8) / r.shape[0]
+        r = cv2.resize(r, (max(1, int(r.shape[1] * s_)), max(1, int(r.shape[0] * s_))), interpolation=cv2.INTER_AREA)
+        a = r[:, :, 3:4].astype(np.float32) / 255
+        tile = np.full((crops[0].shape[0], max(w, r.shape[1] + 40), 3), 128, np.uint8)
+        oy, ox = (tile.shape[0] - r.shape[0]) // 2, (tile.shape[1] - r.shape[1]) // 2
+        roi = tile[oy:oy + r.shape[0], ox:ox + r.shape[1]].astype(np.float32)
+        tile[oy:oy + r.shape[0], ox:ox + r.shape[1]] = (roi * (1 - a) + r[:, :, :3] * a).astype(np.uint8)
+        crops.append(tile)
+        titles.append("real product photo")
     wholes = [cv2.resize(im, None, fx=0.4, fy=0.4, interpolation=cv2.INTER_AREA) for im in (fake, new)]
-    colw = max(crops[0].shape[1], wholes[0].shape[1])
+    colws = [max(c.shape[1], wholes[k].shape[1] if k < 2 else 0) for k, c in enumerate(crops)]
     col_h = 44 + crops[0].shape[0] + 12 + wholes[0].shape[0]
-    sheet = np.full((col_h + (40 if not verdict_ok else 0), colw * 2 + 36, 3), 40, np.uint8)
-    for k, (c, wh, title) in enumerate(zip(crops, wholes, ("current paste (fake)", "composite-real"))):
-        ox = 12 + k * (colw + 12)
+    sheet = np.full((col_h + (40 if not verdict_ok else 0), sum(colws) + 12 * (len(colws) + 1), 3), 40, np.uint8)
+    ox = 12
+    for k, (c, title) in enumerate(zip(crops, titles)):
         cv2.putText(sheet, title, (ox, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (235, 235, 235), 2, cv2.LINE_AA)
         sheet[44:44 + c.shape[0], ox:ox + c.shape[1]] = c
-        sheet[56 + c.shape[0]:56 + c.shape[0] + wh.shape[0], ox:ox + wh.shape[1]] = wh
+        if k < 2:
+            wh = wholes[k]
+            sheet[56 + c.shape[0]:56 + c.shape[0] + wh.shape[0], ox:ox + wh.shape[1]] = wh
+        ox += colws[k] + 12
     if not verdict_ok:
         cv2.putText(sheet, "PERSPECTIVE MISMATCH: " + ("; ".join(r.split("（")[0] for r in reasons))[:80],
                     (12, sheet.shape[0] - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv2.LINE_AA)
@@ -361,7 +397,7 @@ def run(scene_path, product_path, box, out_path, compare_path=None, fake_path=No
         fake = gatelib.imread(fake_path) if fake_path else scene
         if fake.shape != out.shape:
             fake = cv2.resize(fake, (out.shape[1], out.shape[0]))
-        gatelib.imwrite(compare_path, compare_image(fake, out, box, ok, report["perspective"]["reasons"]), 90)
+        gatelib.imwrite(compare_path, compare_image(fake, out, report["place_box"], ok, report["perspective"]["reasons"], rgba), 90)
         print("  ⇒ 並排對照：%s" % compare_path)
     return ok, report, out
 
@@ -410,16 +446,22 @@ def _synth_scene(rng):
     return img, (bx + xs.min(), by + ys.min(), xs.max() - xs.min() + 1, ys.max() - ys.min() + 1)
 
 
+TN_BOX = (350, 670, 435, 630)   # 東尼第 1 鏡模型盒子的外框（雲端人工量的；程式會用 GrabCut 校正成 (350,670,458,644)）
+
+
 def selftest():
     ok = True
     out_dir = os.path.join(gatelib.ROOT, "out", "工單4")
     fx = [gatelib.fixture("whole", n) for n in ("tn_shot1_scene_before_paste.jpg", "tn_alpha.png", "tn_shot1_current_paste_fake.jpg")]
     miss = gatelib.missing(fx)
-    print("== 樣本（工單 #4-D：東尼玉米片第 1 鏡）")
+    print("== 樣本（工單 #4-D：東尼玉米片第 1 鏡；好不好看最後由人眼判）")
     if miss:
         print("  ⚠️ 缺樣本，沒有跑：" + "、".join(miss))
     else:
-        print("  ⚠️ 樣本模式要給模型盒子的框：python tools/composite-real.py --scene … --product … --box x,y,w,h --compare …")
+        tn_ok, _, _ = run(fx[0], fx[1], TN_BOX, os.path.join(out_dir, "tn_shot1_composite_frame.jpg"),
+                          os.path.join(out_dir, "tn_shot1_composite.jpg"), fx[2])
+        ok &= tn_ok
+        print("  %s 東尼：合成完成、透視判斷%s\n" % ("✅" if tn_ok else "❌", "可以貼" if tn_ok else "不能貼"))
     print("== 合成資料自測（暖光、光從左、場景比真品軟；驗三步的方向對不對）")
     rng = np.random.default_rng(3)
     scene, box = _synth_scene(rng)

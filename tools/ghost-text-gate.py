@@ -6,18 +6,23 @@
   貼回只換正面那一塊，別面的假字要另外抓。
 
 用法：
-  python tools/ghost-text-gate.py --after 後.jpg --before 前.jpg [--out 標記圖.jpg] [--product-box x,y,w,h]
+  python tools/ghost-text-gate.py --after 後.jpg --label-box x,y,w,h [--out 標記圖.jpg]      # 建議：框由貼回引擎給
+  python tools/ghost-text-gate.py --after 後.jpg --before 前.jpg [--out 標記圖.jpg]          # 沒有框：從前後差異推
   python tools/ghost-text-gate.py --selftest
-回傳：0＝PASS、1＝FAIL（框外有字）、2＝讀檔錯誤／selftest 缺樣本（驗收沒跑）。
+  其他：--product-box x,y,w,h（自己指定搜尋範圍）、--overlay-top 0.255（上方版型帶比例，0＝不扣）
+回傳：0＝PASS、1＝FAIL（框外有字）、2＝讀檔錯誤／找不到可靠的 label 框／selftest 缺樣本（驗收沒跑）。
 
 做法（不用 OCR、不連網、不用模型權重）：
-  ① label 框＝`|後−前|` 的最大差異區塊（gatelib.label_box，膨脹幾個像素）。
-  ② 搜尋範圍＝label 框往上 SEARCH_UP、左右各 SEARCH_SIDE（或 --product-box），扣掉 label 框本身。
+  ① label 框＝貼回的真品標籤範圍。優先用 --label-box（貼回引擎知道自己貼在哪）；
+     沒給才從 `|後−前|` 推（先對齊 kb-render 的推近，再取成一整塊的差異）——推不出可靠的框就回 2，不猜。
+  ② 搜尋範圍＝label 框往上 SEARCH_UP、左右各 SEARCH_SIDE（或 --product-box），扣掉 label 框本身，
+     也扣掉畫面上方的版型帶（標題、浮水印、字幕；gatelib.OVERLAY_TOP_FRAC）。
   ③ 在範圍內找「字」：
-     - 筆畫圖＝黑帽（深字）、白帽（淺字）分開做，核大小跟 label 框高度成比例；
+     - 筆畫圖＝黑帽（深字）、白帽（淺字）分開做，核用 9／15 px 和跟 label 框高成比例的三種尺寸（盒頂的字被透視壓扁、很小）；
      - 二值化後的連通塊，留「字大小」的（高度、寬高比、填滿率都在範圍內）；
      - 高度相近、上下對齊、左右間距小的塊串成一列；一列 ≥ LINE_MIN_CHARS 個塊才算一行字；
      - 那一列的邊緣方向要夠分散（字有橫豎撇捺；木紋、條紋只有一個方向）。
+     - 那一列的筆畫對比要 ≥ LINE_MIN_CONTRAST（擋背景盆栽、窗框這種低對比紋理）。
   ④ 有任何一行字 ⇒ FAIL，標記圖上畫紅框。
 """
 import argparse
@@ -36,18 +41,20 @@ import gatelib  # noqa: E402
 SEARCH_UP = 0.60          # 工單：label 框往上 60%（盒頂、瓶肩）
 SEARCH_SIDE = 0.25        # 工單：左右各 25%（盒子側面）
 SEARCH_DOWN = 0.0         # 下面通常是手或桌面，不找
-EXCLUDE_PAD = 0.03        # label 框再往外多扣 3%（框邊貼合的反鋸齒、陰影）
-STROKE_K = 0.045          # 筆畫核＝label 框高 × 4.5%（大概是一個中等字的字高）；夾在 5–31 px
+EXCLUDE_PAD = 0.01        # label 框再往外多扣 1%（框邊反鋸齒）；10/6 味王的盒頂假字離正面上緣只有 10 px，扣多就漏
+STROKE_KS = (9, 15)       # 固定的小筆畫核（px）：盒頂被透視壓扁的字高只有 7–9 px，大核會把整排字黏成一條
+STROKE_K = 0.045          # 再加一個跟 label 框高成比例的核（框高 × 4.5%，夾在 5–31 px）抓正常大小的字
 STROKE_THR = 28           # 筆畫圖 > 28 灰階才算筆畫（JPEG 雜訊、柔和陰影多在 15 以下）
-CHAR_H = (0.018, 0.20)    # 字高相對 label 框高：1.8%–20%（太小是雜點、太大是商品輪廓）
-CHAR_MIN_PX = 6           # 字高至少 6 px
-CHAR_ASPECT = (0.12, 3.5) # 寬/高（含「一」這種扁字會被切掉：寧可少抓一個字，靠一整列判）
+CHAR_H = (0.008, 0.20)    # 字高相對 label 框高：0.8%–20%（10/6 味王盒頂的字高約 1.1–1.4%；太大是商品輪廓）
+CHAR_MIN_PX = 6           # 字高至少 6 px（更小的是雜點）
+CHAR_ASPECT = (0.12, 5.0) # 寬/高：透視壓扁的字可以到 4–5 倍寬
 CHAR_FILL = (0.12, 0.85)  # 連通塊面積 / 外框面積：筆畫不會是實心塊，也不會只剩細線
 LINE_GAP = 1.6            # 同一列相鄰兩字的水平間距 ≤ 字高 × 1.6
 LINE_DY = 0.55            # 中心上下差 ≤ 字高 × 0.55（容許透視造成的微斜）
 LINE_HRATIO = 2.0         # 相鄰兩字高度比 ≤ 2
 LINE_MIN_CHARS = 3        # 一列至少 3 個字狀塊
 ORIENT_MIN = 0.55         # 邊緣方向熵（8 格、正規化到 0–1）：字通常 > 0.7；單向條紋 < 0.4
+LINE_MIN_CONTRAST = 60    # 一列的平均筆畫對比 ≥ 60：10/6 一匙靈背後盆栽 44（誤判源）、味王盒頂紅字 ≥ 90
 
 
 def stroke_maps(gray, k):
@@ -75,12 +82,12 @@ def find_text_lines(gray, region, exclude, label_h):
     if rw < 10 or rh < 10:
         return [], None
     sub = gray[ry:ry + rh, rx:rx + rw]
-    k = int(np.clip(round(label_h * STROKE_K), 5, 31)) | 1
+    kernels = sorted(set(STROKE_KS) | {int(np.clip(round(label_h * STROKE_K), 5, 31)) | 1})
     ex, ey, ew, eh = exclude
     x0, y0 = max(0, ex - rx), max(0, ey - ry)
     hmin, hmax = max(CHAR_MIN_PX, CHAR_H[0] * label_h), CHAR_H[1] * label_h
     lines, nchars = [], 0
-    for polarity, sm in stroke_maps(sub, k).items():
+    for k, polarity, sm in ((k, pol, m) for k in kernels for pol, m in stroke_maps(sub, k).items()):
         binm = (sm > STROKE_THR).astype(np.uint8)
         binm[y0:max(0, ey + eh - ry), x0:max(0, ex + ew - rx)] = 0
         n, lab, st, _ = cv2.connectedComponentsWithStats(binm, 8)
@@ -96,7 +103,7 @@ def find_text_lines(gray, region, exclude, label_h):
             chars.append((x, y, w, h, float(sm[lab == i].mean())))
         nchars += len(chars)
         lines += [dict(l, polarity=polarity) for l in _group_lines(chars, sub, rx, ry)]
-    return _dedupe(lines), dict(kernel=k, chars=nchars)
+    return _dedupe(lines), dict(kernel="/".join(str(k) for k in kernels), chars=nchars)
 
 
 def _iou(a, b):
@@ -149,38 +156,51 @@ def _group_lines(chars, sub, rx, ry):
             lx1, ly1 = max(c[0] + c[2] for c in line), max(c[1] + c[3] for c in line)
             ent = orientation_entropy(sub[ly0:ly1, lx0:lx1].astype(np.float32))
             lines.append(dict(box=(int(lx0 + rx), int(ly0 + ry), int(lx1 - lx0), int(ly1 - ly0)), n=len(line), entropy=ent,
-                              contrast=float(np.mean([c[4] for c in line])), text_like=ent >= ORIENT_MIN))
+                              contrast=float(np.mean([c[4] for c in line]))))
+            lines[-1]["text_like"] = ent >= ORIENT_MIN and lines[-1]["contrast"] >= LINE_MIN_CONTRAST
     return lines
 
 
-def check(after_path, before_path, out_path=None, product_box=None, quiet=False):
-    after, before = gatelib.imread(after_path), gatelib.imread(before_path)
-    lbox, _ = gatelib.label_box(after, before)
+def check(after_path, before_path=None, out_path=None, product_box=None, label_box=None, overlay_top=gatelib.OVERLAY_TOP_FRAC, quiet=False):
+    """回傳 (verdict, info)。找不到可靠的 label 框時丟 gatelib.LabelBoxError（main 會回 2）。"""
+    after = gatelib.imread(after_path)
+    if label_box:
+        lbox, how = gatelib.clip_box(label_box, after.shape), "貼回引擎給的框"
+    else:
+        if not before_path:
+            raise gatelib.LabelBoxError("沒有 --label-box 也沒有 --before，無法決定 label 框")
+        lbox, how = gatelib.label_box(after, gatelib.imread(before_path), overlay_top=overlay_top)
     if product_box:
         region = gatelib.clip_box(product_box, after.shape)
     else:
         region = gatelib.expand_box(lbox, after.shape, up=SEARCH_UP, down=SEARCH_DOWN, left=SEARCH_SIDE, right=SEARCH_SIDE)
+    top = int(round(after.shape[0] * overlay_top))
+    rx, ry, rw, rh = region
+    if ry < top:   # 版型帶（標題、浮水印、字幕）不找
+        region = (rx, top, rw, max(0, ry + rh - top))
     exclude = gatelib.expand_box(lbox, after.shape, up=EXCLUDE_PAD, down=EXCLUDE_PAD, left=EXCLUDE_PAD, right=EXCLUDE_PAD)
     gray = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY)
     lines, info = find_text_lines(gray, region, exclude, lbox[3])
     hits = [l for l in lines if l["text_like"]]
     verdict = "FAIL" if hits else "PASS"
     if not quiet:
-        print("%s  label 框=%s  搜尋範圍=%s  筆畫核=%d  字狀塊=%d  成列=%d  判定字=%d"
-              % (os.path.basename(after_path), lbox, region, info["kernel"] if info else 0, info["chars"] if info else 0, len(lines), len(hits)))
+        print("%s  label 框=%s（%s）  搜尋範圍=%s  筆畫核=%s  字狀塊=%d  成列=%d  判定字=%d"
+              % (os.path.basename(after_path), lbox, how, region, info["kernel"] if info else "-", info["chars"] if info else 0, len(lines), len(hits)))
         for l in lines:
             print("   %s 列 %s（%s字）：%d 個塊、方向熵 %.2f、筆畫對比 %.0f"
                   % ("🔴" if l["text_like"] else "·", l["box"], "深" if l["polarity"] == "dark" else "淺", l["n"], l["entropy"], l["contrast"]))
         print("  ⇒ %s" % ("🔴 FAIL：label 框外有字（盒頂／側面假字）" if hits else "✅ PASS"))
     if out_path:
         vis = after.copy()
+        if top > 0:
+            cv2.line(vis, (0, top), (vis.shape[1], top), (200, 200, 200), 2)
         gatelib.draw_box(vis, region, (0, 220, 255), 2, "search")
         gatelib.draw_box(vis, lbox, (0, 200, 0), 3, "label")
         for l in lines:
-            gatelib.draw_box(vis, l["box"], (0, 0, 255) if l["text_like"] else (160, 160, 160), 3 if l["text_like"] else 1,
+            gatelib.draw_box(vis, l["box"], (0, 0, 255) if l["text_like"] else (160, 160, 160), 4 if l["text_like"] else 1,
                              "TEXT?" if l["text_like"] else None)
         gatelib.imwrite(out_path, vis, 88)
-    return verdict, dict(label=lbox, region=region, lines=lines)
+    return verdict, dict(label=lbox, label_how=how, region=region, lines=lines, hits=hits)
 
 
 # ── 合成資料（樣本缺時的邏輯自測；不能取代樣本驗收）──────────────────────────────
@@ -234,24 +254,41 @@ def _synthetic(tmp):
     return cases
 
 
+LABEL_JSON = ("ghost", "label_boxes.json")   # 貼回框（10/6 樣本是人工標的，見檔內 _note）
+
+
 def selftest(out_dir=None):
     ok = True
     cases = [("ww_shot4_fail.jpg", "ww_shot4_before_paste.jpg", "FAIL"),
              ("kw_shot1_pass.jpg", "kw_shot1_before_paste.jpg", "PASS"),
              ("ax_shot2_pass.jpg", "ax_shot2_before_paste.jpg", "PASS")]
-    paths = [gatelib.fixture("ghost", c) for a, b, _ in cases for c in (a, b)]
+    paths = [gatelib.fixture("ghost", c) for a, b, _ in cases for c in (a, b)] + [gatelib.fixture(*LABEL_JSON)]
     miss = gatelib.missing(paths)
     out_dir = out_dir or os.path.join(gatelib.ROOT, "out", "工單4")
-    print("== 樣本驗收（工單 #4-B）")
+    print("== 樣本驗收（工單 #4-B；label 框用 fixtures/ghost/label_boxes.json＝模擬貼回引擎給的框）")
     if miss:
         print("  ⚠️ 缺樣本，驗收沒跑：" + "、".join(miss))
     else:
+        boxes = gatelib.load_label_boxes(gatelib.fixture(*LABEL_JSON))
         for a, b, want in cases:
-            got, _ = check(gatelib.fixture("ghost", a), gatelib.fixture("ghost", b),
-                           os.path.join(out_dir, "ghost_" + a.replace(".jpg", "_marked.jpg")))
+            got, info = check(gatelib.fixture("ghost", a), None, os.path.join(out_dir, "ghost_" + a.replace(".jpg", "_marked.jpg")),
+                              label_box=boxes[a])
             good = got == want
+            if a.startswith("ww") and good:   # ww 要 FAIL 而且要框到盒頂（label 框上緣往上 80 px 內），不能只是抓到別的字
+                lx, ly, lw, lh = info["label"]
+                on_top = [l for l in info["hits"] if ly - 80 <= l["box"][1] + l["box"][3] <= ly + 15 and lx <= l["box"][0] <= lx + lw]
+                good = bool(on_top)
+                print("  %s 紅框有落在盒頂（label 框上緣上方 80 px 內）：%s" % ("✅" if good else "❌", [l["box"] for l in on_top]))
             ok &= good
             print("  %s %s：要 %s、得 %s\n" % ("✅" if good else "❌", a, want, got))
+        print("== 參考：不給 label 框、改從前後差異推（10/6 樣本前後不是同一格，預期推不出來 ⇒ 回 2 而不是亂判）")
+        for a, b, _ in cases:
+            try:
+                got, info = check(gatelib.fixture("ghost", a), gatelib.fixture("ghost", b), quiet=True)
+                print("  · %s：自動框 %s ⇒ %s" % (a, info["label"], got))
+            except gatelib.LabelBoxError as e:
+                print("  · %s：%s" % (a, e))
+        print()
     print("== 合成資料自測（盒頂倒字／乾淨盒頂／標籤頂端自帶小字；只驗邏輯，不能取代樣本）")
     with tempfile.TemporaryDirectory() as tmp:
         for name, (pa, pb) in _synthetic(tmp).items():
@@ -272,17 +309,23 @@ def main(argv=None):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(description="貼回標籤框外的假字擋門")
     ap.add_argument("--after", help="貼回之後的格")
-    ap.add_argument("--before", help="貼回之前的格（同尺寸）")
-    ap.add_argument("--out", help="標記圖（綠＝label 框、黃＝搜尋範圍、紅＝判定為字）")
+    ap.add_argument("--label-box", help="貼回的標籤框 x,y,w,h（建議由貼回引擎輸出）")
+    ap.add_argument("--before", help="貼回之前的格（沒有 --label-box 時用來推框）")
+    ap.add_argument("--out", help="標記圖（綠＝label 框、黃＝搜尋範圍、紅＝判定為字、灰線＝版型帶下緣）")
     ap.add_argument("--product-box", help="自己給搜尋範圍 x,y,w,h（不給就用 label 框往上 60%%、左右 25%%）")
+    ap.add_argument("--overlay-top", type=float, default=gatelib.OVERLAY_TOP_FRAC, help="畫面上方幾成是版型帶（標題、字幕），不找；0＝不扣")
     ap.add_argument("--selftest", action="store_true", help="跑樣本驗收（fixtures/ghost）")
     a = ap.parse_args(argv)
     if a.selftest:
         return selftest()
-    if not (a.after and a.before):
-        ap.error("要給 --after 和 --before，或 --selftest")
+    if not a.after or not (a.label_box or a.before):
+        ap.error("要給 --after 加 --label-box（或 --before），或 --selftest")
     try:
-        verdict, _ = check(a.after, a.before, a.out, gatelib.parse_box(a.product_box) if a.product_box else None)
+        verdict, _ = check(a.after, a.before, a.out, gatelib.parse_box(a.product_box) if a.product_box else None,
+                           gatelib.parse_box(a.label_box) if a.label_box else None, a.overlay_top)
+    except gatelib.LabelBoxError as e:
+        print("⚠️ %s" % e, file=sys.stderr)
+        return 2
     except (OSError, ValueError) as e:
         print("❌ %s" % e, file=sys.stderr)
         return 2

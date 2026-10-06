@@ -6,10 +6,12 @@
   底下多留 150px 才看得到接觸影子跟桌緣。一張圖看完一支片。
 
 用法：
-  python tools/review-sheet.py --frames 鏡1.jpg … 鏡5.jpg --labels 前1.jpg … 前5.jpg --out sheet.jpg
+  python tools/review-sheet.py --frames 鏡1.jpg … 鏡5.jpg --label-boxes x,y,w,h … --out sheet.jpg   # 建議：框由貼回引擎給
+  python tools/review-sheet.py --frames 鏡1.jpg … 鏡5.jpg --labels 前1.jpg … 前5.jpg --out sheet.jpg   # 沒有框：從前後差異推
   python tools/review-sheet.py --selftest
-  --labels＝每鏡貼回之前的格（跟 ghost-text-gate 的 --before 一樣），用 `|後−前|` 找 label 框；
-  某一鏡沒有貼回前的圖就給 `-`，那一鏡改用 --fallback-box（預設畫面中間 50%）。
+  --label-boxes＝每鏡貼回的標籤框（跟 ghost-text-gate 的 --label-box 一樣）；某鏡沒有就給 `-`。
+  --labels＝每鏡貼回之前的格，用 `|後−前|` 推 label 框（gatelib.label_box；推不出可靠的框就退回備用框並標紅字）。
+  都沒有的鏡改用 --fallback-box（預設畫面中間 50%）。
 回傳：0＝寫出且符合尺寸限制、1＝寫出但超過限制、2＝讀檔錯誤／selftest 缺樣本（驗收沒跑）。
 
 限制（工單）：整張寬 ≤ MAX_W、檔案 ≤ MAX_BYTES。超過時先降 JPEG 品質，再縮整格縮圖；商品特寫一律保持 1:1。
@@ -37,10 +39,12 @@ QUALITIES = (90, 82, 74, 66, 58)
 WHOLE_FALLBACK_SCALES = (0.4, 0.33)
 
 
-def product_crop_box(frame, before, fallback_box=None):
-    """label 框（`|後−前|`）往外擴成商品框，再上下各加 150px。回傳 (crop_box, label_box or None, note)。"""
+def product_crop_box(frame, before, fallback_box=None, given_box=None):
+    """label 框（優先用給的框，否則 `|後−前|`）往外擴成商品框，再上下各加 150px。回傳 (crop_box, label_box or None, note)。"""
     lbox, note = None, ""
-    if before is not None:
+    if given_box is not None:
+        lbox = gatelib.clip_box(given_box, frame.shape)
+    elif before is not None:
         try:
             lbox, _ = gatelib.label_box(frame, before)
         except ValueError as e:
@@ -57,10 +61,11 @@ def product_crop_box(frame, before, fallback_box=None):
     return gatelib.clip_box((x, y - CROP_MARGIN_Y, w, h + 2 * CROP_MARGIN_Y), frame.shape), used_label, note
 
 
-def build_sheet(frames, befores, names, whole_scale=WHOLE_SCALE, fallback_box=None):
+def build_sheet(frames, befores, names, whole_scale=WHOLE_SCALE, fallback_box=None, given=None):
     cols, notes = [], []
+    given = given or [None] * len(frames)
     for i, (f, b) in enumerate(zip(frames, befores)):
-        cbox, lbox, note = product_crop_box(f, b, fallback_box)
+        cbox, lbox, note = product_crop_box(f, b, fallback_box, given[i])
         if note:
             notes.append("鏡%d：%s" % (i + 1, note))
         x, y, w, h = cbox
@@ -109,9 +114,11 @@ def build_sheet(frames, befores, names, whole_scale=WHOLE_SCALE, fallback_box=No
     return sheet, notes
 
 
-def make(frame_paths, label_paths, out_path, fallback_box=None, quiet=False):
+def make(frame_paths, label_paths, out_path, fallback_box=None, quiet=False, label_boxes=None):
     if label_paths and len(label_paths) != len(frame_paths):
         raise ValueError("--labels 要跟 --frames 一樣多張（沒有的鏡給 -）：%d vs %d" % (len(label_paths), len(frame_paths)))
+    if label_boxes and len(label_boxes) != len(frame_paths):
+        raise ValueError("--label-boxes 要跟 --frames 一樣多個（沒有的鏡給 -）：%d vs %d" % (len(label_boxes), len(frame_paths)))
     frames = [gatelib.imread(p) for p in frame_paths]
     befores = []
     for k, p in enumerate(label_paths or ["-"] * len(frame_paths)):
@@ -121,7 +128,7 @@ def make(frame_paths, label_paths, out_path, fallback_box=None, quiet=False):
         befores.append(b)
     names = [os.path.basename(p) for p in frame_paths]
     for scale in (WHOLE_SCALE,) + WHOLE_FALLBACK_SCALES:
-        sheet, notes = build_sheet(frames, befores, names, scale, fallback_box)
+        sheet, notes = build_sheet(frames, befores, names, scale, fallback_box, label_boxes)
         for q in QUALITIES:
             ok, buf = cv2.imencode(".jpg", sheet, [cv2.IMWRITE_JPEG_QUALITY, q])
             if buf.size <= MAX_BYTES:
@@ -171,13 +178,16 @@ def selftest():
     trio = [("ww_shot4_fail.jpg", "ww_shot4_before_paste.jpg"), ("kw_shot1_pass.jpg", "kw_shot1_before_paste.jpg"),
             ("ax_shot2_pass.jpg", "ax_shot2_before_paste.jpg")]
     miss = gatelib.missing([gatelib.fixture("ghost", n) for pair in trio for n in pair])
-    print("== 樣本驗收（工單 #4-C：ghost/ 三組，缺的鏡用同一張重複湊滿 5 鏡）")
+    label_json = gatelib.fixture("ghost", "label_boxes.json")
+    miss += gatelib.missing([label_json])
+    print("== 樣本驗收（工單 #4-C：ghost/ 三組，缺的鏡用同一張重複湊滿 5 鏡；label 框用 fixtures/ghost/label_boxes.json）")
     if miss:
         print("  ⚠️ 缺樣本，驗收沒跑：" + "、".join(miss))
     else:
         order = [0, 1, 2, 0, 1]
-        fits, info = make([gatelib.fixture("ghost", trio[i][0]) for i in order], [gatelib.fixture("ghost", trio[i][1]) for i in order],
-                          os.path.join(out_dir, "review_sheet_selftest.jpg"))
+        boxes = gatelib.load_label_boxes(label_json)
+        fits, info = make([gatelib.fixture("ghost", trio[i][0]) for i in order], None,
+                          os.path.join(out_dir, "review_sheet_selftest.jpg"), label_boxes=[boxes[trio[i][0]] for i in order])
         ok &= fits and not info["notes"]
     print("== 合成資料自測（5 張 1080×1920 高雜訊格，第 5 鏡沒有貼回前的圖；驗排版與尺寸限制）")
     with tempfile.TemporaryDirectory() as tmp:
@@ -199,7 +209,8 @@ def main(argv=None):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(description="純商品片人眼重驗圖")
     ap.add_argument("--frames", nargs="+", help="每鏡的成片格（貼回之後）")
-    ap.add_argument("--labels", nargs="+", help="每鏡貼回之前的格；沒有的鏡給 -")
+    ap.add_argument("--label-boxes", nargs="+", help="每鏡貼回的標籤框 x,y,w,h；沒有的鏡給 -（建議由貼回引擎給）")
+    ap.add_argument("--labels", nargs="+", help="每鏡貼回之前的格；沒有的鏡給 -（沒有 --label-boxes 時用來推框）")
     ap.add_argument("--out", default="review_sheet.jpg", help="輸出 jpg")
     ap.add_argument("--fallback-box", help="找不到 label 框時的商品框 x,y,w,h（預設畫面中間 50%%）")
     ap.add_argument("--selftest", action="store_true", help="用 fixtures/ghost 三組跑一張")
@@ -209,7 +220,8 @@ def main(argv=None):
     if not a.frames:
         ap.error("要給 --frames，或 --selftest")
     try:
-        fits, _ = make(a.frames, a.labels, a.out, gatelib.parse_box(a.fallback_box) if a.fallback_box else None)
+        lbs = [None if b == "-" else gatelib.parse_box(b) for b in a.label_boxes] if a.label_boxes else None
+        fits, _ = make(a.frames, a.labels, a.out, gatelib.parse_box(a.fallback_box) if a.fallback_box else None, label_boxes=lbs)
     except (OSError, ValueError) as e:
         print("❌ %s" % e, file=sys.stderr)
         return 2

@@ -94,43 +94,85 @@ def expand_box(box, shape, up=0.0, down=0.0, left=0.0, right=0.0, pad_px=0):
     return clip_box((nx, ny, nw, nh), shape)
 
 
-# label 框偵測門檻（`|後−前|`）：JPEG 雜訊通常 < 12；貼回的標籤跟模型原本畫的差異多半 > 30
-LABEL_DIFF_THR = 25      # 灰階絕對差 > 這個才算「有貼東西」
-LABEL_MIN_FRAC = 0.002   # 差異區塊面積至少佔整張的 0.2%（擋 JPEG 雜點、壓縮塊）
+# 版型帶：特別蝦版型的標題、浮水印、字幕都在畫面上方（樣本實測字幕最低到 y≈455／1920）⇒ 上方 25.5% 不找假字、不拿來對齊
+OVERLAY_TOP_FRAC = 0.255
+
+# label 框自動偵測（`|後−前|`，先對齊）——只在「貼回前、後是同一格」時可靠；10/6 樣本三組都不是（見報告）
+LABEL_DIFF_THR = 25      # 對齊後灰階絕對差 > 25 才算「有貼東西」（JPEG 雜訊、重新取樣殘差多在 15 以下）
+LABEL_MIN_FRAC = 0.005   # 最大差異塊（閉運算後）至少佔整張 0.5%，否則判「前後幾乎一樣、找不到」
+LABEL_MIN_FILL = 0.35    # 差異塊面積 ÷ 外框面積 ≥ 0.35：貼回的標籤是一整塊；重新取樣殘差是散的細邊
 LABEL_DILATE_PX = 6      # label 框往外膨脹幾個像素（工單：膨脹幾個像素）
+ALIGN_MIN_INLIERS = 80   # ORB 配對的 RANSAC 內點少於 80 就不對齊（畫面差太多，對了也不準）
 
 
-def label_box(after, before, thr=LABEL_DIFF_THR, min_frac=LABEL_MIN_FRAC, dilate_px=LABEL_DILATE_PX):
-    """貼回前後的差異 → label 框 (x,y,w,h)（已膨脹）與差異遮罩。找不到丟 ValueError。
+class LabelBoxError(ValueError):
+    """前後差異找不到可靠的 label 框 ⇒ 要由貼回步驟給 --label-box。"""
 
-    做法：三通道取最大絕對差 → 門檻 → 閉運算把字縫補起來 → 取面積最大的連通塊，
-    再把面積 ≥ 最大塊 20% 且跟它相鄰（距離 < 框高 10%）的塊併進來（標籤被手指切成兩半時）。
+
+def align(before, after, ignore_top=0):
+    """把「貼回前」對齊到「貼回後」（ORB 特徵＋RANSAC 相似變換；kb-render 推近造成的縮放／平移）。
+    回傳 (對齊後的 before, 有效區遮罩, 說明)；配不起來就原樣回傳。"""
+    ga, gb = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY), cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
+    mask = np.full(ga.shape, 255, np.uint8)
+    mask[:ignore_top] = 0
+    orb = cv2.ORB_create(5000)
+    ka, da = orb.detectAndCompute(ga, mask)
+    kb, db = orb.detectAndCompute(gb, mask)
+    full = np.full(ga.shape, 255, np.uint8)
+    if da is None or db is None or len(ka) < 10 or len(kb) < 10:
+        return before, full, "特徵點太少，沒有對齊"
+    m = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True).match(db, da)
+    if len(m) < ALIGN_MIN_INLIERS:
+        return before, full, "配對太少（%d），沒有對齊" % len(m)
+    src = np.float32([kb[x.queryIdx].pt for x in m])
+    dst = np.float32([ka[x.trainIdx].pt for x in m])
+    M, inl = cv2.estimateAffinePartial2D(src, dst, method=cv2.RANSAC, ransacReprojThreshold=2.0)
+    if M is None or int(inl.sum()) < ALIGN_MIN_INLIERS:
+        return before, full, "RANSAC 內點太少，沒有對齊"
+    size = (after.shape[1], after.shape[0])
+    warped = cv2.warpAffine(before, M, size, flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
+    valid = cv2.warpAffine(full, M, size, flags=cv2.INTER_NEAREST)
+    valid = cv2.erode(valid, np.ones((25, 25), np.uint8))   # 邊界補出來的像素不算
+    scale = float(np.hypot(M[0, 0], M[1, 0]))
+    return warped, valid, "已對齊：縮放 %.3f、平移 (%.0f, %.0f)、內點 %d" % (scale, M[0, 2], M[1, 2], int(inl.sum()))
+
+
+def label_box(after, before, thr=LABEL_DIFF_THR, min_frac=LABEL_MIN_FRAC, dilate_px=LABEL_DILATE_PX, overlay_top=OVERLAY_TOP_FRAC):
+    """貼回前後的差異 → label 框 (x,y,w,h)（已膨脹）與說明。找不到可靠的框丟 LabelBoxError。
+
+    做法：先對齊（kb-render 推近）→ 三通道取最大絕對差 → 扣掉上方版型帶、對齊補邊 → 門檻 → 閉運算把字縫補起來
+    → 最大連通塊；面積太小或太散（不像一整塊貼上去的標籤）⇒ 不猜，丟錯要求 --label-box。
     """
     if after.shape != before.shape:
         raise ValueError("貼回前後兩張圖尺寸不同：%s vs %s" % (after.shape, before.shape))
-    diff = cv2.absdiff(after, before).max(axis=2) if after.ndim == 3 else cv2.absdiff(after, before)
+    top = int(round(after.shape[0] * overlay_top))
+    warped, valid, note = align(before, after, top)
+    diff = cv2.absdiff(after, warped).max(axis=2) if after.ndim == 3 else cv2.absdiff(after, warped)
+    diff[valid == 0] = 0
+    diff[:top] = 0
     mask = (diff > thr).astype(np.uint8)
-    k = max(3, int(round(min(after.shape[:2]) * 0.006)) | 1)
+    k = max(3, int(round(min(after.shape[:2]) * 0.01)) | 1)
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (k, k)))
-    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)))
     n, lab, stats, _ = cv2.connectedComponentsWithStats(mask, 8)
     if n <= 1:
-        raise ValueError("貼回前後幾乎一樣，找不到 label 框")
-    order = np.argsort(-stats[1:, cv2.CC_STAT_AREA]) + 1
-    big = order[0]
-    if stats[big, cv2.CC_STAT_AREA] < min_frac * mask.size:
-        raise ValueError("差異區塊太小（%d px），找不到 label 框" % stats[big, cv2.CC_STAT_AREA])
-    x, y, w, h = stats[big, :4]
-    x0, y0, x1, y1 = x, y, x + w, y + h
-    for i in order[1:]:
-        if stats[i, cv2.CC_STAT_AREA] < 0.2 * stats[big, cv2.CC_STAT_AREA]:
-            break
-        bx, by, bw, bh = stats[i, :4]
-        gap = max(bx - x1, x0 - (bx + bw), by - y1, y0 - (by + bh), 0)
-        if gap < 0.1 * (y1 - y0):
-            x0, y0, x1, y1 = min(x0, bx), min(y0, by), max(x1, bx + bw), max(y1, by + bh)
-    box = clip_box((x0 - dilate_px, y0 - dilate_px, x1 - x0 + 2 * dilate_px, y1 - y0 + 2 * dilate_px), after.shape)
-    return box, (lab > 0).astype(np.uint8) * mask
+        raise LabelBoxError("貼回前後幾乎一樣（%s），找不到 label 框 ⇒ 請給 --label-box" % note)
+    big = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+    x, y, w, h, area = (int(v) for v in stats[big])
+    fill = area / float(w * h)
+    if area < min_frac * mask.size or fill < LABEL_MIN_FILL:
+        raise LabelBoxError("差異不成一整塊（最大塊 %d px、佔外框 %.0f%%；%s），不像貼回的標籤 ⇒ 請給 --label-box"
+                            % (area, fill * 100, note))
+    box = clip_box((x - dilate_px, y - dilate_px, w + 2 * dilate_px, h + 2 * dilate_px), after.shape)
+    return box, note
+
+
+def load_label_boxes(path):
+    """讀 label_boxes.json：{"檔名.jpg": [x, y, w, h], ...}（以 _ 開頭的鍵是備註）。"""
+    import json
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    return {k: tuple(int(v) for v in b) for k, b in data.items() if not k.startswith("_")}
 
 
 def draw_box(img, box, color, thick=3, text=None):
