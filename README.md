@@ -87,3 +87,34 @@ genlib 要直接產出 golden 的寫法，不是事後取代。
 ### 同步更新（本機 9/29 已 commit）
 - `genlib.py` 多了 `structure`（"5"／"4"／"3"）與 `cta`（新預設 "hold"＝叫人買那鏡不指下面；舊規格補了 "cta":"point"，golden 仍逐位元組相同）；`spec/README.md` 有說明；`test_golden.py` 9/9。
 - `spec/衝刺0929-*.json`＝這批 10 支的規格正本。
+
+## 工單 #4（2026-10-06 下午，第 34 棒）：純商品片的三道擋門程式＋整支換真品的合成研究
+> 背景：10/6 王連退 5 支純商品片（字閃、盒頂假字、浮空、站邊緣會掉、太假）。本機已經修了閃爍（`kb-render`），其餘要寫成**程式擋門**（王：「每件對的 SOP 就寫死」「檢查寫成程式」）。這張單純程式＋研究，不碰生成、不碰本機路徑。樣本與說明在 `jobs/wo4-擋門與合成-1006/`。
+
+### A. `tools/motion-gate.py`（動態閃爍量測）
+- 用法：`python tools/motion-gate.py <mp4> [--box x,y,w,h] [--csv out.csv]`；沒給 box 就用整張。
+- 做：每格灰階、相鄰格平均絕對差的序列；用差值尖峰（轉場）切成鏡段；每段判：①規律擺盪（相鄰差的平均 ÷ 段平均 > 0.25，或 2–8 格週期的自相關明顯）→ FAIL ②靜止段（中位數 < 0.3）出現週期性尖峰 → FAIL ③其餘 PASS。印每段「平均／相鄰差／判定」，exit 0＝全過、1＝有 FAIL。
+- 驗收：`fixtures/motion/kw_old_zoompan_crop.mp4` → FAIL；`kw_new_kbrender_crop.mp4` → PASS。門檻寫成檔頭常數並註明怎麼定的。
+
+### B. `tools/ghost-text-gate.py`（貼回標籤以外的假字）
+- 用法：`python tools/ghost-text-gate.py --after 後.jpg --before 前.jpg [--out 標記圖.jpg]`。
+- 做：①`|後−前|` 取貼回標籤框（label 框，膨脹幾個像素）②在 label 框**周圍**（往上 60%、左右 25% 的範圍，或你用商品輪廓估的商品框）找「文字狀」區塊：筆畫密度、邊緣方向直方圖、連通元件成列排列等（不准用需要連網或下載權重的 OCR；本機沒 GPU 給這個）③有 → FAIL 並在標記圖畫框。
+- 驗收：`ww_shot4` → FAIL（盒頂假字要被框到）；`kw_shot1`、`ax_shot2` → PASS。誤判來源（真品標籤本身的小字、場景裡的招牌）寫進報告。
+
+### C. `tools/review-sheet.py`（人眼重驗圖）
+- 用法：`python tools/review-sheet.py --frames 鏡1.jpg … 鏡5.jpg --labels 前1.jpg … 前5.jpg --out sheet.jpg`。
+- 做：每鏡兩塊：**商品 1:1 含上下各 150px 邊**（看底部接觸影子、盒頂）＋整格縮 50%；一張圖寬 ≤ 3800、檔案 ≤ 3 MB。商品框＝B 的 label 框往外擴（上 60%、下 25%、左右 25%）。
+- 驗收：用 ghost/ 的三組樣本（缺的鏡用同一張重複）跑出一張。
+
+### D.（研究＋原型）`tools/composite-real.py`：真品照合成進模型場景不假不浮
+- 輸入：場景圖（`whole/tn_shot1_scene_before_paste.jpg`）、真品去背（`tn_alpha.png`）、原本模型畫的商品位置（用場景圖裡盒子的輪廓估，或讓參數給框）。
+- 要做出來（先 1 再 2 再 3）：1. **接觸陰影**（底邊軟陰影＋貼地那條深線，方向跟場景既有影子一致）2. **色調／銳利度對齊**（真品照的色溫、對比、模糊度調到跟場景一致，字要保持清楚）3. **透視判斷**：真品照的面向跟模型畫的盒子面向差太多就回「不能貼」。
+- 驗收：輸出 `out/工單4/tn_shot1_composite.jpg` 跟 `current_paste_fake.jpg` 並排；方法一頁寫進報告。最後由本機人眼（Nora＋王）判。
+
+### 產出與回報
+- 四支程式放 `tools/`（只用 numpy／opencv／Pillow；⛔ 需要連網的模型）；`python tools/<名>.py --selftest` 跑樣本驗收並印結果。
+- **報告 `out/工單4-報告.md`，第一段就寫結論**（A／B／C 各過沒過、D 做到第幾步），接著門檻怎麼定、誤判例子、你覺得本機流程該改的地方。
+- 做完 commit＋push（訊息寫「工單 #4：…」）。
+
+### 紅線
+- ⛔ 動 `spec/`、`genlib.py`、`make.py`、`golden/`、既有 `tools/`；⛔ 放憑證；⛔ 本機路徑；⛔ 下載模型權重。
