@@ -39,8 +39,9 @@ def imwrite(path, img, quality=90):
     return int(buf.size)
 
 
-def read_gray_frames(path, box=None):
-    """讀影片每一格 → float32 灰階（有 box 就只取那塊）。回傳 (frames list, fps)。"""
+def read_gray_frames(path, box=None, start=None, end=None):
+    """讀影片每一格 → float32 灰階（有 box 就只取那塊）。回傳 (frames list, fps)。
+    start／end（秒）：只留 start ≤ 格的時間 < end 的格（第一格的格號存在 read_gray_frames.first）。"""
     if not os.path.exists(path):
         raise FileNotFoundError("找不到影片：%s" % path)
     cap, tmp = cv2.VideoCapture(path), None
@@ -53,11 +54,19 @@ def read_gray_frames(path, box=None):
         if not cap.isOpened():
             raise IOError("OpenCV 打不開影片：%s" % path)
         fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
-        frames = []
+        frames, idx, read_gray_frames.first = [], -1, None
         while True:
             ok, f = cap.read()
             if not ok:
                 break
+            idx += 1
+            t = idx / fps
+            if (start is not None and t < start - 1e-6) or (end is not None and t >= end - 1e-6):
+                if end is not None and t >= end - 1e-6:
+                    break
+                continue
+            if read_gray_frames.first is None:
+                read_gray_frames.first = idx
             if box:
                 x, y, w, h = box
                 f = f[y:y + h, x:x + w]

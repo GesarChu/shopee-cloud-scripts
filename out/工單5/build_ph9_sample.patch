@@ -1,0 +1,57 @@
+--- "a/\346\250\243\345\223\201/build_ph9_sample.py"	2026-10-06 12:18:16.641293634 +0000
++++ "b/\346\250\243\345\223\201/build_ph9_sample.py"	2026-10-06 12:18:16.643329123 +0000
+@@ -156,6 +156,22 @@
+ SWAY = "C:/Users/GesarChu/Desktop/Claude Code/shopee/tools/hand-sway.py"
+ KBR = "C:/Users/GesarChu/Desktop/Claude Code/shopee/tools/kb-render.py"
+ KB = os.environ.get("KB_OLD") != "1"   # 10/6：預設走次像素
++CARDGAP = ROOT + "/tools/card-gap.py"   # 10/6 工單 #5-D：片尾卡真品照離浮水印 ≥ 20 px（雲端 tools/card-gap.py＋gatelib.py 複製進 tools/）
++
++
++def card_layout():
++    """片尾卡真品照放哪：card-gap.py layout。原位置夠 20 px ⇒ changed=false（濾鏡跟原本一字不差）；
++    不夠 ⇒ 先往下移、移到 CTA 上面還不夠再等比縮；y_min＝彈跳往上最多到哪（不然彈跳頭幾格會壓到浮水印）。量不了、救不回 ⇒ 停，不組。"""
++    if not os.path.exists(CARDGAP):
++        sys.exit("⛔ 沒有 %s：把雲端 tools/card-gap.py、gatelib.py 複製進 tools/（片尾卡離浮水印要量，不能跳過）" % CARDGAP)
++    r = subprocess.run(["py", "-3", CARDGAP, "layout", "--real", REAL, "--card-w", str(CARDW), "--cta-y", str(CTAY or 1390)],
++                       capture_output=True, text=True, encoding="utf-8", errors="replace")
++    if r.returncode != 0:
++        sys.exit("⛔ 片尾卡真品照離浮水印不到 20 px，往下移、等比縮都救不回（或讀不了真品照）：\n" + r.stdout + r.stderr)
++    lay = json.loads(r.stdout)
++    print("片尾卡真品照：%s" % lay["how"])
++    return lay
++
+ for k, (img, z0, z1, cx, cy) in enumerate(SC):
+     n = int(round((d[k] + (X if k < len(SC) - 1 else 0)) * FPS))
+     if img.endswith("#sway"):   # 10/4 第 33 棒：手拿商品靜態圖 → 程式擺動成影片（王 10/3「這個也可以」；字是真圖、不給 AI 重畫）
+@@ -165,8 +181,13 @@
+     if img == "CARD":   # 收尾商品卡：真商品照放大彈進來，底色淡藍
+         cmd += ["-i", REAL]
+         fc.append("color=c=0xEAF4FB:s=1080x1920:r=%d:d=%.3f[bg%d]" % (FPS, n / FPS, k))
+-        fc.append("[%d:v]scale=%d:1000:force_original_aspect_ratio=decrease:flags=lanczos,format=rgba%s[pc%d]" % (k, CARDW, "" if REAL.endswith("_alpha.png") else ",colorkey=0xFFFFFF:0.08:0.02", k))  # 10/5：白色商品（OBgE）colorkey 會把白瓶身一起去掉 ⇒ 用 *_alpha.png（只去外圍白底）就不再 colorkey
+-        fc.append("[bg%d][pc%d]overlay=x='(W-w)/2':y='(1290-h)-if(gt(t,0.9),0,60*exp(-6*t)*cos(14*t))':shortest=0,format=yuv420p,setsar=1,trim=end_frame=%d[v%d]" % (k, k, n, k))
++        lay = card_layout()   # 10/6 工單 #5-D：沒改位置就是原本那串 scale／y；有改＝算好的 w:h＋鎖死 y；彈跳包 max(y_min, …)
++        sc = ("scale=%d:1000:force_original_aspect_ratio=decrease" % CARDW) if not lay["changed"] else ("scale=%d:%d" % (lay["w"], lay["h"]))
++        yy = ("(1290-h)" if not lay["changed"] else "%d" % lay["y"]) + "-if(gt(t,0.9),0,60*exp(-6*t)*cos(14*t))"
++        if lay.get("y_min") is not None:
++            yy = "max(%d,%s)" % (lay["y_min"], yy)
++        fc.append("[%d:v]%s:flags=lanczos,format=rgba%s[pc%d]" % (k, sc, "" if REAL.endswith("_alpha.png") else ",colorkey=0xFFFFFF:0.08:0.02", k))  # 10/5：白色商品（OBgE）colorkey 會把白瓶身一起去掉 ⇒ 用 *_alpha.png（只去外圍白底）就不再 colorkey
++        fc.append("[bg%d][pc%d]overlay=x='(W-w)/2':y='%s':shortest=0,format=yuv420p,setsar=1,trim=end_frame=%d[v%d]" % (k, k, yy, n, k))
+         continue
+     cmd += ["-i", img]
+     zexpr = "%.4f+(%.4f)*on/%d" % (z0, z1 - z0, max(n - 1, 1))
+@@ -220,6 +241,15 @@
+ print("ffmpeg", r.returncode, r.stderr[-1500:])
+ if r.returncode == 0:
+     print(out, "%.2f 秒" % dur(out))
++    if SC[-1][0] == "CARD":   # 10/6 工單 #5-D：量成片片尾卡那格（彈跳鎖死後）真品照離浮水印 ≥ 20 px；不夠／量不了就不發憑證（交片程式拒收）
++        cg = "_格_%s%s_片尾卡離浮水印.jpg" % (PRE, tag)
++        g = subprocess.run(["py", "-3", CARDGAP, "check", "--video", out, "--card-start", "%.3f" % starts[-1], "--cta-y", str(CTAY or 1390), "--out", cg],
++                           capture_output=True, text=True, encoding="utf-8", errors="replace")
++        print(g.stdout.strip())
++        if g.returncode != 0:
++            if os.path.exists(out + ".built.json"):
++                os.remove(out + ".built.json")   # 上一次的憑證作廢
++            sys.exit("⛔ 片尾卡真品照離浮水印不到 20 px（或量不了），%s 不發 .built.json。看 %s\n%s" % (out, cg, g.stderr[-800:]))
+     # 2026-10-06：憑證＝這支成片是過了擋門組出來的（交片程式會對檔案指紋；成片或設定檔一改就失效）
+     json.dump({"tool": "build_ph9_sample.py", "cfg": os.path.abspath(a.cfg).replace(os.sep, "/"), "cfg_sha1": hashlib.sha1(open(a.cfg, "rb").read()).hexdigest(),
+                "out_sha1": hashlib.sha1(open(out, "rb").read()).hexdigest(), "gate": "tools/prodfilm.py gate 通過", "time": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),

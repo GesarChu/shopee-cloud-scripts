@@ -6,7 +6,8 @@
   本機改用 kb-render（PIL 浮點 box 逐格 LANCZOS）後平滑。這支把「平不平滑」量成數字，寫死擋門。
 
 用法：
-  python tools/motion-gate.py <mp4> [--box x,y,w,h] [--csv out.csv]
+  python tools/motion-gate.py <mp4> [--box x,y,w,h] [--csv out.csv] [--json 結果.json] [--start 秒] [--end 秒]
+    --start／--end：只量這段時間（例：prodfilm sheet 只量片尾卡之前的推近鏡頭、片尾卡從彈跳結束後另外量）
   python tools/motion-gate.py --selftest
 回傳：0＝全部 PASS、1＝有 FAIL、2＝讀檔錯誤／selftest 缺樣本（驗收沒跑）。
 
@@ -30,9 +31,12 @@ import gatelib  # noqa: E402
 # ── 門檻（怎麼定的寫在旁邊；實測樣本後的校準結果見 out/工單4-報告.md）──────────────
 CUT_ABS = 12.0        # 轉場：相鄰格平均差 > 12 灰階。閃爍尖峰約 4.6（README），真轉場通常 20 以上，取中間偏低
 MIN_SEG = 10          # 少於 10 格（0.33 秒）的段不判，只列出來
-OSC_RATIO = 0.10      # 用 10/6 真樣本校準：舊片兩段 0.30／0.19、新片 0.016／0.024（合成：舊 0.69、新 0.01）。
-                      # 工單原給 0.25，會漏掉舊片第 2 段（0.19，數列 1.6 每 4–8 格跳到 2.1）⇒ 降到 0.10：
-                      # 離舊片最低值 1.9 倍、離新片最高值 4 倍。⚠️ 只適用純商品片（靜態圖＋推近）；真的在動的影片比值會更高
+OSC_RATIO = 0.15      # 工單 #5（全尺寸 1080×1920、--box 290,500,500,900、30fps 母片）重定：
+                      #   母片 新 kb-render 8 支 39 段：最大 0.12（tsaio 段2、澎澎 段4）；舊 zoompan 5 支 20 段：最小 0.18（NIVEA密集修護乳液 段2）
+                      #   ⇒ 取中間 0.15，兩邊各留 0.03。資料：jobs/wo5-擋門整合-1006/fixtures/motion-calib-1006-classes.json（selftest 會逐段核）
+                      #   #4 的 0.10 是在 250×450 縮圖樣本上定的；全尺寸母片的噪底就到 0.1 左右（tsaio 0.11／0.12 會被誤擋）
+                      # ⚠️ 只量 30fps 母片：蝦皮版（brand-stamp fps=24）30→24 每 5 格丟 1 格，新舊都 0.30–0.38（真的頓挫，見工單5報告 A2）
+                      # ⚠️ 只適用純商品片（靜態圖＋推近）；真的在動的影片比值會更高
 AC_LAGS = range(2, 9) # 2–8 格週期（工單）
 AC_MIN = 0.35         # 去趨勢後自相關峰值。純雜訊在 60 格長度下約 ±0.25 以內；規律 4–5 格擺盪 > 0.5
 AC_DETREND = 9        # 去趨勢用的移動平均窗（格）：拿掉縮放加減速造成的慢變化
@@ -111,8 +115,11 @@ def judge_segment(x):
     return dict(out, verdict="PASS", reason="平滑")
 
 
-def analyse(path, box=None, csv_path=None, quiet=False):
-    frames, fps = gatelib.read_gray_frames(path, box)
+def analyse(path, box=None, csv_path=None, quiet=False, start=None, end=None, json_path=None):
+    frames, fps = gatelib.read_gray_frames(path, box, start, end)
+    base = gatelib.read_gray_frames.first or 0   # --start 時，格號照整支片算
+    if not quiet and abs(fps - 30) > 0.5:   # 只提醒，不改判定
+        print("  ⚠️ 這支是 %.2f fps：門檻是用 30fps 母片定的；24fps 交付檔（brand-stamp）丟格會讓比值到 0.3 以上，請量母片" % fps)
     if len(frames) < 3:
         raise ValueError("影片格數太少（%d）：%s" % (len(frames), path))
     d = frame_diffs(frames)
@@ -120,7 +127,7 @@ def analyse(path, box=None, csv_path=None, quiet=False):
     results = []
     for s, e in segs:
         r = judge_segment(d[s:e])
-        r.update(start=s + 1, end=e)   # 換成影片格號：d[i] 是第 i+1 格對第 i 格
+        r.update(start=base + s + 1, end=base + e)   # 換成影片格號：d[i] 是第 i+1 格對第 i 格
         results.append(r)
     if csv_path:
         seg_of = {}
@@ -131,7 +138,7 @@ def analyse(path, box=None, csv_path=None, quiet=False):
             w = csv.writer(f)
             w.writerow(["frame", "time_s", "mean_abs_diff", "segment"])
             for i, v in enumerate(d):
-                w.writerow([i + 1, "%.3f" % ((i + 1) / fps), "%.4f" % v, seg_of.get(i + 1, "cut")])
+                w.writerow([base + i + 1, "%.3f" % ((base + i + 1) / fps), "%.4f" % v, seg_of.get(base + i + 1, "cut")])
     if not quiet:
         print("%s  %d 格 @ %.2f fps%s" % (os.path.basename(path), len(frames), fps, "  box=%s" % (box,) if box else ""))
         print("  d 前 12 格：" + " ".join("%.2f" % v for v in d[:12]))
@@ -142,6 +149,14 @@ def analyse(path, box=None, csv_path=None, quiet=False):
     verdict = "FAIL" if any(r["verdict"] == "FAIL" for r in results) else "PASS"
     if not quiet:
         print("  ⇒ %s" % verdict)
+    if json_path:
+        import json
+        segs = [dict(seg=k, start=r["start"], end=r["end"], t0=round(r["start"] / fps, 3), t1=round(r["end"] / fps, 3), mean=round(r["mean"], 4),
+                     adj=round(r["adj"], 4), ratio=round(r["ratio"], 4), ac=round(r["ac"], 3), lag=r["lag"], verdict=r["verdict"], reason=r["reason"])
+                for k, r in enumerate(results, 1)]
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(dict(file=os.path.basename(path), fps=round(fps, 3), box=list(box) if box else None, start=start, end=end,
+                           threshold=OSC_RATIO, verdict=verdict, segments=segs), f, ensure_ascii=False, indent=1)
     return verdict, results, d
 
 
@@ -197,19 +212,92 @@ def _synthetic_videos(tmpdir):
     return paths
 
 
+CALIB_JSON = os.path.join(gatelib.ROOT, "jobs", "wo5-擋門整合-1006", "fixtures", "motion-calib-1006-classes.json")
+TS_DIR = os.path.join(gatelib.ROOT, "jobs", "wo5-擋門整合-1006", "fixtures", "ts")
+FULL_BOX = (290, 500, 500, 900)   # builder 的商品固定框（工單 #5 量法）
+
+
+def _calib_check():
+    """10/6 校準 log（母片 30fps 的動態段）逐段核：新 kb 全 ≤ 門檻、舊 zoompan 全 > 門檻。回傳 (ok, 說明)。"""
+    import json
+    segs = json.load(open(CALIB_JSON, encoding="utf-8"))["segments"]
+    mom = [x for x in segs if x["src"] == "母片CRF0" and x["kind"] == "動"]
+    new = [x for x in mom if x["cls"] == "新kb"]
+    old = [x for x in mom if x["cls"] == "舊zoompan"]
+    bad_new = [x for x in new if x["ratio"] > OSC_RATIO]
+    bad_old = [x for x in old if x["ratio"] <= OSC_RATIO]
+    print("  母片 新 kb：%d 段，比值最大 %.2f（門檻 %.2f）%s" % (len(new), max(x["ratio"] for x in new), OSC_RATIO, "" if not bad_new else "；超過：%s" % bad_new))
+    print("  母片 舊 zoompan：%d 段，比值最小 %.2f %s" % (len(old), min(x["ratio"] for x in old), "" if not bad_old else "；沒超過：%s" % bad_old))
+    shop = [x for x in segs if x["src"] == "蝦皮版CRF10" and x["kind"] == "動"]
+    if shop:
+        print("  （參考）蝦皮版 24fps：%d 段，比值 %.2f–%.2f ⇒ 交付檔分不出新舊，擋門只量母片" % (len(shop), min(x["ratio"] for x in shop), max(x["ratio"] for x in shop)))
+    return not bad_new and not bad_old and len(new) > 0 and len(old) > 0
+
+
+def _ffmpeg():
+    import shutil
+    return os.environ.get("FFMPEG_BIN") or shutil.which("ffmpeg")
+
+
+def _fullsize_clips(tmp, ff):
+    """全尺寸樣本：ts 第 1 鏡成片格放大成 1536×2688 當場景，把真品去背照貼在 lw 憑證 quad 的位置（模擬 lw2x 銳利標籤），
+    舊路＝builder 原本的 ffmpeg scale=2160:3840＋zoompan；新路＝kb-render 的浮點 box LANCZOS；都編 30fps CRF 10（同 builder 母片）。"""
+    import subprocess
+    from PIL import Image
+    bg = Image.open(os.path.join(TS_DIR, "ts_shot1_t0.10.jpg")).convert("RGB").resize((1536, 2688), Image.LANCZOS)
+    al = Image.open(os.path.join(TS_DIR, "ts_alpha.png")).convert("RGBA").resize((437, 1034), Image.LANCZOS)
+    bg.paste(al, (556, 1029), al)
+    scene = os.path.join(tmp, "scene.png")
+    bg.save(scene)
+    n, fps, enc = 99, 30, ["-c:v", "libx264", "-crf", "10", "-profile:v", "high", "-pix_fmt", "yuv420p"]
+    W, H = bg.size
+    kb = os.path.join(tmp, "kb.mp4")
+    p = subprocess.Popen([ff, "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", "1080x1920", "-r", str(fps), "-i", "-"] + enc + [kb],
+                         stdin=subprocess.PIPE)
+    for i in range(n):
+        z = 1.0 + 0.05 * i / (n - 1)
+        w, h = W / z, H / z
+        x0, y0 = min(max(0.5 * W - w / 2, 0.0), W - w), min(max(0.45 * H - h / 2, 0.0), H - h)
+        p.stdin.write(bg.resize((1080, 1920), Image.LANCZOS, box=(x0, y0, x0 + w, y0 + h)).tobytes())
+    p.stdin.close()
+    p.wait()
+    zp = os.path.join(tmp, "zoompan.mp4")
+    vf = ("scale=2160:3840:flags=lanczos,zoompan=z='1.0+(0.05)*on/%d':x='iw*0.5-(iw/zoom/2)':y='ih*0.45-(ih/zoom/2)':d=%d:s=1080x1920:fps=%d,"
+          "setsar=1,format=yuv420p" % (n - 1, n, fps))
+    subprocess.run([ff, "-y", "-loglevel", "error", "-loop", "1", "-i", scene, "-vf", vf, "-frames:v", str(n)] + enc + [zp], check=True)
+    return kb, zp
+
+
 def selftest():
     ok = True
     cases = [(gatelib.fixture("motion", "kw_old_zoompan_crop.mp4"), "FAIL"), (gatelib.fixture("motion", "kw_new_kbrender_crop.mp4"), "PASS")]
-    miss = gatelib.missing([p for p, _ in cases])
-    print("== 樣本驗收（工單 #4-A）")
-    if miss:
-        print("  ⚠️ 缺樣本，驗收沒跑：" + "、".join(miss))
-    else:
-        for p, want in cases:
-            got, _, _ = analyse(p)
-            good = got == want
-            ok &= good
-            print("  %s %s：要 %s、得 %s\n" % ("✅" if good else "❌", os.path.basename(p), want, got))
+    miss = gatelib.missing([p for p, _ in cases] + [CALIB_JSON, os.path.join(TS_DIR, "ts_shot1_t0.10.jpg"), os.path.join(TS_DIR, "ts_alpha.png")])
+    print("== 樣本驗收 1（工單 #4-A：250×450 裁切樣本）")
+    for p, want in cases:
+        if not os.path.exists(p):
+            continue
+        got, _, _ = analyse(p)
+        good = got == want
+        ok &= good
+        print("  %s %s：要 %s、得 %s\n" % ("✅" if good else "❌", os.path.basename(p), want, got))
+    print("== 樣本驗收 2（工單 #5：10/6 校準 log，全尺寸 30fps 母片逐段核）")
+    if os.path.exists(CALIB_JSON):
+        good = _calib_check()
+        ok &= good
+        print("  %s 新 kb 全 PASS、舊 zoompan 全 FAIL\n" % ("✅" if good else "❌"))
+    print("== 樣本驗收 3（工單 #5：全尺寸 1080×1920 樣本，ts 格＋真品標籤，真的 ffmpeg zoompan vs kb-render）")
+    ff = _ffmpeg()
+    if not ff:
+        print("  ⚠️ 找不到 ffmpeg（PATH 或 FFMPEG_BIN），這組沒跑")
+        miss.append("ffmpeg")
+    elif os.path.exists(os.path.join(TS_DIR, "ts_alpha.png")):
+        with tempfile.TemporaryDirectory() as tmp:
+            kb, zp = _fullsize_clips(tmp, ff)
+            for path, want in ((zp, "FAIL"), (kb, "PASS")):
+                got, _, _ = analyse(path, FULL_BOX)
+                good = got == want
+                ok &= good
+                print("  %s 全尺寸 %s：要 %s、得 %s\n" % ("✅" if good else "❌", os.path.basename(path), want, got))
     print("== 合成資料自測（模擬整數像素裁切 vs 浮點 LANCZOS；只驗邏輯，不能取代樣本）")
     with tempfile.TemporaryDirectory() as tmp:
         vids = _synthetic_videos(tmp)
@@ -219,7 +307,7 @@ def selftest():
             ok &= good
             print("  %s 合成 %s：要 %s、得 %s\n" % ("✅" if good else "❌", name, want, got))
     if miss:
-        print("結果：合成自測%s；樣本驗收未跑（缺 %d 個檔）⇒ exit 2" % ("通過" if ok else "失敗", len(miss)))
+        print("結果：%s；有樣本沒跑（缺 %s）⇒ exit 2" % ("已跑的都通過" if ok else "有沒過的", "、".join(miss)))
         return 2
     print("結果：%s" % ("全部通過" if ok else "有沒過的"))
     return 0 if ok else 1
@@ -232,6 +320,9 @@ def main(argv=None):
     ap.add_argument("video", nargs="?", help="mp4")
     ap.add_argument("--box", help="只量這塊：x,y,w,h（例如商品區）")
     ap.add_argument("--csv", help="把每格的差值寫成 CSV")
+    ap.add_argument("--json", help="把判定結果（每段數字＋總判定）寫成 JSON（prodfilm sheet 讀這個）")
+    ap.add_argument("--start", type=float, help="只量這個時間（秒）之後")
+    ap.add_argument("--end", type=float, help="只量這個時間（秒）之前")
     ap.add_argument("--selftest", action="store_true", help="跑樣本驗收（fixtures/motion）")
     a = ap.parse_args(argv)
     if a.selftest:
@@ -239,7 +330,7 @@ def main(argv=None):
     if not a.video:
         ap.error("要給 mp4 或 --selftest")
     try:
-        verdict, _, _ = analyse(a.video, gatelib.parse_box(a.box) if a.box else None, a.csv)
+        verdict, _, _ = analyse(a.video, gatelib.parse_box(a.box) if a.box else None, a.csv, start=a.start, end=a.end, json_path=a.json)
     except (OSError, ValueError) as e:
         print("❌ %s" % e, file=sys.stderr)
         return 2

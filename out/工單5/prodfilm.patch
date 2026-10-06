@@ -1,0 +1,153 @@
+--- a/tools/prodfilm.py	2026-10-06 11:55:43.450914772 +0000
++++ b/tools/prodfilm.py	2026-10-06 11:55:43.452944310 +0000
+@@ -23,8 +23,11 @@
+             組片前擋門。樣品/build_ph9_sample.py 一開始就會叫，回傳不是 0 就不組片；也可以單獨跑，看哪幾條沒過。
+   sheet   <設定檔簡稱>
+             組完片出驗片圖：加上蝦皮版浮水印後每鏡抓前後兩格＋每鏡一張「成片原尺寸的商品字區｜真品同一塊」並排。
++            （工單 #5）出圖前先跑動態閃爍擋門 tools/motion-gate.py：量 30fps 母片的商品框，推近鏡頭有一段 FAIL 就不出圖、exit 2；
++            片尾卡（彈跳之後）只警示。每鏡再用貼回憑證換算的 label 框跑 tools/ghost-text-gate.py，出「<商品名>-假字標記.jpg」（只警示）。
+   film-ok <設定檔簡稱> --by <誰看的> "<每一鏡看到了什麼>"
+             驗片圖都看過之後簽名。交片程式（產出/_1002交商品片2.py）沒有這張簽名就不交。
++            （工單 #5）sheet 寫的動態閃爍結果（_驗片_<簡稱>/motion-gate.json）不在、指紋對不上、或不是 PASS ⇒ 拒簽。
+ 
+ 整條流程（一個商品第一次做）：card → 看確認圖 → card-ok → 設定檔寫 title／sub_style=mid／mid_y=430／mid_fs=60 → lw → 看總表與每鏡對照
+   → 組片（build_ph9_sample.py 自己會跑 gate）→ sheet → 看驗片圖 → film-ok → 交片到 P:/蝦皮短影音/_待驗-上架前/。
+@@ -44,6 +47,13 @@
+ LWDIR = PKG + "/首幀/_貼回"
+ LW = ROOT + "/tools/label-warp.py"
+ WHOLE = ROOT + "/tools/prod-replace.py"
++# 工單 #5（雲端 tools/ 四支 cp 進來：motion-gate.py、ghost-text-gate.py、label-box-map.py、gatelib.py；只靠 numpy／opencv／Pillow／ffmpeg）
++MG = ROOT + "/tools/motion-gate.py"
++GHOST = ROOT + "/tools/ghost-text-gate.py"
++LBM = ROOT + "/tools/label-box-map.py"
++GATE_BOX = "290,500,500,900"   # 動態閃爍量的商品框：builder 把商品放在畫面中央這一塊（工單 #5 校準用的就是這個框；設定檔 gate_box 可改）
++XFADE, FILM_FPS = 0.30, 30     # build_ph9_sample.py 的轉場長度 X、母片格率 FPS（改 builder 要一起改）
++CARD_SETTLE = 0.9              # 片尾卡真品照彈跳 0.9 秒後鎖死（build_ph9_sample.py CARD 分支 if(gt(t,0.9),0,…)）
+ FONT = "C:/Windows/Fonts/msjh.ttc"
+ OUT_W, OUT_H = 1080, 1920
+ DEF_INSET = "0.10,0.06,0.06"
+@@ -570,11 +580,92 @@
+     return cfgp, cf, mp4, b
+ 
+ 
++def run_py(args):
++    return subprocess.run(["py", "-3"] + args, capture_output=True, text=True, encoding="utf-8", errors="replace")
++
++
++def motion_gate_hard(mp4, cf, b, od):
++    """工單 #5-C①：動態閃爍硬擋。量 30fps 母片（不是 24fps 浮水印版：brand-stamp fps=24 丟格會讓新舊片都 0.3 以上）的商品框。
++    推近鏡頭（片尾卡之前）有一段 FAIL ⇒ Stop（exit 2），不出驗片圖。片尾卡從彈跳結束後另外量，只警示（原因待查，見工單5報告 A）。
++    結果不管過不過都寫 od/motion-gate.json：film-ok 讀它，不是 PASS 就拒簽。**沒有跳過參數。**"""
++    for p in (MG,):
++        if not os.path.exists(p):
++            raise Stop("沒有 %s：把雲端 tools/ 的 motion-gate.py、ghost-text-gate.py、label-box-map.py、gatelib.py 複製進來" % p)
++    starts = b["starts"]; has_card = cf["scenes"][-1][0] == "CARD"
++    box = cf.get("gate_box", GATE_BOX); sj = od + "/motion-gate.json"
++    if os.path.exists(sj):
++        os.remove(sj)   # 舊結果作廢：這次沒跑完就沒有結果檔，film-ok 會拒簽
++    js = od + "/_motion_scenes.json"
++    args = [MG, mp4, "--box", box, "--json", js] + (["--end", "%.3f" % starts[-1]] if has_card else [])
++    r = run_py(args)
++    if r.returncode not in (0, 1) or not os.path.exists(js):
++        raise Stop("動態閃爍擋門跑不起來（motion-gate exit %d）：%s" % (r.returncode, (r.stdout + r.stderr)[-400:]))
++    res = {"out_sha1": b["out_sha1"], "time": now(), "tool": "tools/motion-gate.py", "box": box, "scenes": jload(js)}
++    res["verdict"] = res["scenes"]["verdict"]
++    if has_card:
++        jc = od + "/_motion_card.json"
++        rc = run_py([MG, mp4, "--box", box, "--json", jc, "--start", "%.3f" % (starts[-1] + CARD_SETTLE)])
++        res["card"] = jload(jc) if os.path.exists(jc) else {"verdict": "ERROR", "log": (rc.stdout + rc.stderr)[-400:]}
++    jdump(res, sj)
++    if res["verdict"] != "PASS":
++        bad = ["格%d–%d（%.1f–%.1f 秒）比 %.2f：%s" % (s["start"], s["end"], s["t0"], s["t1"], s["ratio"], s["reason"])
++               for s in res["scenes"]["segments"] if s["verdict"] == "FAIL"]
++        raise Stop("動態閃爍擋門 FAIL（商品框 %s，門檻 %.2f）：%s。不出驗片圖。推近要走 kb-render（不要設 KB_OLD=1）重組再跑 sheet。"
++                   % (box, res["scenes"]["threshold"], "；".join(bad)))
++    print("○ 動態閃爍擋門 PASS（推近鏡頭 %d 段，比值最大 %.2f／門檻 %.2f）" % (
++        len(res["scenes"]["segments"]), max([s["ratio"] for s in res["scenes"]["segments"] if s["verdict"] != "SKIP"] or [0]), res["scenes"]["threshold"]))
++    if has_card and res["card"].get("verdict") != "PASS":
++        print("⚠️ 片尾卡（彈跳之後）動態 %s：%s——先只警示，打開成片看片尾卡有沒有東西在動" % (
++            res["card"].get("verdict"), "；".join(s.get("reason", "") for s in res["card"].get("segments", []) if s.get("verdict") == "FAIL")))
++    return res
++
++
++def ghost_marks(mp4, cf, b, od, base):
++    """工單 #5-C②：每鏡用貼回憑證換算的 label 框（tools/label-box-map.py，照 kb-render 算法）跑 tools/ghost-text-gate.py，
++    拼成一張「<商品名>-假字標記.jpg」放在驗片圖旁。先只警示、不擋（B 的筆畫對比門檻 60 邊際窄，等樣本多再改擋）。"""
++    starts, d = b["starts"], b["d"]; tiles, rows = [], []
++    for k, s in enumerate(cf["scenes"]):
++        if s[0] == "CARD":
++            continue
++        lwp = os.path.normpath(os.path.join(base, s[0])) + ".lw.json"
++        n = int(round((d[k] + (XFADE if k < len(cf["scenes"]) - 1 else 0)) * FILM_FPS))
++        t = starts[k] + d[k] * 0.85; i = max(0, min(n - 1, int(round((t - starts[k]) * FILM_FPS))))
++        fp = od + "/鏡%d_假字檢查.png" % (k + 1); bj = od + "/鏡%d_label.json" % (k + 1); mk = od + "/鏡%d_假字標記.jpg" % (k + 1)
++        subprocess.run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-ss", "%.3f" % t, "-i", mp4, "-frames:v", "1", fp])
++        r = run_py([LBM, "--lw", lwp, "--zoom", str(s[1]), str(s[2]), str(s[3]), str(s[4]), "--n", str(n), "--fps", str(FILM_FPS),
++                    "--frames", str(i), "--name", "鏡%d" % (k + 1), "--out", bj])
++        if r.returncode != 0 or not os.path.exists(bj) or not os.path.exists(fp):
++            rows.append("鏡%d：label 框或格抓不到（%s）" % (k + 1, (r.stdout + r.stderr)[-200:].strip())); continue
++        box = jload(bj)["鏡%d@%d" % (k + 1, i)]
++        g = run_py([GHOST, "--after", fp, "--label-box", ",".join(str(v) for v in box), "--out", mk])
++        verdict = {0: "PASS", 1: "FAIL"}.get(g.returncode, "ERROR")
++        rows.append("鏡%d（%.2f 秒、第 %d 格、label 框 %s）：%s" % (k + 1, t, i, box, verdict))
++        if os.path.exists(mk):
++            im = Image.open(mk).convert("RGB"); im = im.resize((im.width // 2, im.height // 2), Image.LANCZOS)
++            ImageDraw.Draw(im).text((8, im.height - 40), "鏡%d %s" % (k + 1, verdict), font=ImageFont.truetype(FONT, 30),
++                                    fill=(220, 0, 0) if verdict != "PASS" else (0, 150, 0))
++            tiles.append(im)
++    gp = None
++    if tiles:
++        sheet = Image.new("RGB", (sum(t.width for t in tiles), max(t.height for t in tiles)), "white"); x = 0
++        for t in tiles:
++            sheet.paste(t, (x, 0)); x += t.width
++        gp = od + "/%s-假字標記.jpg" % cf["name"]; sheet.save(gp, quality=90)
++    if any(not r.endswith("PASS") for r in rows):
++        print("⚠️ label 框外可能有假字（先只警示、不擋）：")
++    for r in rows:
++        print("  " + r)
++    return gp, rows
++
++
+ def cmd_sheet(a):
+     """驗片圖：先加上蝦皮版浮水印（觀眾看到的樣子），每鏡抓前、後兩格；每鏡再出一張「成片原尺寸的商品字區｜真品同一塊」並排。"""
+     cfgp, cf, mp4, b = film_paths(a.key, a.vo)
+     starts, d = b["starts"], b["d"]
+     od = SMP + "/_驗片_%s" % a.key; os.makedirs(od, exist_ok=True)
++    if os.path.exists(od + "/sheet.json"):
++        os.remove(od + "/sheet.json")   # 工單 #5：這次 sheet 沒跑完（例如擋門 FAIL）就不留舊的出圖紀錄
++    mg = motion_gate_hard(mp4, cf, b, od)   # 工單 #5-C①：FAIL ⇒ Stop（exit 2），下面不出圖
+     stamped = od + "/蝦皮版.mp4"
+     r = subprocess.run(["py", "-3", ROOT + "/tools/brand-stamp.py", "--in", mp4, "--out", stamped, "--no-card"], capture_output=True, text=True, encoding="utf-8", errors="replace")
+     if not os.path.exists(stamped) or os.path.getmtime(stamped) < os.path.getmtime(mp4):
+@@ -611,11 +702,15 @@
+     for i, (lab, im) in enumerate(thumbs):
+         sheet.paste(im.resize((tw, th), Image.LANCZOS), (i * tw, 34)); ds.text((i * tw + 6, 2), lab, font=f1, fill=(200, 0, 0))
+     sp = od + "/總覽.jpg"; sheet.save(sp, quality=90)
+-    jdump({"out_sha1": b["out_sha1"], "time": now(), "files": [os.path.basename(x) for x in outs] + ["總覽.jpg"]}, od + "/sheet.json")
++    gp, grows = ghost_marks(mp4, cf, b, od, base)   # 工單 #5-C②：只警示
++    jdump({"out_sha1": b["out_sha1"], "time": now(), "files": [os.path.basename(x) for x in outs] + ["總覽.jpg"] + ([os.path.basename(gp)] if gp else []),
++           "motion_gate": mg["verdict"], "ghost": grows}, od + "/sheet.json")
+     print("驗片圖（都要打開看，看完才跑 film-ok）：")
+     print("  總覽（標題／字幕／浮水印有沒有互撞、有沒有壓到商品）：" + sp)
+     for o in outs:
+         print("  " + o)
++    if gp:
++        print("  假字標記（綠＝貼回的 label 框、紅＝框外像字的東西；只警示）：" + gp)
+     print("每鏡整張原尺寸：%s/鏡N_前.png、鏡N_後.png｜浮水印版影片：%s" % (od, stamped))
+     print('看完：py -3 tools/prodfilm.py film-ok %s --by <誰看的> "<每一鏡看到了什麼>"' % a.key)
+     return 0
+@@ -626,6 +721,14 @@
+     sj = SMP + "/_驗片_%s/sheet.json" % a.key
+     if not os.path.exists(sj) or jload(sj).get("out_sha1") != b["out_sha1"]:
+         raise Stop("這支成片還沒出驗片圖（或出圖之後又重組過）。先跑：py -3 tools/prodfilm.py sheet %s" % a.key)
++    mj = SMP + "/_驗片_%s/motion-gate.json" % a.key   # 工單 #5-C③：sheet 寫的動態閃爍結果
++    if not os.path.exists(mj):
++        raise Stop("沒有動態閃爍擋門的結果（%s）。重跑：py -3 tools/prodfilm.py sheet %s" % (mj, a.key))
++    m = jload(mj)
++    if m.get("out_sha1") != b["out_sha1"]:
++        raise Stop("動態閃爍擋門量的是別的成片（指紋對不上），重跑 sheet。")
++    if m.get("verdict") != "PASS":
++        raise Stop("動態閃爍擋門沒過（%s），不准簽。重組（kb-render）後重跑 sheet。" % m.get("verdict"))
+     if len(a.note.strip()) < 30:
+         raise Stop("要寫清楚每一鏡看到了什麼（商品上的字有沒有全對、外形跟真品一不一樣、字幕有沒有壓到字），至少 30 個字。")
+     jdump({"out_sha1": b["out_sha1"], "time": now(), "by": a.by, "note": a.note.strip()}, mp4 + ".eye.json")

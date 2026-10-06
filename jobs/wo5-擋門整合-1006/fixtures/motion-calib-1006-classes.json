@@ -1,0 +1,2885 @@
+{
+ "_note": "由 motion-calib-1006.log 抽出（雲端 2026-10-06 工單 #5）。分類照 README 工單 #5 A2：母片＝樣品/*_H.mp4（builder 輸出，實際是 30fps CRF 10），新kb＝花王／珂珂透／味王／tsaio／澎澎／一匙靈／白蘭／盛香珍，舊zoompan＝Biore／CeraVe精華水／CeraVe長效潤澤霜／hetras香氛護手霜／NIVEA；蝦皮版＝brand-stamp 交付檔（24fps CRF 10），路徑含 _舊版-zoompan-1006 或 _退件-王1006 的味王／珂珂透／花王＝舊，20261006b 的新品名＝新、Biore／CeraVe／hetras＝舊；whole 貼法（可樂／魔爪／東尼／妙管家）與 10/2–10/5 別的做法一律排除。kind：動＝動態段、靜止＝片尾卡等靜止段。只有「母片」的「動」段用來定門檻。",
+ "segments": [
+  {
+   "file": "Biore淨嫩沐浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    191
+   ],
+   "mean": 1.904,
+   "ratio": 0.3,
+   "ac": 0.09,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.30 > 0.10"
+  },
+  {
+   "file": "Biore淨嫩沐浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    201,
+    284
+   ],
+   "mean": 1.984,
+   "ratio": 0.27,
+   "ac": 0.06,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.27 > 0.10"
+  },
+  {
+   "file": "Biore淨嫩沐浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    287,
+    370
+   ],
+   "mean": 2.057,
+   "ratio": 0.22,
+   "ac": 0.26,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.22 > 0.10"
+  },
+  {
+   "file": "Biore淨嫩沐浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    380,
+    466
+   ],
+   "mean": 1.734,
+   "ratio": 0.27,
+   "ac": 0.05,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.27 > 0.10"
+  },
+  {
+   "file": "Biore淨嫩沐浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    472,
+    554
+   ],
+   "mean": 1.511,
+   "ratio": 1.25,
+   "ac": 0.66,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：14 次尖峰、約每 7 格一次（85% 間隔一致）"
+  },
+  {
+   "file": "CeraVe長效潤澤霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    79
+   ],
+   "mean": 2.511,
+   "ratio": 0.21,
+   "ac": 0.34,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.21 > 0.10"
+  },
+  {
+   "file": "CeraVe長效潤澤霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    89,
+    170
+   ],
+   "mean": 2.032,
+   "ratio": 0.32,
+   "ac": 0.16,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "CeraVe長效潤澤霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    174,
+    238
+   ],
+   "mean": 1.993,
+   "ratio": 0.32,
+   "ac": 0.07,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "CeraVe長效潤澤霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    243,
+    298
+   ],
+   "mean": 2.398,
+   "ratio": 0.24,
+   "ac": 0.08,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.24 > 0.10"
+  },
+  {
+   "file": "CeraVe長效潤澤霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 5,
+   "frames": [
+    308,
+    364
+   ],
+   "mean": 0.161,
+   "ratio": 0.99,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 1 次）"
+  },
+  {
+   "file": "CeraVe長效潤澤霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    367,
+    455
+   ],
+   "mean": 0.939,
+   "ratio": 0.41,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 4 次）"
+  },
+  {
+   "file": "CeraVe精華水商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    93
+   ],
+   "mean": 2.245,
+   "ratio": 0.35,
+   "ac": 0.62,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "CeraVe精華水商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    99,
+    168
+   ],
+   "mean": 2.297,
+   "ratio": 0.28,
+   "ac": 0.32,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.28 > 0.10"
+  },
+  {
+   "file": "CeraVe精華水商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    178,
+    260
+   ],
+   "mean": 2.007,
+   "ratio": 0.35,
+   "ac": 0.55,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "CeraVe精華水商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    270,
+    325
+   ],
+   "mean": 2.538,
+   "ratio": 0.22,
+   "ac": 0.17,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.22 > 0.10"
+  },
+  {
+   "file": "CeraVe精華水商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 6,
+   "frames": [
+    330,
+    380
+   ],
+   "mean": 2.701,
+   "ratio": 0.19,
+   "ac": 0.11,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.19 > 0.10"
+  },
+  {
+   "file": "CeraVe精華水商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 7,
+   "frames": [
+    383,
+    468
+   ],
+   "mean": 1.03,
+   "ratio": 0.47,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 4 次）"
+  },
+  {
+   "file": "hetras香氛護手霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    100
+   ],
+   "mean": 1.893,
+   "ratio": 0.25,
+   "ac": 0.27,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.25 > 0.10"
+  },
+  {
+   "file": "hetras香氛護手霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    110,
+    267
+   ],
+   "mean": 2.596,
+   "ratio": 0.25,
+   "ac": 0.18,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.25 > 0.10"
+  },
+  {
+   "file": "hetras香氛護手霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    269,
+    320
+   ],
+   "mean": 2.767,
+   "ratio": 0.19,
+   "ac": 0.06,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.19 > 0.10"
+  },
+  {
+   "file": "hetras香氛護手霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    326,
+    388
+   ],
+   "mean": 2.515,
+   "ratio": 0.28,
+   "ac": 0.13,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.28 > 0.10"
+  },
+  {
+   "file": "hetras香氛護手霜商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 5,
+   "frames": [
+    391,
+    476
+   ],
+   "mean": 0.977,
+   "ratio": 0.46,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 4 次）"
+  },
+  {
+   "file": "NIVEA密集修護乳液商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    209
+   ],
+   "mean": 1.753,
+   "ratio": 0.32,
+   "ac": 0.09,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "NIVEA密集修護乳液商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    219,
+    383
+   ],
+   "mean": 2.772,
+   "ratio": 0.18,
+   "ac": 0.22,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.18 > 0.10"
+  },
+  {
+   "file": "NIVEA密集修護乳液商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    393,
+    482
+   ],
+   "mean": 2.364,
+   "ratio": 0.25,
+   "ac": 0.09,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.25 > 0.10"
+  },
+  {
+   "file": "NIVEA密集修護乳液商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 4,
+   "frames": [
+    485,
+    560
+   ],
+   "mean": 1.476,
+   "ratio": 0.89,
+   "ac": 0.57,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：12 次尖峰、約每 7 格一次（91% 間隔一致）"
+  },
+  {
+   "file": "tsaio上山採藥野薄荷淨涼洗顏乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    96
+   ],
+   "mean": 1.351,
+   "ratio": 0.09,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "tsaio上山採藥野薄荷淨涼洗顏乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    98,
+    225
+   ],
+   "mean": 0.947,
+   "ratio": 0.12,
+   "ac": 0.0,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.12 > 0.10"
+  },
+  {
+   "file": "tsaio上山採藥野薄荷淨涼洗顏乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    235,
+    317
+   ],
+   "mean": 1.341,
+   "ratio": 0.08,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "tsaio上山採藥野薄荷淨涼洗顏乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    320,
+    410
+   ],
+   "mean": 1.426,
+   "ratio": 0.09,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "tsaio上山採藥野薄荷淨涼洗顏乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    413,
+    496
+   ],
+   "mean": 1.38,
+   "ratio": 0.11,
+   "ac": 0.0,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.11 > 0.10"
+  },
+  {
+   "file": "tsaio上山採藥野薄荷淨涼洗顏乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    506,
+    588
+   ],
+   "mean": 0.551,
+   "ratio": 0.86,
+   "ac": 0.2,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 5 次）"
+  },
+  {
+   "file": "一匙靈抗菌EX強力消臭補充包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    95
+   ],
+   "mean": 3.063,
+   "ratio": 0.01,
+   "ac": 0.21,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "一匙靈抗菌EX強力消臭補充包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    99,
+    191
+   ],
+   "mean": 3.277,
+   "ratio": 0.03,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "一匙靈抗菌EX強力消臭補充包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    195,
+    277
+   ],
+   "mean": 3.115,
+   "ratio": 0.03,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "一匙靈抗菌EX強力消臭補充包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    286,
+    369
+   ],
+   "mean": 3.547,
+   "ratio": 0.02,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "一匙靈抗菌EX強力消臭補充包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    373,
+    462
+   ],
+   "mean": 2.98,
+   "ratio": 0.03,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "一匙靈抗菌EX強力消臭補充包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    474,
+    554
+   ],
+   "mean": 1.727,
+   "ratio": 1.72,
+   "ac": 0.63,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：14 次尖峰、約每 7 格一次（85% 間隔一致）"
+  },
+  {
+   "file": "白蘭酵素除菌手洗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    106
+   ],
+   "mean": 2.167,
+   "ratio": 0.05,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "白蘭酵素除菌手洗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    108,
+    197
+   ],
+   "mean": 2.02,
+   "ratio": 0.06,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "白蘭酵素除菌手洗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    207,
+    295
+   ],
+   "mean": 2.392,
+   "ratio": 0.06,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "白蘭酵素除菌手洗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    298,
+    381
+   ],
+   "mean": 2.315,
+   "ratio": 0.06,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "白蘭酵素除菌手洗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    385,
+    484
+   ],
+   "mean": 1.929,
+   "ratio": 0.05,
+   "ac": 0.01,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "白蘭酵素除菌手洗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    495,
+    575
+   ],
+   "mean": 1.492,
+   "ratio": 1.5,
+   "ac": 0.63,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：14 次尖峰、約每 7 格一次（85% 間隔一致）"
+  },
+  {
+   "file": "味王咖哩牛肉調理包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    104
+   ],
+   "mean": 2.886,
+   "ratio": 0.03,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "味王咖哩牛肉調理包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    107,
+    198
+   ],
+   "mean": 2.939,
+   "ratio": 0.01,
+   "ac": 0.01,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "味王咖哩牛肉調理包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    208,
+    299
+   ],
+   "mean": 3.095,
+   "ratio": 0.03,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "味王咖哩牛肉調理包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    301,
+    386
+   ],
+   "mean": 3.277,
+   "ratio": 0.04,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "味王咖哩牛肉調理包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    396,
+    494
+   ],
+   "mean": 2.747,
+   "ratio": 0.03,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "味王咖哩牛肉調理包商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    503,
+    583
+   ],
+   "mean": 0.887,
+   "ratio": 1.35,
+   "ac": 0.19,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：5 次尖峰、約每 3 格一次（75% 間隔一致）"
+  },
+  {
+   "file": "花王洗髮精清新順滑型商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    99
+   ],
+   "mean": 1.536,
+   "ratio": 0.02,
+   "ac": 0.89,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "花王洗髮精清新順滑型商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    109,
+    276
+   ],
+   "mean": 1.726,
+   "ratio": 0.06,
+   "ac": 0.14,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "花王洗髮精清新順滑型商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    286,
+    378
+   ],
+   "mean": 1.637,
+   "ratio": 0.08,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "花王洗髮精清新順滑型商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    381,
+    473
+   ],
+   "mean": 1.649,
+   "ratio": 0.08,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "花王洗髮精清新順滑型商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 5,
+   "frames": [
+    480,
+    562
+   ],
+   "mean": 0.782,
+   "ratio": 0.89,
+   "ac": 0.2,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 5 次）"
+  },
+  {
+   "file": "珂珂透濃縮洗碗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    97
+   ],
+   "mean": 2.338,
+   "ratio": 0.04,
+   "ac": 0.01,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "珂珂透濃縮洗碗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    101,
+    196
+   ],
+   "mean": 2.148,
+   "ratio": 0.09,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "珂珂透濃縮洗碗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    200,
+    298
+   ],
+   "mean": 2.193,
+   "ratio": 0.08,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "珂珂透濃縮洗碗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    301,
+    385
+   ],
+   "mean": 2.348,
+   "ratio": 0.02,
+   "ac": 0.01,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "珂珂透濃縮洗碗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 6,
+   "frames": [
+    394,
+    477
+   ],
+   "mean": 2.317,
+   "ratio": 0.01,
+   "ac": 0.81,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "珂珂透濃縮洗碗精商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 7,
+   "frames": [
+    489,
+    568
+   ],
+   "mean": 0.648,
+   "ratio": 1.28,
+   "ac": 0.18,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：5 次尖峰、約每 3 格一次（75% 間隔一致）"
+  },
+  {
+   "file": "盛香珍濃厚花生巧克酥商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    99
+   ],
+   "mean": 2.362,
+   "ratio": 0.01,
+   "ac": 0.79,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "盛香珍濃厚花生巧克酥商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    109,
+    204
+   ],
+   "mean": 2.362,
+   "ratio": 0.05,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "盛香珍濃厚花生巧克酥商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    207,
+    293
+   ],
+   "mean": 2.841,
+   "ratio": 0.05,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "盛香珍濃厚花生巧克酥商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    296,
+    377
+   ],
+   "mean": 2.677,
+   "ratio": 0.02,
+   "ac": 0.01,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "盛香珍濃厚花生巧克酥商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    387,
+    480
+   ],
+   "mean": 2.373,
+   "ratio": 0.03,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "盛香珍濃厚花生巧克酥商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    489,
+    568
+   ],
+   "mean": 1.804,
+   "ratio": 1.65,
+   "ac": 0.67,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：14 次尖峰、約每 7 格一次（85% 間隔一致）"
+  },
+  {
+   "file": "澎澎香浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    111
+   ],
+   "mean": 1.271,
+   "ratio": 0.03,
+   "ac": 0.92,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "澎澎香浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    121,
+    204
+   ],
+   "mean": 1.817,
+   "ratio": 0.07,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "澎澎香浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    207,
+    303
+   ],
+   "mean": 1.625,
+   "ratio": 0.07,
+   "ac": 0.01,
+   "log_verdict": "PASS",
+   "log_reason": "平滑"
+  },
+  {
+   "file": "澎澎香浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    306,
+    395
+   ],
+   "mean": 1.693,
+   "ratio": 0.12,
+   "ac": 0.0,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.12 > 0.10"
+  },
+  {
+   "file": "澎澎香浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    398,
+    497
+   ],
+   "mean": 1.29,
+   "ratio": 0.11,
+   "ac": 0.0,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.11 > 0.10"
+  },
+  {
+   "file": "澎澎香浴乳商品片樣品_H.mp4",
+   "src": "母片CRF0",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    507,
+    588
+   ],
+   "mean": 1.3,
+   "ratio": 1.33,
+   "ac": 0.64,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：14 次尖峰、約每 7 格一次（85% 間隔一致）"
+  },
+  {
+   "file": "影片-Biore淨嫩沐浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    153
+   ],
+   "mean": 2.199,
+   "ratio": 0.38,
+   "ac": 0.25,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-Biore淨嫩沐浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    161,
+    227
+   ],
+   "mean": 2.275,
+   "ratio": 0.38,
+   "ac": 0.1,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-Biore淨嫩沐浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    230,
+    296
+   ],
+   "mean": 2.323,
+   "ratio": 0.31,
+   "ac": 0.51,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.31 > 0.10"
+  },
+  {
+   "file": "影片-Biore淨嫩沐浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    304,
+    373
+   ],
+   "mean": 1.981,
+   "ratio": 0.36,
+   "ac": 0.19,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-Biore淨嫩沐浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    379,
+    443
+   ],
+   "mean": 1.589,
+   "ratio": 1.38,
+   "ac": 0.58,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 5 格一次（83% 間隔一致）"
+  },
+  {
+   "file": "影片-CeraVe長效潤澤霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    63
+   ],
+   "mean": 2.901,
+   "ratio": 0.38,
+   "ac": 0.87,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe長效潤澤霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    71,
+    136
+   ],
+   "mean": 2.345,
+   "ratio": 0.4,
+   "ac": 0.17,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.40 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe長效潤澤霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    139,
+    190
+   ],
+   "mean": 2.294,
+   "ratio": 0.4,
+   "ac": 0.07,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.40 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe長效潤澤霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    195,
+    238
+   ],
+   "mean": 2.551,
+   "ratio": 0.33,
+   "ac": 0.55,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.33 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe長效潤澤霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 5,
+   "frames": [
+    247,
+    291
+   ],
+   "mean": 0.204,
+   "ratio": 1.01,
+   "ac": 0.0,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 1 次）"
+  },
+  {
+   "file": "影片-CeraVe長效潤澤霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    295,
+    364
+   ],
+   "mean": 0.853,
+   "ratio": 0.64,
+   "ac": 0.23,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 5 次）"
+  },
+  {
+   "file": "影片-CeraVe精華水-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    74
+   ],
+   "mean": 2.571,
+   "ratio": 0.44,
+   "ac": 0.4,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.44 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe精華水-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    79,
+    134
+   ],
+   "mean": 2.659,
+   "ratio": 0.31,
+   "ac": 0.76,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.31 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe精華水-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    143,
+    208
+   ],
+   "mean": 2.291,
+   "ratio": 0.37,
+   "ac": 0.25,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe精華水-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    216,
+    260
+   ],
+   "mean": 2.857,
+   "ratio": 0.32,
+   "ac": 0.19,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe精華水-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 6,
+   "frames": [
+    264,
+    304
+   ],
+   "mean": 3.012,
+   "ratio": 0.26,
+   "ac": 0.25,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.26 > 0.10"
+  },
+  {
+   "file": "影片-CeraVe精華水-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 7,
+   "frames": [
+    307,
+    374
+   ],
+   "mean": 1.048,
+   "ratio": 0.54,
+   "ac": 0.24,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 3 次）"
+  },
+  {
+   "file": "影片-hetras香氛護手霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    80
+   ],
+   "mean": 2.239,
+   "ratio": 0.35,
+   "ac": 0.58,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-hetras香氛護手霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    88,
+    149
+   ],
+   "mean": 3.245,
+   "ratio": 0.35,
+   "ac": 0.66,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-hetras香氛護手霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    151,
+    213
+   ],
+   "mean": 2.456,
+   "ratio": 0.39,
+   "ac": 0.36,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.39 > 0.10"
+  },
+  {
+   "file": "影片-hetras香氛護手霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    215,
+    256
+   ],
+   "mean": 3.137,
+   "ratio": 0.3,
+   "ac": 0.19,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.30 > 0.10"
+  },
+  {
+   "file": "影片-hetras香氛護手霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 6,
+   "frames": [
+    263,
+    310
+   ],
+   "mean": 2.464,
+   "ratio": 0.3,
+   "ac": 0.63,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.30 > 0.10"
+  },
+  {
+   "file": "影片-hetras香氛護手霜-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 8,
+   "frames": [
+    315,
+    381
+   ],
+   "mean": 0.758,
+   "ratio": 0.74,
+   "ac": 0.23,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 6 次）"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    76
+   ],
+   "mean": 3.711,
+   "ratio": 0.34,
+   "ac": 0.99,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    79,
+    153
+   ],
+   "mean": 3.952,
+   "ratio": 0.34,
+   "ac": 0.84,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    156,
+    221
+   ],
+   "mean": 3.743,
+   "ratio": 0.34,
+   "ac": 0.82,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    229,
+    295
+   ],
+   "mean": 4.307,
+   "ratio": 0.33,
+   "ac": 0.88,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.33 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    299,
+    369
+   ],
+   "mean": 3.506,
+   "ratio": 0.33,
+   "ac": 0.98,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.33 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    379,
+    443
+   ],
+   "mean": 2.159,
+   "ratio": 1.6,
+   "ac": 0.41,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 5 格一次（83% 間隔一致）"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    85
+   ],
+   "mean": 2.648,
+   "ratio": 0.36,
+   "ac": 0.63,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    87,
+    157
+   ],
+   "mean": 2.337,
+   "ratio": 0.34,
+   "ac": 0.81,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    166,
+    236
+   ],
+   "mean": 2.935,
+   "ratio": 0.38,
+   "ac": 0.43,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    239,
+    305
+   ],
+   "mean": 2.759,
+   "ratio": 0.36,
+   "ac": 0.5,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    308,
+    387
+   ],
+   "mean": 2.355,
+   "ratio": 0.37,
+   "ac": 0.58,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    396,
+    460
+   ],
+   "mean": 1.856,
+   "ratio": 1.43,
+   "ac": 0.51,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 6 格一次（75% 間隔一致）"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    83
+   ],
+   "mean": 3.489,
+   "ratio": 0.34,
+   "ac": 0.72,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    86,
+    158
+   ],
+   "mean": 3.579,
+   "ratio": 0.35,
+   "ac": 0.93,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    167,
+    239
+   ],
+   "mean": 3.724,
+   "ratio": 0.34,
+   "ac": 0.73,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    241,
+    309
+   ],
+   "mean": 3.936,
+   "ratio": 0.34,
+   "ac": 0.63,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    317,
+    395
+   ],
+   "mean": 3.336,
+   "ratio": 0.35,
+   "ac": 0.8,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 7,
+   "frames": [
+    407,
+    466
+   ],
+   "mean": 0.502,
+   "ratio": 1.57,
+   "ac": 0.46,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 2 次）"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    79
+   ],
+   "mean": 1.852,
+   "ratio": 0.33,
+   "ac": 0.98,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.33 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    87,
+    153
+   ],
+   "mean": 2.106,
+   "ratio": 0.3,
+   "ac": 0.41,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.30 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    155,
+    221
+   ],
+   "mean": 1.846,
+   "ratio": 0.31,
+   "ac": 0.97,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.31 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    229,
+    302
+   ],
+   "mean": 1.978,
+   "ratio": 0.37,
+   "ac": 0.28,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    305,
+    378
+   ],
+   "mean": 1.993,
+   "ratio": 0.36,
+   "ac": 0.39,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    384,
+    449
+   ],
+   "mean": 1.745,
+   "ratio": 1.25,
+   "ac": 0.57,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：14 次尖峰、約每 5 格一次（85% 間隔一致）"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    77
+   ],
+   "mean": 2.762,
+   "ratio": 0.34,
+   "ac": 0.99,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    81,
+    157
+   ],
+   "mean": 2.603,
+   "ratio": 0.37,
+   "ac": 0.28,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    160,
+    238
+   ],
+   "mean": 2.69,
+   "ratio": 0.38,
+   "ac": 0.42,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    241,
+    308
+   ],
+   "mean": 2.838,
+   "ratio": 0.32,
+   "ac": 0.95,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 6,
+   "frames": [
+    315,
+    381
+   ],
+   "mean": 2.794,
+   "ratio": 0.33,
+   "ac": 0.99,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.33 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 7,
+   "frames": [
+    391,
+    454
+   ],
+   "mean": 0.808,
+   "ratio": 1.03,
+   "ac": 0.12,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 4 次）"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    79
+   ],
+   "mean": 2.865,
+   "ratio": 0.35,
+   "ac": 0.99,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    87,
+    163
+   ],
+   "mean": 2.862,
+   "ratio": 0.35,
+   "ac": 0.53,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    166,
+    234
+   ],
+   "mean": 3.448,
+   "ratio": 0.37,
+   "ac": 0.55,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    237,
+    301
+   ],
+   "mean": 3.216,
+   "ratio": 0.32,
+   "ac": 0.94,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    310,
+    384
+   ],
+   "mean": 2.886,
+   "ratio": 0.35,
+   "ac": 0.71,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    391,
+    454
+   ],
+   "mean": 2.25,
+   "ratio": 1.53,
+   "ac": 0.43,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 5 格一次（83% 間隔一致）"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    89
+   ],
+   "mean": 1.55,
+   "ratio": 0.36,
+   "ac": 0.98,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    97,
+    163
+   ],
+   "mean": 2.2,
+   "ratio": 0.36,
+   "ac": 0.3,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    166,
+    242
+   ],
+   "mean": 1.995,
+   "ratio": 0.38,
+   "ac": 0.47,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    245,
+    316
+   ],
+   "mean": 2.051,
+   "ratio": 0.38,
+   "ac": 0.2,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    319,
+    397
+   ],
+   "mean": 1.444,
+   "ratio": 0.37,
+   "ac": 0.58,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "新kb",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    407,
+    470
+   ],
+   "mean": 1.364,
+   "ratio": 1.47,
+   "ac": 0.42,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 14 次）"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    76
+   ],
+   "mean": 4.729,
+   "ratio": 0.35,
+   "ac": 0.56,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.35 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    79,
+    153
+   ],
+   "mean": 4.948,
+   "ratio": 0.42,
+   "ac": 0.58,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.42 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    156,
+    221
+   ],
+   "mean": 4.859,
+   "ratio": 0.32,
+   "ac": 0.5,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    229,
+    295
+   ],
+   "mean": 5.156,
+   "ratio": 0.3,
+   "ac": 0.55,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.30 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    299,
+    369
+   ],
+   "mean": 4.542,
+   "ratio": 0.42,
+   "ac": 0.46,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.42 > 0.10"
+  },
+  {
+   "file": "影片-一匙靈抗菌EX強力消臭補充包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    379,
+    443
+   ],
+   "mean": 2.159,
+   "ratio": 1.6,
+   "ac": 0.41,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 5 格一次（83% 間隔一致）"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    85
+   ],
+   "mean": 3.091,
+   "ratio": 0.41,
+   "ac": 0.29,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.41 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    87,
+    157
+   ],
+   "mean": 2.774,
+   "ratio": 0.39,
+   "ac": 0.57,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.39 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    166,
+    235
+   ],
+   "mean": 3.434,
+   "ratio": 0.31,
+   "ac": 0.49,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.31 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    239,
+    305
+   ],
+   "mean": 3.205,
+   "ratio": 0.36,
+   "ac": 0.35,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    308,
+    387
+   ],
+   "mean": 2.993,
+   "ratio": 0.47,
+   "ac": 0.42,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.47 > 0.10"
+  },
+  {
+   "file": "影片-白蘭酵素除菌手洗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    396,
+    460
+   ],
+   "mean": 1.856,
+   "ratio": 1.43,
+   "ac": 0.51,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 6 格一次（75% 間隔一致）"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    79
+   ],
+   "mean": 3.167,
+   "ratio": 0.41,
+   "ac": 0.55,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.41 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    87,
+    163
+   ],
+   "mean": 3.122,
+   "ratio": 0.42,
+   "ac": 0.4,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.42 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    166,
+    234
+   ],
+   "mean": 3.775,
+   "ratio": 0.4,
+   "ac": 0.32,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.40 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    237,
+    301
+   ],
+   "mean": 3.525,
+   "ratio": 0.34,
+   "ac": 0.59,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    310,
+    384
+   ],
+   "mean": 3.165,
+   "ratio": 0.39,
+   "ac": 0.43,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.39 > 0.10"
+  },
+  {
+   "file": "影片-盛香珍濃厚花生巧克酥-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    391,
+    454
+   ],
+   "mean": 2.251,
+   "ratio": 1.53,
+   "ac": 0.43,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 5 格一次（83% 間隔一致）"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    89
+   ],
+   "mean": 1.884,
+   "ratio": 0.47,
+   "ac": 0.57,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.47 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    97,
+    163
+   ],
+   "mean": 2.557,
+   "ratio": 0.37,
+   "ac": 0.11,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    166,
+    242
+   ],
+   "mean": 2.389,
+   "ratio": 0.43,
+   "ac": 0.35,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.43 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    245,
+    316
+   ],
+   "mean": 2.38,
+   "ratio": 0.39,
+   "ac": 0.16,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.39 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    319,
+    397
+   ],
+   "mean": 1.754,
+   "ratio": 0.4,
+   "ac": 0.29,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.40 > 0.10"
+  },
+  {
+   "file": "影片-澎澎香浴乳-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    407,
+    470
+   ],
+   "mean": 1.363,
+   "ratio": 1.47,
+   "ac": 0.42,
+   "log_verdict": "PASS",
+   "log_reason": "靜止段，無週期尖峰（尖峰 14 次）"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    83
+   ],
+   "mean": 3.498,
+   "ratio": 0.43,
+   "ac": 0.29,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.43 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    86,
+    158
+   ],
+   "mean": 4.048,
+   "ratio": 0.36,
+   "ac": 0.56,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    167,
+    239
+   ],
+   "mean": 4.051,
+   "ratio": 0.36,
+   "ac": 0.44,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    242,
+    309
+   ],
+   "mean": 3.954,
+   "ratio": 0.42,
+   "ac": 0.54,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.42 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    317,
+    395
+   ],
+   "mean": 3.888,
+   "ratio": 0.46,
+   "ac": 0.51,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.46 > 0.10"
+  },
+  {
+   "file": "影片-味王咖哩牛肉調理包-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 7,
+   "frames": [
+    407,
+    466
+   ],
+   "mean": 2.067,
+   "ratio": 1.83,
+   "ac": 0.55,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：11 次尖峰、約每 5 格一次（100% 間隔一致）"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    79
+   ],
+   "mean": 2.172,
+   "ratio": 0.38,
+   "ac": 0.51,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.38 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    87,
+    153
+   ],
+   "mean": 2.43,
+   "ratio": 0.32,
+   "ac": 0.22,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.32 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    155,
+    221
+   ],
+   "mean": 2.148,
+   "ratio": 0.37,
+   "ac": 0.38,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    229,
+    301
+   ],
+   "mean": 2.172,
+   "ratio": 0.41,
+   "ac": 0.51,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.41 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    305,
+    378
+   ],
+   "mean": 2.318,
+   "ratio": 0.37,
+   "ac": 0.29,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.37 > 0.10"
+  },
+  {
+   "file": "影片-花王洗髮精清新順滑型-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    384,
+    449
+   ],
+   "mean": 1.744,
+   "ratio": 1.25,
+   "ac": 0.57,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：14 次尖峰、約每 5 格一次（85% 間隔一致）"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 1,
+   "frames": [
+    1,
+    77
+   ],
+   "mean": 3.353,
+   "ratio": 0.36,
+   "ac": 0.7,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.36 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 2,
+   "frames": [
+    81,
+    157
+   ],
+   "mean": 3.207,
+   "ratio": 0.41,
+   "ac": 0.15,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.41 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 3,
+   "frames": [
+    160,
+    237
+   ],
+   "mean": 3.238,
+   "ratio": 0.47,
+   "ac": 0.39,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.47 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 4,
+   "frames": [
+    241,
+    308
+   ],
+   "mean": 3.466,
+   "ratio": 0.34,
+   "ac": 0.45,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.34 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "動",
+   "seg": 5,
+   "frames": [
+    315,
+    381
+   ],
+   "mean": 3.499,
+   "ratio": 0.39,
+   "ac": 0.61,
+   "log_verdict": "FAIL",
+   "log_reason": "規律擺盪：相鄰差/平均 0.39 > 0.10"
+  },
+  {
+   "file": "影片-珂珂透濃縮洗碗精-商品片-蝦皮版.mp4",
+   "src": "蝦皮版CRF10",
+   "cls": "舊zoompan",
+   "kind": "靜止",
+   "seg": 6,
+   "frames": [
+    391,
+    454
+   ],
+   "mean": 1.801,
+   "ratio": 1.51,
+   "ac": 0.43,
+   "log_verdict": "FAIL",
+   "log_reason": "靜止段週期跳格：13 次尖峰、約每 5 格一次（83% 間隔一致）"
+  }
+ ]
+}
