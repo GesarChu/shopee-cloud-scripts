@@ -1,0 +1,93 @@
+{
+ "tool": "prodfilm.py lw",
+ "time": "2026-10-06 19:11:38",
+ "card": "ts",
+ "ref_sha1": "d27ff5a77369be3c2365223122bdd2818b538f77",
+ "src": "C:/Users/GesarChu/Desktop/Claude Code/shopee/產出/腳本備妥-商品片樣品-20261002/首幀/_候選/prod1006_ts2_s900197.png",
+ "src_sha1": "04939eca8c1185d12fed38933ebad32c00392e7c",
+ "inset": "0.16,0.05,0.15",
+ "lw_args": [
+  "--hi",
+  "99.5"
+ ],
+ "keep_skin": false,
+ "warp_ok": true,
+ "warp_msg": "OK 內點 146／配對 178、貼片 312x785 px",
+ "out_sha1": "9ff8ba813f6d21fac6c35573ca834077a35ce168",
+ "metrics": {
+  "lowfreq_mean": 0.58,
+  "lowfreq_p95": 1.33,
+  "angle_dev": 0.2,
+  "side_ratio": 1.001,
+  "scale_x": 1.032,
+  "scale_y": 1.035,
+  "ref_solidity": 0.948,
+  "inliers": 146,
+  "matches": 178,
+  "quad": [
+   [
+    564.8,
+    1058.9
+   ],
+   [
+    977.7,
+    1058.7
+   ],
+   [
+    976.0,
+    2042.0
+   ],
+   [
+    562.7,
+    2042.0
+   ]
+  ],
+  "paste_box": [
+   653,
+   1135,
+   885,
+   1840
+  ],
+  "scene_size": [
+   1536,
+   2688
+  ],
+  "s_up": 1.0,
+  "ref_size": [
+   400,
+   950
+  ],
+  "tone_shift": {
+   "enabled": true,
+   "method": "masked-gaussian-additive-r1",
+   "sigma_px": 12.0,
+   "rgb_shift_limit": 25.0,
+   "soft_reject_from": 20.0,
+   "lowfreq_gain": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "ssim_floor": 0.98,
+   "applied": true,
+   "reason": "within_limits_and_text_preserved",
+   "requested_shift_min": [
+    -3.0625534057617188,
+    -4.367942810058594,
+    -3.0870895385742188
+   ],
+   "requested_shift_max": [
+    8.389961242675781,
+    7.34918212890625,
+    4.853057861328125
+   ],
+   "over_limit_fraction": 0.0,
+   "candidate_delta_abs_max": 8.389961242675781,
+   "ssim_rgb_1to1": 0.9983554482460022,
+   "lowfreq_before": 0.9260353446006775,
+   "lowfreq_candidate": 0.5826157331466675,
+   "applied_delta_abs_max": 8.389961242675781
+  }
+ },
+ "replace_mode": "label"
+}

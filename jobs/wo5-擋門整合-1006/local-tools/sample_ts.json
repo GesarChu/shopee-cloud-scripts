@@ -1,0 +1,77 @@
+{
+ "name": "tsaio上山採藥野薄荷淨涼洗顏乳",
+ "pre": "ts_",
+ "lines": "lines_ts.txt",
+ "real": "C:/Users/GesarChu/Desktop/Claude Code/shopee/素材/商品卡/ts/ts_alpha.png",
+ "music": "C:/Users/GesarChu/.claude/skills/beat-cut-editor/music-library/inspiring/First Light Ascent.mp3",
+ "scenes": [
+  [
+   "../_貼回/ts/prod1006_ts1_s900331_lw2x.png",
+   1.0,
+   1.05,
+   0.5,
+   0.45
+  ],
+  [
+   "../_貼回/ts/prod1006_ts2_s900197_lw2x.png",
+   1.05,
+   1.0,
+   0.5,
+   0.45
+  ],
+  [
+   "../_貼回/ts/prod1006_ts3_s900197_lw2x.png",
+   1.0,
+   1.05,
+   0.5,
+   0.45
+  ],
+  [
+   "../_貼回/ts/prod1006_ts4_s900331_lw2x.png",
+   1.05,
+   1.0,
+   0.5,
+   0.45
+  ],
+  [
+   "../_貼回/ts/prod1006_ts5_s900197_lw2x.png",
+   1.0,
+   1.05,
+   0.5,
+   0.45
+  ],
+  [
+   "CARD",
+   0,
+   0,
+   0,
+   0
+  ]
+ ],
+ "key": [
+  "臉又油又黏",
+  "上山採藥洗顏乳",
+  "洗完很清新",
+  "深層淨化",
+  "男生專用款",
+  "點進去"
+ ],
+ "trans": [
+  "smoothup",
+  "slideleft",
+  "circleopen",
+  "smoothdown",
+  "slideright"
+ ],
+ "sub_y": [
+  220,
+  340,
+  280
+ ],
+ "sub_style": "mid",
+ "mid_y": 430,
+ "title": "上山採藥洗顏乳",
+ "mid_y_B": 1100,
+ "mid_fs": 60,
+ "card": "ts"
+}

@@ -118,3 +118,37 @@ genlib 要直接產出 golden 的寫法，不是事後取代。
 
 ### 紅線
 - ⛔ 動 `spec/`、`genlib.py`、`make.py`、`golden/`、既有 `tools/`；⛔ 放憑證；⛔ 本機路徑；⛔ 下載模型權重。
+
+## 工單 #5（2026-10-06 晚，第 34 棒）：A 門檻用全尺寸真片重定＋label 框換算到成片座標＋A／B 接進本機流程＋片尾卡離浮水印
+> 背景：#4 第二版（d4f51ef）本機用真樣本跑四支 `--selftest` 全綠，謝謝。但 **A 拿全尺寸真片量**（`--box 290,500,500,900`，1080×1920）：花王舊版（zoompan）六段比值 0.32–0.41 全 FAIL；tsaio 新片（kb-render）五段 0.08–0.12，其中兩段 0.11／0.12 被 0.10 判 FAIL ⇒ 0.10 是在縮圖樣本（250×450）上定的，到全尺寸母片噪底就有 0.1 左右。本機已把今天所有片量了一遍，數字在 `jobs/wo5-擋門整合-1006/fixtures/motion-calib-1006.log`（本機母片 CRF 0＋上架區新版 蝦皮版 CRF 10＋舊版／退件 蝦皮版；每段「平均／相鄰差／比／自相關／判定」）。log 裡怎麼分新舊：路徑含 `_舊版-zoompan-1006` 的＝zoompan 舊做法；`_退件-王1006` 裡 味王舊版／珂珂透舊版／花王 是 zoompan，妙管家／東尼 是 whole 貼法（不是閃爍問題，別拿來定門檻）；`20261006b/15支` 跟本機 `樣品/*_H.mp4` 是現行版（本機母片裡 可樂／魔爪／東尼／妙管家 是 whole 貼法、可能還有沒重組的舊版，看 ### 行的名字對照）。整理好的對照表 `fixtures/motion-calib-1006-摘要.md`。
+> 材料 `jobs/wo5-擋門整合-1006/`：`local-tools/`＝本機正式程式的**副本**（`prodfilm.py` 貼回＋擋門主程式：card／card-ok／lw／gate／sheet／film-ok；`label-warp.py` 貼回引擎（憑證在 lw 階段寫）；`prod-replace.py`；`kb-render.py` 次像素推近；`build_ph9_sample.py` 組片（CRLF，改它要保留）；`brand-stamp.py` 浮水印；`sample_ts.json` 組片設定：scenes 每鏡 `[圖, z0, z1, cx, cy]`、最後一鏡 `CARD`）。`fixtures/ts/`＝tsaio 五鏡的 lw 憑證 `.lw.json`（`metrics.paste_box`、`quad` 是場景圖 1536×2688 座標）＋貼回對照圖＋成片每鏡第一格 `ts_shot1–6_t*.jpg`（1080×1920；shot6＝片尾卡）＋`card.json`＋真品去背 `ts_alpha.png`。這些副本裡有本機絕對路徑，當參考就好，**你寫的程式一律用參數、⛔ 寫死路徑**。
+
+### A. `tools/motion-gate.py` 門檻重定（全尺寸）
+- 量法寫死成：全尺寸母片、商品框（builder 知道商品放在哪：中央 290,500,500,900 這種固定框可以當預設），每段比值＋自相關。
+- 讀 calib log 定門檻：zoompan 舊版段落要全 FAIL、kb-render 新版段落要全 PASS；如果有段落夾在中間，**列出來、不硬湊**；CRF 0 母片跟 CRF 10 蝦皮版的差也要寫。門檻常數＋依據寫在檔頭；`--selftest` 加一組全尺寸樣本（從 fixtures 的格或 log 的數列）。
+- 靜止段（片尾卡）那條規則也用 log 核一遍（片尾卡有 0.9 秒彈跳，之後鎖死，逐格差應全 0；log 裡片尾卡段有些被判「靜止段週期跳格」，看是不是彈跳被算進去）。
+
+### A2. 校準 log 的兩個事實（先讀這段再定門檻）
+- **母片 CRF 0**（`樣品/*_H.mp4`）：次像素新片（花王／珂珂透／味王／tsaio／澎澎／一匙靈／白蘭／盛香珍）非靜止段 40 段全 ≤0.12（0.11／0.12 四段：tsaio 段2、段5，澎澎 段4、段5）；今天用 zoompan 組的舊片母片（Biore、CeraVe 精華水、CeraVe 潤澤霜、hetras 護手霜、NIVEA）每段 ≥0.18、多數 0.2–0.45；花王舊版沒有母片（被重組覆蓋）。log 裡 10/2–10/5 的其他母片（3CE 短劇、PH9、KTV…）是別的做法（H3 影片、剪映、早期 builder），**不要拿來定門檻**。
+- **蝦皮版 CRF 10**（`brand-stamp.py` 交付檔）：**新舊片全部 0.30–0.38**（新 kb 37 段中位 0.35、舊 zoompan 58 段中位 0.38）⇒ 在交付檔上這個比值量到的是 x264 I/P/B 品質交替，分不出推近跳格。所以：①擋門一律量母片 CRF 0；②**另外要查**：交付編碼會不會把閃爍帶回來——拿 `fixtures/motion-calib-1006.log` 裡花王（新）母片 vs 蝦皮版的逐格 d 數列比（CSV 用 `--csv` 重抽），看蝦皮版的擺盪是週期性品質交替（GOP／B-frame）還是真的畫面在跳；如果是編碼器造成，提出**不降畫質**的參數（例如 `-bf 0`、`-tune stillimage`、固定 `-g`、`aq-mode`）並用 PSNR／SSIM 對母片證明畫質沒掉，寫進報告由本機決定要不要改 `brand-stamp.py`（⛔ 直接改交付碼率／CRF）。
+- 門檻建議從 0.15 起算（新最大 0.12、舊最小 0.18，邊際只有 0.06）：把依據寫成「兩邊各幾段、最大／最小」；如果你覺得比值不夠穩，可以在 A 裡加第二個特徵（例如 d 數列的兩值交替：相鄰格 d 比值 >1.5 的占比），但舊版要全 FAIL、新版全 PASS 才算。
+
+### B. `tools/label-box-map.py`：lw 憑證的框 → 成片座標
+- 輸入：`.lw.json`（`paste_box`／`quad`、`scene_size`）＋ `sample_ts.json` 那一鏡的 `[z0, z1, cx, cy]`＋格數 n＋FPS；對 `kb-render.py` 的算法（場景圖硬拉成 1080×1920 後，第 i 格 z 線性從 z0 到 z1、裁 box 置中 cx,cy、clamp 邊界、LANCZOS 到 1080×1920）。
+- 輸出：每鏡每格（至少首、末格）的 label 框 JSON，格式同 `fixtures/ghost/label_boxes.json`（多 `frame` 欄）。驗收：把框畫在 `ts_shot1–5` 上 → `out/工單5/ts_shot*_box.jpg`，框要正好落在管身標籤（人眼看）。
+- 用這個框跑 #4 的 B（`--label-box`）與 C（`--label-boxes`）各一次，結果寫報告（ts 應 PASS；標記圖留 `out/工單5/`）。
+
+### C. 接進本機流程（給 patch，本機由阿衡套用）
+- 在 `prodfilm.py` 的 `sheet` 階段：①先跑 A（成片母片、商品框）**硬擋**：FAIL 就不產驗片圖、印出哪段、exit 2，**沒有跳過參數**；②每鏡用 B 的框跑 `ghost-text-gate`，產一張 `<商品名>-假字標記.jpg` 放驗片圖旁（先只警示，不擋；門檻 60 邊際窄，等樣本多再改擋）；③ `film-ok` 讀 A 的結果檔（sheet 寫的），沒有就拒簽（沿用「sheet 之後重組要重出 sheet 才准簽」那個機制）。
+- 交付：`out/工單5/prodfilm.patch`（對 `local-tools/prodfilm.py` 的 diff，保留原檔換行格式）＋套用後能跑的測試（用 fixtures/ts 的格模擬）；新工具（A、B、gatelib、label-box-map）要能 `cp` 進本機 `tools/` 就用，只靠 numpy／opencv／Pillow／ffmpeg。
+
+### D. 片尾卡真品照離浮水印 ≥ 20 px
+- 現況：`ts_shot6_t17.00.jpg` 左上「特別蝦」浮水印的「蝦」貼到管頂壓紋（沒壓到字，這支算過，但要寫死）。浮水印位置看 `brand-stamp.py`；片尾卡真品照的位置看 `build_ph9_sample.py` 的 `CARD` 分支（`scale=CARDW:1000`、overlay y `(1290-h)-…`）。
+- 規則寫死：真品照外框（alpha 非零的 bbox）跟浮水印框距離 ≥ 20 px；不夠就把真品照**往下移／等比縮小**（先移再縮，縮到夠為止）；再加一道檢查（builder 組完或 sheet 階段）量實際成片片尾卡那格，不夠就 FAIL。給 builder patch（CRLF 保留）＋檢查程式。
+
+### 產出與回報
+- 報告 `out/工單5-報告.md` 第一段寫結論（A 新門檻＋依據、B 框對不對、C patch 有沒有、D 做到哪）；圖放 `out/工單5/`（記得 `git add -f`）。
+- 做完 commit＋push（訊息寫「工單 #5：…」）。
+
+### 紅線
+- ⛔ 動 `spec/`、`genlib.py`、`make.py`、`golden/`；⛔ 改 #4 工具的判定邏輯（只准改 A 門檻常數並寫依據）；⛔ 加任何跳過參數；⛔ 放寬 B 的 60；⛔ 放憑證；⛔ 寫死本機路徑；⛔ 下載模型權重。
