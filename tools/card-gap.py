@@ -41,6 +41,7 @@ import os
 import shutil
 import subprocess
 import sys
+sys.stdout.reconfigure(encoding='utf-8')
 import tempfile
 
 import cv2
