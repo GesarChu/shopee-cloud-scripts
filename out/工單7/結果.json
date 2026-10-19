@@ -1,0 +1,1057 @@
+[
+ {
+  "file": "out/工單7/合成圖/合成01.png",
+  "verdict": "收",
+  "reasons": [],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 1.002,
+    "n_objects": 1,
+    "fg_ratio": 0.551,
+    "bbox_n": [
+     0.1786,
+     0.0714,
+     0.8214,
+     0.9286
+    ]
+   },
+   "product_box": [
+    250,
+    100,
+    1150,
+    1300
+   ],
+   "width": 900,
+   "height": 1200,
+   "long_side": 1200,
+   "solidity": 1.002,
+   "n_objects": 1,
+   "fg_ratio": 0.551,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 1560,
+   "white_frac": 0.012,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.408,
+    "dir": "橫",
+    "lag": 125
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成06.png",
+  "verdict": "收",
+  "reasons": [],
+  "suggestions": [
+   "塗背景色 x 1177–1364、y 37–224（標章，離商品 30 px）後可建卡"
+  ],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 0.889,
+    "n_objects": 1,
+    "fg_ratio": 0.564,
+    "bbox_n": [
+     0.1786,
+     0.0286,
+     0.9721,
+     0.9286
+    ]
+   },
+   "product_box": [
+    250,
+    100,
+    1150,
+    1300
+   ],
+   "width": 900,
+   "height": 1200,
+   "long_side": 1200,
+   "solidity": 1.002,
+   "n_objects": 1,
+   "fg_ratio": 0.551,
+   "touches_edge": [],
+   "paint": [
+    {
+     "kind": "標章",
+     "box": [
+      1177,
+      37,
+      1364,
+      224
+     ],
+     "gap": 30
+    }
+   ],
+   "film_height_max": 1560,
+   "white_frac": 0.012,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.408,
+    "dir": "橫",
+    "lag": 125
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成10.png",
+  "verdict": "收",
+  "reasons": [],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "alpha",
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 1.002,
+    "n_objects": 1,
+    "fg_ratio": 0.551,
+    "bbox_n": [
+     0.1786,
+     0.0714,
+     0.8214,
+     0.9286
+    ]
+   },
+   "product_box": [
+    250,
+    100,
+    1150,
+    1300
+   ],
+   "width": 900,
+   "height": 1200,
+   "long_side": 1200,
+   "solidity": 1.002,
+   "n_objects": 1,
+   "fg_ratio": 0.551,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 1560,
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.408,
+    "dir": "橫",
+    "lag": 125
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成11.png",
+  "verdict": "收",
+  "reasons": [
+   {
+    "level": "備註",
+    "code": "edge",
+    "text": "商品碰到圖片下邊（只備註，不扣分）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 0.839,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 1.002,
+    "n_objects": 1,
+    "fg_ratio": 0.551,
+    "bbox_n": [
+     0.1786,
+     0.1429,
+     0.8214,
+     1.0
+    ]
+   },
+   "product_box": [
+    250,
+    200,
+    1150,
+    1400
+   ],
+   "width": 900,
+   "height": 1200,
+   "long_side": 1200,
+   "solidity": 1.002,
+   "n_objects": 1,
+   "fg_ratio": 0.551,
+   "touches_edge": [
+    "下"
+   ],
+   "paint": [],
+   "film_height_max": 1560,
+   "white_frac": 0.012,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.408,
+    "dir": "橫",
+    "lag": 125
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成09.png",
+  "verdict": "要人眼",
+  "reasons": [
+   {
+    "level": "要人眼",
+    "code": "wm",
+    "text": "浮水印嫌疑：淡色字樣 137 塊、分布在商品上下右左 4 邊（整張重複，多半也蓋到商品）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 0.96,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 0.591,
+    "n_objects": 1,
+    "fg_ratio": 0.575,
+    "bbox_n": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   "product_box": [
+    218,
+    71,
+    1164,
+    1333
+   ],
+   "width": 946,
+   "height": 1262,
+   "long_side": 1262,
+   "solidity": 0.935,
+   "n_objects": 1,
+   "fg_ratio": 0.553,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 1640,
+   "white_frac": 0.012,
+   "watermark": {
+    "faint_marks": 137,
+    "sides": [
+     "上",
+     "下",
+     "右",
+     "左"
+    ],
+    "suspect": "整張"
+   },
+   "front": {
+    "rect_ratio": 0.91,
+    "max_edge_dev": 0.0,
+    "symmetry": 0.955,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.439,
+    "dir": "直",
+    "lag": 158
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成13-大的重複多包.png",
+  "verdict": "要人眼",
+  "reasons": [
+   {
+    "level": "要人眼",
+    "code": "repeat",
+    "text": "重複圖樣：商品框裡橫向每 240 px 重複（相關 0.99）⇒ 疑似多包疊放／拼接"
+   },
+   {
+    "level": "要人眼",
+    "code": "judge:front_view",
+    "text": "正面判不準：有一條橫向強邊分出亮度不同的兩面（窄面占 45%）（視覺模型沒接）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1600,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1600,
+     1400
+    ],
+    "solidity": 1.002,
+    "n_objects": 1,
+    "fg_ratio": 0.589,
+    "bbox_n": [
+     0.125,
+     0.1071,
+     0.875,
+     0.8929
+    ]
+   },
+   "product_box": [
+    200,
+    150,
+    1400,
+    1250
+   ],
+   "width": 1200,
+   "height": 1100,
+   "long_side": 1200,
+   "solidity": 1.002,
+   "n_objects": 1,
+   "fg_ratio": 0.589,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 1430,
+   "white_frac": 0.0,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": {
+     "dir": "橫",
+     "pos": 495,
+     "narrow_frac": 0.45,
+     "span": 0.812,
+     "diff": 97.3
+    },
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.994,
+    "dir": "橫",
+    "lag": 240
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成08.png",
+  "verdict": "要人眼",
+  "reasons": [
+   {
+    "level": "要人眼",
+    "code": "white",
+    "text": "商品 98% 跟背景同色（白色／透明商品），量不準：先跑 cutout-product.py"
+   }
+  ],
+  "suggestions": [
+   "白色商品：先跑 cutout-product.py 去背，再用 RGBA 重篩"
+  ],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 0.955,
+    "n_objects": 1,
+    "fg_ratio": 0.261,
+    "bbox_n": [
+     0.3214,
+     0.1071,
+     0.6793,
+     0.9293
+    ]
+   },
+   "product_box": [
+    450,
+    150,
+    951,
+    1301
+   ],
+   "width": 501,
+   "height": 1151,
+   "long_side": 1151,
+   "solidity": 0.955,
+   "n_objects": 1,
+   "fg_ratio": 0.261,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 1496,
+   "white_frac": 0.98,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 0.889,
+    "max_edge_dev": 14.5,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 10
+   },
+   "repeat": {
+    "score": 0.594,
+    "dir": "直",
+    "lag": 177
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成03.png",
+  "verdict": "要人眼",
+  "reasons": [
+   {
+    "level": "要人眼",
+    "code": "long700-999",
+    "text": "商品長邊 850（700–999：大字包裝才收）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1024,
+    1024
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1024,
+     1024
+    ],
+    "solidity": 1.003,
+    "n_objects": 1,
+    "fg_ratio": 0.519,
+    "bbox_n": [
+     0.085,
+     0.1875,
+     0.915,
+     0.8125
+    ]
+   },
+   "product_box": [
+    87,
+    192,
+    937,
+    832
+   ],
+   "width": 850,
+   "height": 640,
+   "long_side": 850,
+   "solidity": 1.003,
+   "n_objects": 1,
+   "fg_ratio": 0.519,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 832,
+   "white_frac": 0.006,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.409,
+    "dir": "直",
+    "lag": 78
+   }
+  },
+  "judge": {
+   "status": "not_connected"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成07.png",
+  "verdict": "不收",
+  "reasons": [
+   {
+    "level": "不收",
+    "code": "slant",
+    "text": "斜角嫌疑：輪廓有斜邊（偏 36°）＋商品裡有一條橫向強邊分出第二面（窄面占 16%、亮度差 50）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 1.001,
+    "n_objects": 1,
+    "fg_ratio": 0.525,
+    "bbox_n": [
+     0.1786,
+     0.0714,
+     0.8221,
+     0.9293
+    ]
+   },
+   "product_box": [
+    250,
+    100,
+    1151,
+    1301
+   ],
+   "width": 901,
+   "height": 1201,
+   "long_side": 1201,
+   "solidity": 1.001,
+   "n_objects": 1,
+   "fg_ratio": 0.525,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 1561,
+   "white_frac": 0.009,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 0.952,
+    "max_edge_dev": 35.6,
+    "symmetry": 0.904,
+    "second_face": {
+     "dir": "橫",
+     "pos": 190,
+     "narrow_frac": 0.158,
+     "span": 0.608,
+     "diff": 50.1
+    },
+    "polygon": 6
+   },
+   "repeat": {
+    "score": 0.305,
+    "dir": "橫",
+    "lag": 110
+   }
+  },
+  "judge": {
+   "status": "skipped",
+   "why": "程式已判不收"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成04.png",
+  "verdict": "不收",
+  "reasons": [
+   {
+    "level": "不收",
+    "code": "n_obj",
+    "text": "2 個東西（建卡要剛好 1 個；連通塊 ≥ 前景 3%）"
+   },
+   {
+    "level": "要人眼",
+    "code": "solid.75-.88",
+    "text": "實心度 0.835（0.75–0.88：袋形凹走建卡 halo_flood，白色／透明先 cutout-product.py）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 0.835,
+    "n_objects": 2,
+    "fg_ratio": 0.459,
+    "bbox_n": [
+     0.0714,
+     0.1786,
+     0.9286,
+     0.8214
+    ]
+   },
+   "product_box": [
+    100,
+    250,
+    1300,
+    1150
+   ],
+   "width": 1200,
+   "height": 900,
+   "long_side": 1200,
+   "solidity": 0.835,
+   "n_objects": 2,
+   "fg_ratio": 0.459,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 1170,
+   "white_frac": 0.016,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 0.833,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.579,
+    "dir": "直",
+    "lag": 110
+   }
+  },
+  "judge": {
+   "status": "skipped",
+   "why": "程式已判不收"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成05.png",
+  "verdict": "不收",
+  "reasons": [
+   {
+    "level": "不收",
+    "code": "cross-text",
+    "text": "貼字條跨過商品輪廓（1 列字一部分在商品上、一部分伸出去）"
+   },
+   {
+    "level": "不收",
+    "code": "n_obj",
+    "text": "2 個東西（建卡要剛好 1 個；連通塊 ≥ 前景 3%）：貼字條把商品切開了"
+   },
+   {
+    "level": "要人眼",
+    "code": "judge:front_view",
+    "text": "正面判不準：輪廓不是正立矩形（填滿 0.87）、左右也不對稱（0.82）（視覺模型沒接）"
+   },
+   {
+    "level": "要人眼",
+    "code": "judge:added_text",
+    "text": "商品裡有一條橫條帶字（占高 4%），分不出是後加字條還是包裝印的（視覺模型沒接）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1400,
+    1400
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1400,
+     1400
+    ],
+    "solidity": 0.903,
+    "n_objects": 2,
+    "fg_ratio": 0.519,
+    "bbox_n": [
+     0.1193,
+     0.0714,
+     0.8214,
+     0.9286
+    ]
+   },
+   "product_box": [
+    167,
+    100,
+    1150,
+    1300
+   ],
+   "width": 983,
+   "height": 1200,
+   "long_side": 1200,
+   "solidity": 0.903,
+   "n_objects": 2,
+   "fg_ratio": 0.519,
+   "touches_edge": [],
+   "paint": [],
+   "crossing_text": [
+    [
+     167,
+     663,
+     1049,
+     709
+    ]
+   ],
+   "film_height_max": 1560,
+   "white_frac": 0.012,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 0.866,
+    "max_edge_dev": 0.0,
+    "symmetry": 0.82,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.549,
+    "dir": "橫",
+    "lag": 125
+   },
+   "inner_bar": {
+    "box": [
+     167,
+     663,
+     1150,
+     709
+    ],
+    "height_frac": 0.038,
+    "text_frac": 0.348
+   }
+  },
+  "judge": {
+   "status": "skipped",
+   "why": "程式已判不收"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成02.png",
+  "verdict": "不收",
+  "reasons": [
+   {
+    "level": "不收",
+    "code": "long<700",
+    "text": "商品長邊 662 < 700（⛔ 例外）"
+   },
+   {
+    "level": "不收",
+    "code": "h<600",
+    "text": "商品高 500 < 600（成片放大上限 1.30）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1000,
+    1000
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1000,
+     1000
+    ],
+    "solidity": 1.004,
+    "n_objects": 1,
+    "fg_ratio": 0.331,
+    "bbox_n": [
+     0.169,
+     0.25,
+     0.831,
+     0.75
+    ]
+   },
+   "product_box": [
+    169,
+    250,
+    831,
+    750
+   ],
+   "width": 662,
+   "height": 500,
+   "long_side": 662,
+   "solidity": 1.004,
+   "n_objects": 1,
+   "fg_ratio": 0.331,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 650,
+   "white_frac": 0.005,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": null,
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.422,
+    "dir": "直",
+    "lag": 61
+   }
+  },
+  "judge": {
+   "status": "skipped",
+   "why": "程式已判不收"
+  }
+ },
+ {
+  "file": "out/工單7/合成圖/合成12.png",
+  "verdict": "不收",
+  "reasons": [
+   {
+    "level": "不收",
+    "code": "long<700",
+    "text": "商品長邊 600 < 700（⛔ 例外）"
+   },
+   {
+    "level": "要人眼",
+    "code": "wide",
+    "text": "商品高 200 < 600，但寬高比 3.00 ≥ 1.6（寬包，放大倍數另算）"
+   },
+   {
+    "level": "要人眼",
+    "code": "repeat",
+    "text": "重複圖樣：商品框裡橫向每 120 px 重複（相關 0.99）⇒ 疑似多包疊放／拼接"
+   },
+   {
+    "level": "要人眼",
+    "code": "judge:front_view",
+    "text": "正面判不準：有一條橫向強邊分出亮度不同的兩面（窄面占 45%）（視覺模型沒接）"
+   }
+  ],
+  "suggestions": [],
+  "measure": {
+   "image_size": [
+    1000,
+    1000
+   ],
+   "source": "背景估計",
+   "background": [
+    255,
+    255,
+    255
+   ],
+   "background_uniform": 1.0,
+   "card_raw": {
+    "size": [
+     1000,
+     1000
+    ],
+    "solidity": 1.007,
+    "n_objects": 1,
+    "fg_ratio": 0.12,
+    "bbox_n": [
+     0.2,
+     0.4,
+     0.8,
+     0.6
+    ]
+   },
+   "product_box": [
+    200,
+    400,
+    800,
+    600
+   ],
+   "width": 600,
+   "height": 200,
+   "long_side": 600,
+   "solidity": 1.007,
+   "n_objects": 1,
+   "fg_ratio": 0.12,
+   "touches_edge": [],
+   "paint": [],
+   "film_height_max": 260,
+   "white_frac": 0.0,
+   "watermark": {
+    "faint_marks": 0,
+    "sides": []
+   },
+   "front": {
+    "rect_ratio": 1.0,
+    "max_edge_dev": 0.0,
+    "symmetry": 1.0,
+    "second_face": {
+     "dir": "橫",
+     "pos": 90,
+     "narrow_frac": 0.45,
+     "span": 0.825,
+     "diff": 97.8
+    },
+    "polygon": 4
+   },
+   "repeat": {
+    "score": 0.992,
+    "dir": "橫",
+    "lag": 120
+   }
+  },
+  "judge": {
+   "status": "skipped",
+   "why": "程式已判不收"
+  }
+ }
+]
