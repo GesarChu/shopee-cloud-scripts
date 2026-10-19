@@ -1,0 +1,20 @@
+{
+ "_說明": "CSV 欄名 → 標準欄位。一個標準欄位可以有多個別名。CSV 有對不到的欄名 ⇒ 程式 exit 2 並列出那些欄名（⛔ 猜、⛔ 默默略過）。分潤後台如果有官方匯出，本機拿到第一列欄名後只在這裡加別名，不改程式。",
+ "title": ["品名", "商品名稱", "商品名", "title"],
+ "shop_id": ["賣場ID", "商店ID", "shopid", "shop_id"],
+ "item_id": ["商品ID", "itemid", "item_id"],
+ "url": ["網址", "商品連結", "連結", "url"],
+ "shop_name": ["賣場名", "商店名稱", "shop_name"],
+ "shop_type": ["賣場類型", "商店類型", "shop_type"],
+ "price": ["價格", "售價", "price"],
+ "total_sold": ["已售", "總銷量", "total_sold"],
+ "monthly_sales": ["月銷", "月銷量", "monthly_sales", "sold"],
+ "_sold": "後台英文介面卡片寫「50萬+ sold」＝中文介面的「月銷」（43 10/19 10:5x 看過），所以英文欄名 sold 對到 monthly_sales，不是總銷量。",
+ "commission_rate": ["列表分潤率", "分潤率", "佣金率", "commission_rate"],
+ "bonus": ["分潤加碼", "加碼", "bonus"],
+ "offer_end": ["加碼到期", "推廣到期", "推廣期限", "offer_end"],
+ "sv_rate": ["短影音分潤", "短影音", "sv_rate"],
+ "sv_bonus": ["短影音獎勵", "獎勵", "sv_bonus"],
+ "front_stores": ["前台同款家數", "同款家數", "front_stores"],
+ "category": ["品類", "分類", "category"]
+}
