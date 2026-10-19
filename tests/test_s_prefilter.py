@@ -356,6 +356,79 @@ class StoreCount(unittest.TestCase):
         self.assertNotIn("前台數家數", c[0]["下一步"])
 
 
+HDR = "品名,賣場ID,商品ID,價格,月銷,列表分潤率,分潤加碼,加碼到期,短影音分潤,短影音獎勵,前台同款家數\n"
+
+
+class WO8Prefilter(unittest.TestCase):
+    """工單 #8：讀不到的數字 ⛔ 當 0 標「實」；括號／開頭促銷字 ⛔ 當品牌；做過比對用「品牌出現在品名」。"""
+
+    def run_csv(self, body, rules=RULES):
+        tmp = tempfile.mkdtemp(prefix="wo8_")
+        self.addCleanup(shutil.rmtree, tmp, True)
+        p = os.path.join(tmp, "x.csv")
+        spit(p, HDR + body)
+        out = os.path.join(tmp, "out")
+        code, log = run([p], out, rules=rules)
+        self.assertEqual(code, 0, log)
+        return (read_csv(os.path.join(out, "候選.csv")), {int(r["列"]): r for r in read_csv(os.path.join(out, "排除.csv"))},
+                json.loads(slurp(os.path.join(out, "分組.json"))))
+
+    def test_promo_prefix_not_brand_and_done_blocks(self):
+        cands, ex, g = self.run_csv(
+            "【買一送一】舊識牌 無加糖豆漿 6入,1,1,$120,7000+,1%,是,2026/12/31,,,\n"
+            "新品 舊識牌 無加糖豆漿 6入,2,2,$120,7000+,1%,是,2026/12/31,,,\n"
+            "下殺 舊識牌 無加糖豆漿 6入,3,3,$120,7000+,1%,是,2026/12/31,,,\n"      # 開頭促銷字沒收錄在 promo_words 也要擋
+            "【舊識牌】無加糖豆漿 6入,4,4,$120,7000+,1%,是,2026/12/31,,,\n")
+        for row in (1, 2, 3, 4):
+            self.assertIn(row, ex, "列 %d 沒被做過清單擋下" % row)
+            self.assertIn("做過（舊識牌｜豆漿）", ex[row]["理由"])
+        self.assertEqual(cands, [])
+        brands = {x["品牌"] for x in g["組"]}
+        self.assertEqual(brands, {"舊識牌"})                                  # ⛔「買一送一」「新品」「下殺」當品牌
+        self.assertEqual(len(g["組"]), 1)                                     # 去掉促銷字後是同一組
+
+    def test_bracket_flavor_kept(self):
+        _, _, g = self.run_csv(
+            "晴空 洗碗精(檸檬) 500ml,1,1,$59,3萬+,1%,是,2026/12/31,,,6\n"
+            "晴空 洗碗精(綠茶) 500ml,2,2,$59,3萬+,1%,是,2026/12/31,,,6\n"
+            "【限時下殺】晴空 洗碗精 檸檬 1000ml,3,3,$99,3萬+,1%,是,2026/12/31,,,6\n")
+        gs = {x["組名"]: x["列"] for x in g["組"]}
+        self.assertEqual(len(gs), 2, gs)                                       # 口味不同＝不同組；促銷括號拿掉
+        self.assertIn([1, 3], gs.values())
+
+    def test_brand_alias(self):
+        tmp = tempfile.mkdtemp(prefix="wo8_")
+        self.addCleanup(shutil.rmtree, tmp, True)
+        r = json.loads(slurp(RULES))
+        r["brand_aliases"] = {"舒潔": ["Kleenex"]}
+        rp = os.path.join(tmp, "規則.json")
+        spit(rp, json.dumps(r, ensure_ascii=False))
+        _, _, g = self.run_csv(
+            "舒潔 抽取式衛生紙 100抽x10包,1,1,$189,1萬+,1%,是,2026/12/31,,,6\n"
+            "Kleenex 抽取式衛生紙 110抽x12包,2,2,$219,1萬+,1%,是,2026/12/31,,,6\n"
+            "【Kleenex舒潔】抽取式衛生紙 90抽,3,3,$99,1萬+,1%,是,2026/12/31,,,6\n", rules=rp)
+        self.assertEqual([x["列"] for x in g["組"]], [[1, 2, 3]], g["組"])
+        self.assertEqual(g["組"][0]["品牌"], "舒潔")
+
+    def test_unreadable_bonus_never_real(self):
+        cands, _, _ = self.run_csv(
+            "甲牌 洗碗精 檸檬 500ml,1,1,$59,3萬+,1%,是,2026/12/31,0.5%,xyz,6\n"      # 獎勵讀不到 ⇒ 用列表估
+            "乙牌 洗碗精 檸檬 500ml,2,2,$59,3萬+,1%,是,2026/12/31,abc,0.5%,6\n"      # 短影音讀不到 ⇒ 用列表估
+            "丙牌 洗碗精 檸檬 500ml,3,3,$59,3萬+,,是,2026/12/31,0.5%,xyz,6\n"        # 列表也空 ⇒ 算不出來
+            "丁牌 洗碗精 檸檬 500ml,4,4,$59,3萬+,1%,是,2026/12/31,0.5%,,6\n")        # 獎勵空白＝沒有獎勵 ⇒ 實
+        c = {r["組名"]: r for r in cands}
+        for name, raw in (("甲牌 洗碗精 檸檬", "短影音獎勵讀不到（「xyz」）"), ("乙牌 洗碗精 檸檬", "短影音讀不到（「abc」）")):
+            cell = c[name]["每單約 $（哪一家、實／估）"]
+            self.assertNotIn("實", cell, cell)
+            self.assertTrue(cell.startswith("0.59（列 %d，估）" % (1 if name.startswith("甲") else 2)), cell)
+            self.assertIn(raw, cell)
+            self.assertIn(raw, c[name]["標記"])
+        cell = c["丙牌 洗碗精 檸檬"]["每單約 $（哪一家、實／估）"]
+        self.assertTrue(cell.startswith("算不出來"), cell)
+        self.assertNotIn("實", cell)
+        self.assertTrue(c["丁牌 洗碗精 檸檬"]["每單約 $（哪一家、實／估）"].startswith("0.30（列 4，實）"))
+
+
 class Static(unittest.TestCase):
     """驗收 3、5：沒有網路 import、只用標準庫、沒有寫死本機路徑。"""
 

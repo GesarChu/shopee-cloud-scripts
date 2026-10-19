@@ -44,7 +44,8 @@ BADGE_GAP_MIN = 4          # 跟商品分開的標章／貼字：間隔 ≥ 4 px
 
 # 這張單沒給數字的，先用合成圖定（out/工單7-報告.md 第 2 節），本機再用真圖校
 BG_RING = 0.01             # 背景色取四邊外圈（短邊 1%，至少 2 px）的中位數
-BG_TOL = 24                # 跟背景色差（RGB 最大通道）≤ 24 算背景；JPEG 雜訊 < 10、白瓶身 RGB ≥ 235 差 ≤ 20
+BG_TOL = 14                # 跟背景色差（RGB 最大通道）≤ 14 算背景：照建卡 prodfilm.py to_alpha 預設 tol=14（工單 #8；原 24 比建卡寬，
+                           # 本機 124 張正例有 7 張白／淺色商品身體被當背景挖掉）。JPEG 雜訊 < 10；RGB 241 以上的白身體仍會被當背景 ⇒ 白色商品走 cutout
 BG_UNIFORM_MIN = 0.60      # 外圈 ≥ 60% 是背景色才算單色背景；不然量不準 ⇒ 要人眼
 WHITE_FRAC = 0.50          # 商品框裡 ≥ 50% 的像素跟背景同色 ⇒ 白色／透明商品，分不準 ⇒ 要人眼（走 cutout-product.py）
 FAINT_DIFF_MAX = 110       # 框外小塊平均跟背景差 ≤ 110 ＝淡色（半透明浮水印：alpha 0.2 黑字差 ≈ 51、0.4 ≈ 102；實心字 ≥ 200）
@@ -70,6 +71,7 @@ PROT_MAX_H = 0.30          # 那條橫帶高 ≤ 商品高 30%，而且不碰商
 SHEET_MAX_W = 3800         # --sheet：整張寬 ≤ 3800（工單）
 SHEET_MAX_BYTES = 3 * 1024 * 1024   # --sheet：檔案 ≤ 3 MB（工單）
 SHEET_CELL = 360
+SHEET_PER_PAGE = 100       # --sheet 一張最多幾格（10 欄 × 10 列，高約 4,300 px）；超過自動分張、檔名加 -1、-2…（工單 #8：JPEG 高度上限 65,535）
 
 EXTS = (".jpg", ".jpeg", ".png", ".webp")
 ORDER = {"收": 0, "要人眼": 1, "不收": 2}
@@ -395,8 +397,8 @@ def screen(path):
     lines = [[chars[k] for k in g] for g in group_lines([cbox(i) for i in chars]) if len(g) >= LINE_MIN_CHARS]
     in_line = {i for ln in lines for i in ln}
 
-    # 跨輪廓的字（一列字，一部分在商品框外、一部分在框裡）⇒ 不收
-    crossing, cross_chars, outside_lines, inner_lines = [], set(), [], []
+    # 跨輪廓的字（一列字，一部分在商品框外、一部分在框裡）⇒ 要人眼（工單 #8 從不收降下來）
+    crossing, cross_chars, cross_info, outside_lines, inner_lines = [], set(), [], [], []
     for ln in lines:
         bs = [cbox(i) for i in ln]
         lb = [min(b[0] for b in bs), min(b[1] for b in bs), max(b[2] for b in bs), max(b[3] for b in bs)]
@@ -407,6 +409,7 @@ def screen(path):
         if pbox[1] <= cy <= pbox[3] and n_in and n_out:
             crossing.append(lb)
             cross_chars.update(ln)
+            cross_info.append((len(ln), n_in, n_out, max(0, pbox[0] - lb[0], lb[2] - pbox[2]), lb[3] - lb[1]))
         elif n_in == 0 or not (pbox[1] <= cy <= pbox[3]):
             outside_lines.append((lb, ln))
         else:
@@ -449,15 +452,19 @@ def screen(path):
     # ── 判 ──
     if crossing:
         r.m["crossing_text"] = crossing
-        r.add("不收", "cross-text", "貼字條跨過商品輪廓（%d 列字一部分在商品上、一部分伸出去）" % len(crossing))
+        r.add("要人眼", "cross-text", "疑似貼字條跨過商品輪廓：%s" % "；".join(
+            "一列 %d 個字狀塊、%d 個在商品框裡、%d 個在框外，伸出商品框 %d px、字高 %d px" % x for x in cross_info))
     if not crossing:
         pr = protrusion_band(rgb, prod, pb)
         if pr:
             r.m["protrusion"] = pr
-            if pr["text_frac"] >= 0.02:
-                r.add("不收", "cross-bar", "商品中段一條帶字的橫條左右都伸出商品外 %d px（跨輪廓貼字條）" % pr["protrude_px"])
+            band_h = pr["box"][3] - pr["box"][1]
+            nums = "左右都比商品本體寬 %d px、橫帶高 %d px（商品高 %.0f%%）、伸出段字狀像素 %.0f%%" % (
+                pr["protrude_px"], band_h, band_h * 100.0 / max(1, ph), pr["text_frac"] * 100)
+            if pr["text_frac"] >= 0.02:   # 工單 #8：瓶肩、袋腰也會這樣 ⇒ 不直接不收
+                r.add("要人眼", "cross-bar", "疑似跨輪廓貼字條（也可能是瓶肩、袋腰、封口）：" + nums)
             else:
-                r.add("要人眼", "cross-bar?", "商品中段一條橫條左右都伸出商品外 %d px（像跨輪廓的條，沒看到字）" % pr["protrude_px"])
+                r.add("要人眼", "cross-bar?", "商品中段一條橫帶伸出商品本體（像跨輪廓的條，沒看到字；也可能是瓶肩、袋腰）：" + nums)
     if inner_lines:
         r.m["inner_text"] = inner_lines
         r.delegated.append(("added_text", "商品裡有跟背景連通的字塊（可能是後加字條）"))
@@ -662,13 +669,27 @@ LABEL = {"收": ("OK", (40, 160, 40)), "要人眼": ("CHECK", (230, 140, 0)), "�
 
 
 def write_sheet(rs, path):
-    """每張縮圖畫商品框（綠）、要塗的框（藍）、跨輪廓字（紅）、結論字。整張寬 ≤ 3800、檔案 ≤ 3 MB。"""
+    """驗圖：每張縮圖畫商品框（綠）、要塗的框（藍）、跨輪廓字（紅）、結論字。每張寬 ≤ 3800、檔案 ≤ 3 MB；
+    超過 SHEET_PER_PAGE 格就分張，檔名加 -1、-2…（只有一張時檔名不變）。回傳 [(檔名, (寬, 高), bytes)…]。"""
+    per = max(1, int(SHEET_PER_PAGE))
+    pages = [rs[i:i + per] for i in range(0, len(rs), per)] or [[]]
+    root, ext = os.path.splitext(path)
+    out = []
+    for n, page in enumerate(pages, 1):
+        p = path if len(pages) == 1 else "%s-%d%s" % (root, n, ext or ".jpg")
+        size, nbytes = _sheet_page(page, (n - 1) * per, p)
+        out.append((p, size, nbytes))
+    return out
+
+
+def _sheet_page(rs, start, path):
     cell, cap = SHEET_CELL, 64
-    cols = max(1, min(len(rs), SHEET_MAX_W // (cell + 8)))
-    rows = (len(rs) + cols - 1) // cols
+    cols = max(1, min(max(len(rs), 1), SHEET_MAX_W // (cell + 8)))
+    rows = max(1, (len(rs) + cols - 1) // cols)
     sheet = np.full((rows * (cell + cap + 8) + 8, cols * (cell + 8) + 8, 3), 245, np.uint8)
-    for k, r in enumerate(rs):
-        x, y = 8 + (k % cols) * (cell + 8), 8 + (k // cols) * (cell + cap + 8)
+    for j, r in enumerate(rs):
+        k = start + j
+        x, y = 8 + (j % cols) * (cell + 8), 8 + (j // cols) * (cell + cap + 8)
         try:
             img, _ = load(r.path)
         except Exception:   # noqa: BLE001
@@ -740,8 +761,8 @@ def main(argv=None):
     if a.md:
         write_md(rs, a.md)
     if a.sheet:
-        size, nbytes = write_sheet(rs, a.sheet)
-        print("驗圖：%s（%d×%d、%.2f MB）" % (a.sheet, size[0], size[1], nbytes / 1048576.0))
+        for p, size, nbytes in write_sheet(rs, a.sheet):
+            print("驗圖：%s（%d×%d、%.2f MB）" % (p, size[0], size[1], nbytes / 1048576.0))
     return 0
 
 

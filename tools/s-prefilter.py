@@ -14,8 +14,10 @@
   → 同款分組 → 品類 → 篩選（每條規則一個理由代碼）→ 排序 → 輸出 候選.md／候選.csv／排除.csv／分組.json＋畫面摘要。
 
 同款分組（Fable 42 10/11：新舊包裝、容量、入數不同＝同一組；口味不同＝不同組）：
-  品名先 NFKC，拿掉 promo_words、capacity_pattern、拿空了的括號、括號符號 ⇒ 顯示名；
-  品牌＝顯示名第一個詞（沒空格的品名：用其他列／做過清單出現過的品牌當前綴比）；
+  品名先 NFKC；括號【】［］()（）裡不是品牌（做過清單＋規則檔 brand_aliases）的整段拿掉（口味字留下）；
+  再拿掉 promo_words、capacity_pattern、括號符號 ⇒ 顯示名（工單 #8）；
+  品牌：做過清單／別名的品牌（2 字以上）出現在顯示名任何位置 ⇒ 就是那個品牌（前面沒收錄的促銷字丟掉）；
+  不然＝顯示名第一個詞（沒空格的品名：用其他列／做過清單出現過的品牌當前綴比）；別名一律換成正式品牌；
   口味＝flavor_words 裡「單獨成詞」的字；沒有單獨成詞的，才在品名裡找「不是品類字」的口味字（「海苔」在「脆烤海苔」裡是品名主體）；
   系列＝品牌之後、拿掉口味的部分（去空白）。(品牌, 系列, 口味) 完全一樣＝同組。
   比不準的配對 ⇒ 分組待人判（⛔ 硬併）：品牌一樣、組不一樣、口味沒有「兩邊都有而且不同」，而且
@@ -193,6 +195,9 @@ def load_rules(path):
     for k in ("same_brand_same_series", "same_brand_other_series"):
         if r["done_policy"].get(k) not in ("exclude", "demote", "mark"):
             raise Fatal("規則檔 done_policy.%s 只能是 exclude／demote／mark：%r" % (k, r["done_policy"].get(k)))
+    r.setdefault("brand_aliases", {})
+    if not isinstance(r["brand_aliases"], dict) or not all(isinstance(v, list) for v in r["brand_aliases"].values()):
+        raise Fatal("規則檔 brand_aliases 要是 {\"正式品牌\": [\"別名\", …]}")
     if r["offer_end_policy"] not in ("exclude_member", "mark"):
         raise Fatal("規則檔 offer_end_policy 只能是 exclude_member／mark：%r" % r["offer_end_policy"])
     for s in r["sort"]:
@@ -242,6 +247,20 @@ def load_done(path):
     return out
 
 
+def brand_map(rules, done):
+    """品牌清單（做過清單的品牌＋brand_aliases）：{名字 casefold: 正式品牌}。"""
+    m = {}
+    for canon, names in rules["brand_aliases"].items():
+        c = _clean(canon)
+        for n in [canon] + list(names):
+            if _clean(n):
+                m[_clean(n).casefold()] = c
+    for b, _ in done:
+        if b and b.casefold() not in m:
+            m[b.casefold()] = b
+    return m
+
+
 def read_offers(paths, alias):
     rows, unknown, info = [], {}, []
     for p in paths:
@@ -286,10 +305,33 @@ def read_offers(paths, alias):
 
 
 # ── 品名：顯示名、品牌、系列、口味、品類 ───────────────────────────────────────
+BRACKET_PAIRS = (("【", "】"), ("[", "]"), ("(", ")"))   # NFKC 之後：［］→[]、（）→()
+
+
 def strip_title(title, rules):
-    """品名 → (顯示名, 拿掉的字)。拿掉 promo_words、容量入數、括號裡的促銷字。"""
+    """品名 → (顯示名, 拿掉的字)。拿掉括號裡的促銷字、promo_words、容量入數。
+    括號【】［］()（）裡：是品牌（做過清單的品牌＋brand_aliases）⇒ 留品牌；有口味字 ⇒ 只留口味字（口味不同＝不同組）；
+    其他 ⇒ 整段當促銷字拿掉（工單 #8：「【買一送一】舊識牌…」不能變成品牌「買一送一」）。"""
     s = unicodedata.normalize("NFKC", title)
     removed = []
+    brands = sorted(rules.get("_alias", {}), key=len, reverse=True)
+    flavors = sorted({unicodedata.normalize("NFKC", w) for w in rules["flavor_words"]}, key=len, reverse=True)
+
+    def seg(m):
+        c = m.group(2).strip()
+        hit = [b for b in brands if b and b in c.casefold()]
+        if hit:
+            i = c.casefold().find(hit[0])
+            return " %s " % c[i:i + len(hit[0])]
+        fl, rest = [], c
+        for w in flavors:
+            if w in rest:
+                fl.append(w)
+                rest = rest.replace(w, "")
+        removed.append(m.group(0))
+        return " %s " % " ".join(fl) if fl else " "
+    for o, c in BRACKET_PAIRS:
+        s = re.sub("(%s)([^%s%s]*)(%s)" % (re.escape(o), re.escape(o), re.escape(c), re.escape(c)), seg, s)
     for w in sorted(rules["promo_words"], key=len, reverse=True):
         w2 = unicodedata.normalize("NFKC", w)
         if w2 in s:
@@ -341,14 +383,16 @@ class Offer:
         回傳 (金額或 None, 實／估 或 None, 說明)。"""
         if self.price.value is None:
             return None, None, "價格%s" % ("讀不到（「%s」）" % self.price.raw if self.price.unreadable else "空白")
-        if self.sv.value is not None:
-            b = self.sv_bonus.value if self.sv_bonus.value is not None else Decimal(0)
+        bad = ["%s讀不到（「%s」）" % (f, n.raw) for f, n in (("短影音", self.sv), ("短影音獎勵", self.sv_bonus)) if n.unreadable]
+        if self.sv.value is not None and not bad:   # 工單 #8：短影音或獎勵讀不到 ⛔ 當 0、⛔ 標「實」
+            b = self.sv_bonus.value if self.sv_bonus.value is not None else Decimal(0)   # 獎勵空白＝沒有獎勵
             v = (self.price.value * (self.sv.value + b) / Decimal(100)).quantize(Decimal("0.01"), ROUND_HALF_UP)
             return v, "實", "短影音 %s＋%s" % (fmt(self.sv.value), fmt(b))
+        why = ("；%s，改用列表估" % "、".join(bad)) if bad else ""
         if self.rate.value is not None:
             v = (self.price.value * self.rate.value / Decimal(100)).quantize(Decimal("0.01"), ROUND_HALF_UP)
-            return v, "估", "列表分潤 %s%%" % fmt(self.rate.value)
-        return None, None, "分潤率%s" % ("讀不到（「%s」）" % self.rate.raw if self.rate.unreadable else "空白")
+            return v, "估", "列表分潤 %s%%%s" % (fmt(self.rate.value), why)
+        return None, None, "分潤率%s%s" % ("讀不到（「%s」）" % self.rate.raw if self.rate.unreadable else "空白", "；" + "、".join(bad) if bad else "")
 
 
 def analyse_names(offers, rules, done):
@@ -356,8 +400,22 @@ def analyse_names(offers, rules, done):
     flavors = [unicodedata.normalize("NFKC", w) for w in rules["flavor_words"]]
     catwords = {unicodedata.normalize("NFKC", w) for ws in list(rules["categories"].values()) + list(rules["later_stage_categories"].values()) for w in ws}
     known = {o.name.split(" ")[0] for o in offers if " " in o.name} | {b for b, _ in done if b}
+    alias = rules.get("_alias", {})
+    anywhere = sorted((k for k in alias if len(k) >= 2), key=len, reverse=True)
     for o in offers:
-        if " " in o.name:
+        low = o.name.casefold()
+        hit = None
+        for k in anywhere:   # 工單 #8：做過清單／別名的品牌（2 字以上）出現在品名任何位置就是那個品牌（前面沒收錄的促銷字丟掉）
+            i = low.find(k)
+            if i >= 0 and (hit is None or i < hit[0]):
+                hit = (i, k)
+        if hit:
+            i, k = hit
+            if o.name[:i].strip():
+                o.removed.append("%s（品牌前的字）" % o.name[:i].strip())
+            o.brand = alias[k]
+            toks = o.name[i + len(k):].split()
+        elif " " in o.name:
             o.brand = o.name.split(" ")[0]
             toks = o.name.split(" ")[1:]
             pre = sorted((k for k in known if o.brand.startswith(k) and len(k) < len(o.brand)), key=len, reverse=True)
@@ -368,6 +426,7 @@ def analyse_names(offers, rules, done):
             pre = sorted((b for b in known if o.name.startswith(b) and len(b) < len(o.name)), key=len, reverse=True)
             o.brand = pre[0] if pre else ""
             toks = [o.name[len(o.brand):]] if o.brand else [o.name]
+        o.brand = alias.get(o.brand.casefold(), o.brand) if o.brand else o.brand
         if not o.brand:
             o.marks.append("品牌待人判（品名沒有空格、也沒有對到已知品牌）")
         fl = [t for t in toks if t in flavors]   # 單獨成詞的口味字
@@ -457,8 +516,10 @@ def apply_rules(offers, groups, rules, done, today):
                 seen[k] = o.idx
         else:
             o.marks.append("沒有 shop/item")
-        for b, s in done:
-            if b and ((o.brand and o.brand.casefold() == b.casefold()) or (not o.brand and o.name.startswith(b))):
+        for b, s in done:   # 工單 #8：去掉促銷字後，做過的品牌（2 字以上）出現在品名任何位置就算同品牌
+            bc = rules["_alias"].get(b.casefold(), b).casefold() if b else ""
+            if b and ((o.brand and o.brand.casefold() == bc) or (len(b) >= 2 and b.casefold() in o.name.casefold())
+                      or (not o.brand and o.name.startswith(b))):
                 same = (not s) or (s in o.series) or (s in o.name)
                 pol = rules["done_policy"]["same_brand_same_series" if same else "same_brand_other_series"]
                 label = "%s｜%s" % (b, s) if s else b
@@ -593,6 +654,8 @@ def cand_row(rank, g):
     if g.best:
         o, v, kind, how = g.best
         per = "%s（列 %d，%s）" % (format(v, "f"), o.idx, kind)
+        if "讀不到" in how:   # 工單 #8：用列表估的原因（哪個讀不到）寫在同一格，數字才不會看起來像真的
+            per += "：" + how
         others = ["列 %d %s＝%s（%s）" % (x.idx, h, format(w, "f"), k) for x, w, k, h in g.per_rows if x is not o and w is not None]
         others += ["列 %d 算不出來（%s）" % (x.idx, h) for x, w, k, h in g.per_rows if w is None]
         if others:
@@ -688,6 +751,7 @@ def run(a):
     else:
         today = dt.datetime.now(TW).date()
     raw, info = read_offers(a.offers, alias)
+    rules["_alias"] = brand_map(rules, done)
     offers = [Offer(i + 1, d, rules) for i, d in enumerate(raw)]
     analyse_names(offers, rules, done)
     for o in offers:

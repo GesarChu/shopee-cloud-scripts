@@ -159,7 +159,7 @@ CASES = {   # 編號: (畫法, 副檔名, 允許的結論, 原因裡要有的代
     2: (c02, "png", {"不收"}, "long<700"),
     3: (c03, "png", {"要人眼"}, "long700-999"),
     4: (c04, "png", {"不收"}, "n_obj"),
-    5: (c05, "png", {"不收"}, "cross-text"),
+    5: (c05, "png", {"不收"}, "cross-text"),   # 工單 #8：跨輪廓字條本身降成要人眼；這張仍不收是因為白字條把商品切成 2 塊
     6: (c06, "png", {"收"}, None),
     7: (c07, "png", {"要人眼", "不收"}, "slant|judge:front_view"),
     8: (c08, "png", {"要人眼", "不收"}, "white|solid|nofg"),
@@ -221,7 +221,9 @@ class Acceptance(unittest.TestCase):
         self.assertEqual(self.check(4).m["n_objects"], 2)
 
     def test_05_cross_text(self):
-        self.check(5)
+        r = self.check(5)
+        self.assertEqual({x["level"] for x in r.reasons if x["code"] == "cross-text"}, {"要人眼"})   # 工單 #8
+        self.assertIn("n_obj", codes(r))                                                           # 不收來自 2 個東西
 
     def test_06_badge_paint(self):
         r = self.check(6)
@@ -291,7 +293,7 @@ class Extra(unittest.TestCase):
         d.rectangle([150, 640, 1249, 719], fill=(250, 210, 40))
         d.text((165, 655), "TEA TREE OIL | SUPER COOL", fill=(0, 0, 0), font=font(46))
         r = self.run_img(im)
-        self.assertNotEqual(r.verdict, "收")
+        self.assertEqual(r.verdict, "要人眼")   # 工單 #8：跨輪廓條從不收降成要人眼
         self.assertTrue(codes(r) & {"cross-bar", "cross-bar?", "cross-text"}, codes(r))
 
     def test_wide_pack(self):
@@ -328,7 +330,7 @@ class Extra(unittest.TestCase):
         for name, kw in (("x.jpg", {"quality": 85}), ("x.webp", {"quality": 85})):
             r = self.run_img(c01(), name, **kw)
             self.assertEqual(r.verdict, "收", "%s：%s" % (name, [x["text"] for x in r.reasons]))
-            self.assertLessEqual(abs(r.m["long_side"] - 1200), 2)
+            self.assertLessEqual(abs(r.m["long_side"] - 1200), 4)   # 工單 #8 BG_TOL 14：壓縮振鈴 ≤ 3 px 會算進商品框
 
     def test_symmetric_bottle_front(self):
         im = Image.new("RGB", (1400, 1400), WHITE)
@@ -355,6 +357,112 @@ class Extra(unittest.TestCase):
         ImageDraw.Draw(im).rectangle([250, 100, 1149, 340], fill=(235, 235, 225))
         r = self.run_img(im)
         self.assertNotEqual(r.verdict, "不收", [x["text"] for x in r.reasons])
+
+
+def light_body_edge():   # 淺灰白身體（RGB 225～240，圓柱陰影）、背景純白、商品底邊碰到圖片下緣
+    a = np.full((1400, 1400, 3), 255, np.uint8)
+    x0, x1, y0 = 380, 1020, 160
+    for x in range(x0, x1):
+        t = abs((x - (x0 + x1) / 2.0) / ((x1 - x0) / 2.0))
+        a[y0:, x] = int(round(240 - 15 * t * t))
+    im = Image.fromarray(a)
+    d = ImageDraw.Draw(im)
+    d.rectangle([600, 60, 800, 160], fill=(232, 232, 232))
+    d.text((480, 600), "MILD SOAP", fill=(150, 150, 150), font=font(64))
+    return im
+
+
+def bottle_shoulder():   # 瓶肩比瓶身窄、瓶身中段鼓出一圈（有飾線）：輪廓中段比本體寬 ⇒ 會碰到「跨輪廓條」那條
+    im = Image.new("RGB", (1400, 1400), WHITE)
+    d = ImageDraw.Draw(im)
+    d.rectangle([630, 80, 770, 230], fill=(20, 20, 20))
+    d.polygon([(600, 230), (800, 230), (930, 380), (930, 1300), (470, 1300), (470, 380)], fill=(40, 110, 160))
+    d.rounded_rectangle([440, 560, 960, 760], radius=30, fill=(40, 110, 160))
+    for yy in range(585, 745, 26):
+        d.line([(446, yy), (954, yy)], fill=WHITE, width=6)
+    d.text((520, 620), "SHAMPOO 750", fill=WHITE, font=font(56))
+    return im
+
+
+def bag_waist():   # 立袋：吊孔片＋比袋身寬的齒邊封口（有字）＋中段收腰
+    im = Image.new("RGB", (1400, 1400), WHITE)
+    d = ImageDraw.Draw(im)
+    d.rectangle([560, 60, 840, 160], fill=(200, 80, 40))
+    d.polygon([(380, 250), (1020, 250), (960, 700), (1000, 1300), (400, 1300), (440, 700)], fill=(200, 80, 40))
+    d.rectangle([340, 160, 1060, 250], fill=(200, 80, 40))
+    for xx in range(346, 1056, 18):
+        d.line([(xx, 168), (xx, 242)], fill=(240, 200, 170), width=4)
+    d.text((470, 182), "ZIP SEAL  OPEN HERE", fill=WHITE, font=font(44))
+    d.text((520, 700), "SNACK MIX", fill=WHITE, font=font(72))
+    return im
+
+
+class WO8(unittest.TestCase):
+    """工單 #8：BG_TOL 14、跨輪廓條降要人眼、--sheet 分張。"""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix="wo8_")
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def run_img(self, im, name="x.png"):
+        p = os.path.join(self.tmp, name)
+        im.save(p)
+        return ps.apply_judge(ps.screen(p), ps.NullJudge())
+
+    def test_thresholds(self):
+        """門檻只改 BG_TOL；其他本機門檻 ⛔ 動。"""
+        self.assertEqual(ps.BG_TOL, 14)
+        self.assertEqual((ps.LONG_OK, ps.LONG_MIN, ps.HEIGHT_MIN), (1000, 700, 600))
+        self.assertEqual((ps.SOLIDITY_MIN, ps.SOLIDITY_HALO, ps.OBJ_MIN_FRAC, ps.FINAL_SCALE_MAX), (0.88, 0.75, 0.03, 1.30))
+
+    def test_light_body_touching_edge(self):
+        r = self.run_img(light_body_edge())
+        self.assertEqual(r.m["n_objects"], 1, [x["text"] for x in r.reasons])
+        self.assertGreaterEqual(r.m["solidity"], 0.88)
+        self.assertIn("下", r.m["touches_edge"])
+        self.assertEqual(r.m["product_box"], [380, 60, 1020, 1400])
+
+    def test_bottle_shoulder_not_rejected(self):
+        r = self.run_img(bottle_shoulder())
+        self.assertNotEqual(r.verdict, "不收", [x["text"] for x in r.reasons])
+        self.assertIn("cross-bar", codes(r))            # 以前這條直接不收
+
+    def test_bag_waist_not_rejected(self):
+        r = self.run_img(bag_waist())
+        self.assertNotEqual(r.verdict, "不收", [x["text"] for x in r.reasons])
+        self.assertIn("cross-bar", codes(r))
+
+    def test_cross_text_one_side_is_check(self):
+        """白底字條只跨左邊輪廓（沒把商品切斷）⇒ 要人眼，原因有量到的數字。"""
+        im = c01()
+        d = ImageDraw.Draw(im)
+        d.rectangle([150, 640, 700, 719], fill=WHITE)
+        d.text((165, 655), "TEA TREE OIL | COOL", fill=(0, 0, 0), font=font(46))
+        r = self.run_img(im)
+        self.assertEqual(r.verdict, "要人眼", [x["text"] for x in r.reasons])
+        t = [x["text"] for x in r.reasons if x["code"] == "cross-text"]
+        self.assertTrue(t and "伸出商品框" in t[0] and "px" in t[0], t)
+
+    def test_sheet_paging(self):
+        d = os.path.join(self.tmp, "imgs")
+        os.makedirs(d)
+        paths = write_cases(d)
+        rs = ps.sort_results([ps.screen(p) for p in paths.values()])
+        old = ps.SHEET_PER_PAGE
+        ps.SHEET_PER_PAGE = 5   # 張數上限調小
+        try:
+            out = ps.write_sheet(rs, os.path.join(self.tmp, "s.jpg"))
+        finally:
+            ps.SHEET_PER_PAGE = old
+        self.assertEqual([os.path.basename(p) for p, _, _ in out], ["s-1.jpg", "s-2.jpg", "s-3.jpg"])
+        for p, size, nbytes in out:
+            self.assertTrue(os.path.exists(p))
+            self.assertLessEqual(Image.open(p).width, 3800)
+            self.assertLessEqual(os.path.getsize(p), 3 * 1024 * 1024)
+        one = ps.write_sheet(rs, os.path.join(self.tmp, "one.jpg"))   # 沒超過上限 ⇒ 一張、檔名不變
+        self.assertEqual([os.path.basename(p) for p, _, _ in one], ["one.jpg"])
 
 
 class FakeModel(BaseHTTPRequestHandler):
